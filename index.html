@@ -265,7 +265,6 @@ textarea.campo.diario{min-height:0; font-size:12px}
 .lista-dati{display:grid; gap:8px}
 .voci-mie{display:flex; flex-wrap:wrap; gap:5px; margin-top:5px}
 .voci-mie button{border:1px solid var(--linea); background:var(--pozzo); border-radius:8px; padding:5px 8px; font-size:11px}
-.voci-mie button::after{content:"  ✕"; color:var(--tenue)}
 .codice{background:var(--pozzo); border:1px solid var(--linea2); border-radius:10px; padding:10px; font-size:11px;
   line-height:1.5; overflow:auto; max-height:260px; white-space:pre; font-family:ui-monospace, 'SF Mono', Menlo, Consolas, monospace}
 .passi-istr{margin:8px 0 0; padding-left:16px; color:var(--tenue); font-size:11px; line-height:1.55}
@@ -413,21 +412,44 @@ body.ro input:disabled, body.ro textarea:disabled{opacity:.6}
 .calore-mesi{display:flex; font-size:10px; color:var(--tenue); margin-bottom:6px; width:max-content; position:relative; height:14px}
 .calore-mesi span{position:absolute}
 
+/* ---------- voci: pressione lunga e voci tolte ---------- */
+.rotaia .chip{-webkit-touch-callout:none; -webkit-user-select:none; user-select:none}
+.rotaia .chip.premuto{transform:scale(.93); transition:transform .5s ease-in; box-shadow:0 0 0 2px var(--gap)}
+.voci-mie .voce-mia::after{content:"  ✕"; color:var(--tenue)}
+.voci-mie .voce-tolta{opacity:.75; text-decoration:line-through; text-decoration-color:var(--tenue2)}
+.voci-mie .voce-tolta::after{content:"  ↺"; text-decoration:none; display:inline-block; color:var(--ok)}
+
+.avviso-foglio{display:flex; align-items:center; gap:10px; margin-top:12px; padding:10px 12px; border-radius:14px;
+  border:1.5px solid var(--gap); background:color-mix(in srgb, var(--gap) 12%, var(--vasca))}
+.avviso-foglio .af-testo{flex:1; min-width:0}
+.avviso-foglio b{display:block; font-size:14px; color:var(--gesso)}
+.avviso-foglio small{display:block; font-size:12px; color:var(--tenue); margin-top:1px}
+
 /* ---------- esordienti ---------- */
 .caricamento{position:fixed; inset:0; z-index:120; background:color-mix(in srgb, var(--acqua) 94%, transparent);
   -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); display:grid; place-items:center; animation:sfuma .2s}
 .caricamento[hidden]{display:none}
 .car-corpo{display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; padding:24px}
+.car-logo{width:132px; height:132px; filter:drop-shadow(0 14px 28px rgba(0,0,0,.35)); animation:car-entra .45s cubic-bezier(.2,.8,.2,1)}
+.car-logo svg{width:100%; height:100%; display:block}
+.car-onda{animation:car-scorre 2.6s linear infinite}
+.car-onda-davanti{animation-duration:1.9s; animation-direction:reverse}
+.car-gall > g{transform-box:fill-box; transform-origin:50% 60%; animation:car-dondola 1.9s ease-in-out infinite}
+.car-gall .g2{animation-delay:-.45s} .car-gall .g3{animation-delay:-.9s} .car-gall .g4{animation-delay:-1.35s}
+.car-riflessi path{animation:car-luccica 2.4s ease-in-out infinite}
+.car-riflessi path:nth-child(2){animation-delay:-.8s} .car-riflessi path:nth-child(3){animation-delay:-1.6s}
+.car-testo{display:inline-flex; align-items:baseline}
+.car-puntini{display:inline-flex; gap:3px; margin-left:4px; font-style:normal}
+.car-puntini i{width:4px; height:4px; border-radius:50%; background:var(--tenue); animation:car-punto 1.2s ease-in-out infinite}
+.car-puntini i:nth-child(2){animation-delay:.2s} .car-puntini i:nth-child(3){animation-delay:.4s}
+@keyframes car-scorre{from{transform:translateX(0)} to{transform:translateX(-60px)}}
+@keyframes car-dondola{0%,100%{transform:translateY(0) rotate(-4deg)} 50%{transform:translateY(-4.5px) rotate(4deg)}}
+@keyframes car-luccica{0%,100%{opacity:.2} 50%{opacity:1}}
+@keyframes car-punto{0%,80%,100%{opacity:.25; transform:translateY(0)} 40%{opacity:1; transform:translateY(-3px)}}
+@keyframes car-entra{from{transform:scale(.86); opacity:0}}
+@media (prefers-reduced-motion:reduce){ .car-onda, .car-gall > g, .car-riflessi path, .car-puntini i, .car-logo{animation:none} }
 .car-corpo b{font-family:var(--fd); font-stretch:80%; font-weight:800; font-size:22px}
 .car-corpo span{font-size:14px; color:var(--tenue)}
-.car-corda{position:relative; display:flex; gap:5px; margin-bottom:6px}
-.car-corda::before{content:""; position:absolute; left:-6px; right:-6px; top:50%; height:2px; margin-top:-1px; background:var(--linea)}
-.car-corda i{position:relative; width:20px; height:12px; border-radius:6px; background:var(--en1); animation:galleggia 1.2s ease-in-out infinite}
-.car-corda i:nth-child(2){animation-delay:.1s; background:var(--do)} .car-corda i:nth-child(3){animation-delay:.2s; background:var(--ra)}
-.car-corda i:nth-child(4){animation-delay:.3s; background:var(--fa)} .car-corda i:nth-child(5){animation-delay:.4s; background:var(--en1)}
-.car-corda i:nth-child(6){animation-delay:.5s; background:var(--do)} .car-corda i:nth-child(7){animation-delay:.6s; background:var(--sp)}
-@keyframes galleggia{0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)}}
-@media (prefers-reduced-motion:reduce){ .car-corda i{animation:none} }
 .lavagna-btn{background:var(--pozzo); font-family:var(--fd); font-stretch:85%; font-weight:800; font-size:16px; min-height:48px}
 .lavagna{position:fixed; inset:0; z-index:100; background:var(--acqua); display:flex; flex-direction:column;
   padding:calc(10px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
@@ -555,6 +577,7 @@ input[type="date"].campo::-webkit-calendar-picker-indicator{opacity:.6}
     <button class="btn piccolo" id="vai-oggi">Oggi</button>
   </div>
 
+  <div id="avviso-foglio"></div>
   <div class="griglia-seduta">
     <div class="colonna-sx">
       <div class="sez" id="sez-obiettivi-giorno" hidden>
@@ -815,9 +838,36 @@ input[type="date"].campo::-webkit-calendar-picker-indicator{opacity:.6}
 
 <div class="caricamento" id="caricamento" hidden role="status" aria-live="polite">
   <div class="car-corpo">
-    <div class="car-corda" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="car-logo" aria-hidden="true">
+      <svg viewBox="0 0 120 120">
+        <defs>
+          <clipPath id="car-bordo"><rect width="120" height="120" rx="30"/></clipPath>
+          <linearGradient id="car-fondo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11506A"/><stop offset="1" stop-color="#04171E"/></linearGradient>
+          <linearGradient id="car-acqua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FA7D6" stop-opacity=".55"/><stop offset="1" stop-color="#0B3240" stop-opacity=".2"/></linearGradient>
+          <linearGradient id="car-luce" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        </defs>
+        <g clip-path="url(#car-bordo)">
+          <rect width="120" height="120" fill="url(#car-fondo)"/>
+          <g class="car-e" fill="#EEF6F4">
+            <rect x="41" y="17" width="11" height="46" rx="5.5"/><rect x="41" y="17" width="40" height="11" rx="5.5"/>
+            <rect x="41" y="34.5" width="33" height="11" rx="5.5"/><rect x="41" y="52" width="40" height="11" rx="5.5"/>
+          </g>
+          <g class="car-onda car-onda-dietro"><path d="M0 80 q15 -5 30 0 t30 0 q15 -5 30 0 t30 0 q15 -5 30 0 t30 0 q15 -5 30 0 t30 0 q15 -5 30 0 t30 0 q15 -5 30 0 t30 0 V140 H0 Z" fill="url(#car-acqua)"/></g>
+          <g class="car-gall">
+            <g class="g1"><rect x="8" y="73" width="21" height="13" rx="6.5" fill="#3FA7D6"/><rect x="11" y="75" width="15" height="5" rx="2.5" fill="url(#car-luce)"/></g>
+            <g class="g2"><rect x="36" y="73" width="21" height="13" rx="6.5" fill="#6CC6A4"/><rect x="39" y="75" width="15" height="5" rx="2.5" fill="url(#car-luce)"/></g>
+            <g class="g3"><rect x="64" y="73" width="21" height="13" rx="6.5" fill="#F2C14E"/><rect x="67" y="75" width="15" height="5" rx="2.5" fill="url(#car-luce)"/></g>
+            <g class="g4"><rect x="92" y="73" width="21" height="13" rx="6.5" fill="#C987D6"/><rect x="95" y="75" width="15" height="5" rx="2.5" fill="url(#car-luce)"/></g>
+          </g>
+          <g class="car-onda car-onda-davanti"><path d="M0 86 q15 -4 30 0 t30 0 q15 -4 30 0 t30 0 q15 -4 30 0 t30 0 q15 -4 30 0 t30 0 q15 -4 30 0 t30 0 q15 -4 30 0 t30 0 V140 H0 Z" fill="#0B3240" fill-opacity=".72"/></g>
+          <g class="car-riflessi" stroke="#EEF6F4" stroke-opacity=".22" stroke-width="1.6" stroke-linecap="round">
+            <path d="M18 100 h10"/><path d="M58 106 h14"/><path d="M92 99 h9"/>
+          </g>
+        </g>
+      </svg>
+    </div>
     <b>Vasca Esordienti</b>
-    <span id="car-testo">Carico le sedute dal foglio</span>
+    <span class="car-testo"><span id="car-testo">Carico le sedute dal foglio</span><i class="car-puntini"><i></i><i></i><i></i></i></span>
   </div>
 </div>
 
@@ -917,7 +967,8 @@ const K = {serie:"esord_serie", pref:"esord_pref", modelli:"esord_modelli", fogl
 /* ================= stato ================= */
 let serie = Mem.leggi(K.serie, []);
 let pref = Object.assign({gruppo:"esa", tema:null, voci:{}, cfg:{}, nomi:{}, vasca:25, impTs:0, dev:"",
-  modo:"scrivo", font:"classico", annoModo:"stagione", annoTutti:false}, Mem.leggi(K.pref, {}));
+  modo:"scrivo", font:"classico", annoModo:"stagione", annoTutti:false, nascoste:{}}, Mem.leggi(K.pref, {}));
+if (!pref.nascoste || typeof pref.nascoste !== "object") pref.nascoste = {};
 if (!pref.dev) pref.dev = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 let modelli = Mem.leggi(K.modelli, []);
 let note = Mem.leggi(K.note, {});
@@ -957,7 +1008,8 @@ function voci(cat){
   else if (cat === "blocco") dalDato = serie.map(s => s.b);
   else if (cat === "attr") dalDato = serie.flatMap(s => s.a || []);
   const out = [];
-  BASE[cat].concat(mie, dalDato).forEach(v => { if (v !== undefined && v !== null && v !== "" && !out.includes(v)) out.push(v); });
+  const via = pref.nascoste[cat] || [];
+  BASE[cat].concat(mie, dalDato).forEach(v => { if (v !== undefined && v !== null && v !== "" && !out.includes(v) && !via.includes(v)) out.push(v); });
   if (["rip","dist","giri"].includes(cat)) out.sort((a, b) => a - b);
   return out;
 }
@@ -1344,6 +1396,7 @@ function renderObiettiviGiorno(){
 
 /* ---------- compositore ---------- */
 function ricorda(cat, v){
+  if (pref.nascoste[cat]) pref.nascoste[cat] = pref.nascoste[cat].filter(x => x !== v);
   if (!pref.voci[cat]) pref.voci[cat] = [];
   if (!BASE[cat].includes(v) && !pref.voci[cat].includes(v)) pref.voci[cat].push(v);
   salva.pref(); segnaImpostazioni();
@@ -1363,6 +1416,57 @@ const ROTAIE = {
   giri:{id:"r-giri", et:v => "×" + v, on:v => bozza.gi === v, tap:v => { bozza.gi = v; }, piu:["Giri", "5", true]},
   attr:{id:"r-attr", et:v => v, t:true, on:v => bozza.a.includes(v), tap:v => { const i = bozza.a.indexOf(v); if (i < 0) bozza.a.push(v); else bozza.a.splice(i, 1); }, piu:["Nuovo attrezzo", "drag socks", false]}
 };
+/* ---------- pressione lunga: togliere una voce dai pulsanti ---------- */
+const MINIMO_VOCI = {stile:1, blocco:1, rip:1, dist:1, giri:1};
+/* dopo una pressione lunga il dito si alza sopra la finestra appena aperta: quel tocco va ignorato */
+let ignoraTocchiFino = 0, lungaAttiva = false;
+document.addEventListener("click", e => { if (Date.now() < ignoraTocchiFino){ e.stopImmediatePropagation(); e.preventDefault(); } }, true);
+const fineLunga = () => { if (lungaAttiva){ lungaAttiva = false; ignoraTocchiFino = Date.now() + 350; } };
+["pointerup", "pointercancel"].forEach(ev => document.addEventListener(ev, fineLunga, true));
+document.addEventListener("touchend", e => { if (lungaAttiva){ e.preventDefault(); fineLunga(); } }, {capture:true, passive:false});
+function pressioneLunga(b, fn){
+  let t = null, x0 = 0, y0 = 0, fatta = false;
+  const via = () => { clearTimeout(t); t = null; b.classList.remove("premuto"); };
+  b.addEventListener("pointerdown", e => {
+    if (soloLettura() || (e.pointerType === "mouse" && e.button !== 0)) return;
+    fatta = false; x0 = e.clientX; y0 = e.clientY;
+    b.classList.add("premuto");
+    t = setTimeout(() => { t = null; fatta = true; lungaAttiva = true; ignoraTocchiFino = Date.now() + 1500; b.classList.remove("premuto"); vibra(18); fn(); }, 550);
+  });
+  b.addEventListener("pointermove", e => { if (t && Math.hypot(e.clientX - x0, e.clientY - y0) > 10) via(); });
+  ["pointerup", "pointercancel", "pointerleave"].forEach(ev => b.addEventListener(ev, via));
+  b.addEventListener("contextmenu", e => { e.preventDefault(); if (!soloLettura() && !fatta){ fatta = true; via(); fn(); } });
+  /* il tocco che segue una pressione lunga non deve anche selezionare la voce */
+  b.addEventListener("click", e => { if (fatta){ e.stopImmediatePropagation(); e.preventDefault(); fatta = false; } }, true);
+}
+const etichettaVoce = (cat, v) => cat === "stile" ? nomeStile(v) : cat === "blocco" ? nomeBlocco(v, true) : cat === "rip" || cat === "giri" ? "×" + v : cat === "dist" ? v + " m" : String(v);
+async function togliVoce(cat, v){
+  if (soloLettura()) return;
+  const rimaste = voci(cat).filter(x => x !== v).length;
+  if (rimaste < (MINIMO_VOCI[cat] || 0)){ toast("Deve restare almeno un pulsante"); return; }
+  const mia = (pref.voci[cat] || []).includes(v);
+  const usata = serie.some(s => cat === "stile" ? s.s === v : cat === "blocco" ? s.b === v : cat === "attr" ? (s.a || []).includes(v) : false);
+  if (!await conferma("Togliere " + etichettaVoce(cat, v) + "?",
+      (mia ? "La voce che avevi aggiunto sparisce dai pulsanti." : "Il pulsante sparisce; lo rimetti quando vuoi da Impostazioni, Voci mie.") +
+      (usata ? " Le serie già scritte restano come sono." : ""), "Togli", true)) return;
+  if (mia) pref.voci[cat] = pref.voci[cat].filter(x => x !== v);
+  if (!mia || BASE[cat].includes(v) || usata){
+    if (!pref.nascoste[cat]) pref.nascoste[cat] = [];
+    if (!pref.nascoste[cat].includes(v)) pref.nascoste[cat].push(v);
+  }
+  /* la voce tolta non resta selezionata di nascosto nella serie che stai scrivendo */
+  if (cat === "attr") bozza.a = bozza.a.filter(x => x !== v);
+  if (cat === "stile" && bozza.s === v) bozza.s = voci("stile")[0];
+  if (cat === "blocco" && bozza.b === v) bozza.b = voci("blocco").includes("main") ? "main" : voci("blocco")[0];
+  segnaImpostazioni(); costruisciRotaie(); dopoTocco();
+  toast(etichettaVoce(cat, v) + " tolto", () => rimettiVoce(cat, v, mia));
+}
+function rimettiVoce(cat, v, eraMia){
+  if (pref.nascoste[cat]) pref.nascoste[cat] = pref.nascoste[cat].filter(x => x !== v);
+  if (eraMia){ if (!pref.voci[cat]) pref.voci[cat] = []; if (!pref.voci[cat].includes(v)) pref.voci[cat].push(v); }
+  segnaImpostazioni(); costruisciRotaie(); dopoTocco();
+}
+
 function costruisciRotaie(){
   Object.keys(ROTAIE).forEach(cat => {
     const R = ROTAIE[cat], c = $("#" + R.id);
@@ -1371,6 +1475,7 @@ function costruisciRotaie(){
     voci(cat).forEach(v => {
       const b = el("button", {class:"chip" + (R.t ? " t" : "") + (R.col ? " col" : ""), "data-v":String(v), "aria-pressed":"false",
         style:R.col ? "--c:" + colore(v) : null, onclick:() => { R.tap(v); vibra(6); dopoTocco(); }}, R.et(v));
+      pressioneLunga(b, () => togliVoce(cat, v));
       c.append(b);
     });
     c.append(el("button", {class:"chip piu", "aria-label":R.piu[0], onclick:async () => {
@@ -1741,7 +1846,19 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#lavag
 $("#passa-scrivo").addEventListener("click", () => impostaModo("scrivo"));
 $("#modo-chip").addEventListener("click", () => vai("v-foglio"));
 
+/* avviso ben visibile: se questo dispositivo non è collegato, le sedute non vanno sul foglio */
+function renderAvvisoFoglio(){
+  const box = $("#avviso-foglio"); box.innerHTML = "";
+  const collegato = foglioPronto() && foglio.legato === legame();
+  if (collegato) return;
+  box.append(el("div", {class:"avviso-foglio"},
+    el("span", {class:"af-testo"}, el("b", null, "Non collegato al foglio"), el("small", null, "Queste sedute restano solo su questo " + (standalone() ? "collegamento della Home" : "browser"))),
+    el("button", {class:"btn piccolo", onclick:() => vai("v-foglio")}, "Collega")));
+}
+const standalone = () => (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
+
 function renderSeduta(anima){
+  renderAvvisoFoglio();
   renderStriscia();
   renderObiettiviGiorno();
   costruisciFrequenti();
@@ -2296,7 +2413,7 @@ let invioTimer = null, sincInCorso = false;
 function pianificaInvio(ritardo){
   if (!foglioPronto() || foglio.legato !== legame() || soloLettura()) return;
   clearTimeout(invioTimer);
-  invioTimer = setTimeout(() => sincronizza({}), ritardo === undefined ? 3000 : ritardo);
+  invioTimer = setTimeout(() => sincronizza({}), ritardo === undefined ? 1000 : ritardo);
 }
 function spiegaErrore(e){
   if (!e) return "errore sconosciuto";
@@ -2319,7 +2436,7 @@ function sedutaPerFoglio(k){
   const x = k.indexOf("|"), g = k.slice(0, x), d = k.slice(x + 1), n = note[k] || {t:"", ts:0};
   return {chiave:k, archivio:{g, d, serie:serie.filter(s => s.g === g && s.d === d), tolte:tombe.sedute[k] || {}, nota:n.t || "", notaTs:n.ts || 0}};
 }
-const impostazioniPerFoglio = () => ({nomi:pref.nomi, vasca:pref.vasca, voci:pref.voci, ts:pref.impTs || 0});
+const impostazioniPerFoglio = () => ({nomi:pref.nomi, vasca:pref.vasca, voci:pref.voci, nascoste:pref.nascoste, ts:pref.impTs || 0});
 const listePerFoglio = () => ({
   obiettivi:{lista:obiettivi, tolte:tombe.liste.obiettivi}, gare:{lista:gare, tolte:tombe.liste.gare}, modelli:{lista:modelli, tolte:tombe.liste.modelli}});
 
@@ -2359,7 +2476,7 @@ function applicaVoci(voci){
   obiettivi = lista("obiettivi", obiettivi); gare = lista("gare", gare); modelli = lista("modelli", modelli);
   const imp = altro.impostazioni && altro.impostazioni.v;
   if (imp && (imp.ts || 0) > (pref.impTs || 0)){
-    pref.nomi = imp.nomi || {}; pref.vasca = imp.vasca || 25; pref.voci = imp.voci || {}; pref.impTs = imp.ts; cambiate.add("impostazioni");
+    pref.nomi = imp.nomi || {}; pref.vasca = imp.vasca || 25; pref.voci = imp.voci || {}; pref.nascoste = imp.nascoste || {}; pref.impTs = imp.ts; cambiate.add("impostazioni");
   }
   Mem.scrivi(K.serie, serie); Mem.scrivi(K.note, note); Mem.scrivi(K.obiettivi, obiettivi); Mem.scrivi(K.gare, gare);
   Mem.scrivi(K.modelli, modelli); salva.tombe(); salva.pref(); salva.coda();
@@ -2444,6 +2561,7 @@ function programmaPoll(){
 
 function ora(iso){ const d = new Date(iso); return (isoDi(d) === oggi() ? "" : dataBreve(isoDi(d)) + " ") + d.toLocaleTimeString("it-IT", {hour:"2-digit", minute:"2-digit"}); }
 function aggiornaStatoFoglio(){
+  if (typeof renderAvvisoFoglio === "function" && vista === "v-seduta") renderAvvisoFoglio();
   const chip = $("#foglio-chip"), n = inAttesa();
   chip.hidden = !foglioPronto();
   if (!chip.hidden){
@@ -2489,6 +2607,21 @@ $("#fg-tutto").addEventListener("click", async () => {
   const ok = await sincronizza({schermata:true});
   toast(ok ? "Tutto rimandato al foglio" : "Invio non riuscito: " + foglio.errore);
 });
+/* quando esci dall'app o cambi app, quello che è in coda parte subito, anche se la pagina viene chiusa.
+   La coda resta finché il foglio non conferma: all'apertura successiva viene rimandata, senza doppioni. */
+let ultimoCongedo = 0;
+function inviaAllUscita(){
+  if (!foglioPronto() || foglio.legato !== legame() || soloLettura() || !inAttesa() || Date.now() - ultimoCongedo < 1500) return;
+  ultimoCongedo = Date.now();
+  try {
+    const corpo = {token:foglio.token, dispositivo:pref.dev, azione:"sync", dal:foglio.cursore || 0, sedute:Object.keys(coda.sedute).slice(0, 12).map(sedutaPerFoglio)};
+    if (coda.altro){ corpo.liste = listePerFoglio(); corpo.impostazioni = impostazioniPerFoglio(); }
+    const testo = JSON.stringify(corpo);
+    if (testo.length < 60000) fetch(foglio.url, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:testo, keepalive:true}).catch(() => {});
+  } catch (e){}
+}
+document.addEventListener("visibilitychange", () => { if (document.hidden) inviaAllUscita(); });
+window.addEventListener("pagehide", inviaAllUscita);
 window.addEventListener("online", () => pianificaInvio(500));
 document.addEventListener("visibilitychange", () => {
   if (document.hidden || !foglioPronto()) return;
@@ -2562,11 +2695,16 @@ function renderFoglio(){
   const nomiCat = {rip:"Ripetizioni", dist:"Distanze", giri:"Giri", stile:"Stili", blocco:"Blocchi", attr:"Attrezzi"};
   let almeno = false;
   Object.keys(nomiCat).forEach(k => {
-    const l = pref.voci[k] || []; if (!l.length) return; almeno = true;
-    dv.append(el("label", {class:"et"}, nomiCat[k]), el("div", {class:"voci-mie"}, l.map(v => el("button", {"aria-label":"Togli " + v, disabled:soloLettura(), onclick:() => {
+    const mie = (pref.voci[k] || []).filter(v => !(pref.nascoste[k] || []).includes(v)), tolte = pref.nascoste[k] || [];
+    if (!mie.length && !tolte.length) return; almeno = true;
+    dv.append(el("label", {class:"et"}, nomiCat[k]));
+    const riga = el("div", {class:"voci-mie"});
+    mie.forEach(v => riga.append(el("button", {class:"voce-mia", "aria-label":"Togli " + etichettaVoce(k, v), disabled:soloLettura(), onclick:() => { togliVoce(k, v).then(() => renderFoglio()); }}, etichettaVoce(k, v))));
+    tolte.forEach(v => riga.append(el("button", {class:"voce-tolta", "aria-label":"Rimetti " + etichettaVoce(k, v), disabled:soloLettura(), onclick:() => {
       if (soloLettura()) return;
-      pref.voci[k] = pref.voci[k].filter(x => x !== v); segnaImpostazioni(); renderFoglio(); costruisciRotaie();
-    }}, String(v)))));
+      rimettiVoce(k, v, false); renderFoglio(); toast(etichettaVoce(k, v) + " rimesso");
+    }}, etichettaVoce(k, v))));
+    dv.append(riga);
   });
   if (!almeno) dv.append(el("p", {class:"nota"}, "Nessuna"));
 }
