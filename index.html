@@ -65,7 +65,10 @@ h1,h2,h3,p{margin:0}
 .gara-chip{margin-left:auto; min-width:0; display:flex; align-items:center; gap:6.5px; border:1px solid var(--linea);
   background:transparent; border-radius:999px; padding:5px 10px 5px 8px; font-size:11px; color:var(--tenue); white-space:nowrap; overflow:hidden}
 .gara-chip b{font-family:var(--fd); color:var(--gesso); font-stretch:var(--stretto); font-size:13px; font-weight:800}
-.gara-chip span{overflow:hidden; text-overflow:ellipsis}
+.gara-chip span{flex:none}
+.gara-chip b{white-space:nowrap}
+@media (max-width:370px){ .sotto-marchio{display:none} }
+@media (max-width:420px){ body.ro .sotto-marchio{display:none} }
 .gara-chip .bandierina{width:6.5px; height:6.5px; border-radius:2px; background:var(--lancetta); flex:none}
 .tondo{width:32.5px; height:32.5px; flex:none; border-radius:10px; border:1px solid var(--linea); background:transparent;
   display:grid; place-items:center; padding:0}
@@ -2563,14 +2566,14 @@ function ora(iso){ const d = new Date(iso); return (isoDi(d) === oggi() ? "" : d
 function aggiornaStatoFoglio(){
   if (typeof renderAvvisoFoglio === "function" && vista === "v-seduta") renderAvvisoFoglio();
   const chip = $("#foglio-chip"), n = inAttesa();
-  chip.hidden = !foglioPronto();
-  if (!chip.hidden){
-    chip.className = "gara-chip " + (sincInCorso || n ? "att" : foglio.esito === "err" ? "err" : "ok");
-    chip.innerHTML = "";
-    chip.append(el("i"), el("span", null, "Foglio"), el("b", null, sincInCorso ? "aggiorno" : n ? n + " da inviare" : foglio.esito === "err" ? "non raggiunto" : foglio.ultimo ? ora(foglio.ultimo) : "pronto"));
-    chip.setAttribute("aria-label", "Stato del foglio Google: " + chip.textContent);
-    chip.onclick = () => vai("v-foglio");
-  }
+  const collegato = foglioPronto() && foglio.legato === legame();
+  chip.hidden = false;
+  chip.className = "gara-chip " + (!collegato ? "err" : sincInCorso || n ? "att" : foglio.esito === "err" ? "err" : "ok");
+  chip.innerHTML = "";
+  chip.append(el("i"), el("span", null, "Foglio"), el("b", null, !collegato ? "scollegato" : sincInCorso ? "aggiorno" : n ? n + " da inviare"
+    : foglio.esito === "err" ? "non raggiunto" : foglio.ultimo ? ora(foglio.ultimo) : "collegato"));
+  chip.setAttribute("aria-label", "Stato del foglio Google: " + chip.textContent + ". Tocca per le impostazioni del foglio");
+  chip.onclick = () => vai("v-foglio");
   const st = $("#fg-stato"), t = st.querySelector("span");
   const altri = (foglio.attivi || 0) - 1;
   st.className = "stato-sync " + (!foglioPronto() ? "" : sincInCorso ? "lav" : foglio.esito === "err" ? "err" : "ok");
@@ -2739,7 +2742,7 @@ let ridim = null;
 window.addEventListener("resize", () => { clearTimeout(ridim); ridim = setTimeout(renderVista, 160); });
 renderTutto();
 dopoTocco();
-if (foglioPronto() && foglio.legato === legame()) sincronizza({schermata:true});
+if (foglioPronto() && foglio.legato === legame()) sincronizza({});
 programmaPoll();
 
 </script>
