@@ -1,0 +1,2605 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="notte">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vasca Esordienti</title>
+<meta name="theme-color" content="#06222B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Esordienti">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306222B'/%3E%3Cg fill='%233FA7D6'%3E%3Crect x='8' y='29' width='9' height='6' rx='3'/%3E%3Crect x='20' y='29' width='9' height='6' rx='3'/%3E%3C/g%3E%3Crect x='32' y='29' width='9' height='6' rx='3' fill='%23F2C14E'/%3E%3Crect x='44' y='29' width='9' height='6' rx='3' fill='%23E5484D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+:root{
+  --acqua:#06222B; --vasca:#0B3240; --vasca2:#0F3C4C; --pozzo:#041A21; --linea:#1C5467; --linea2:#143F4E;
+  --gesso:#EEF6F4; --tenue:#8DB2BC; --tenue2:#5F8793;
+  --en1:#3FA7D6; --tec:#9AAAB3; --en2:#F2C14E; --en3:#F08A3E; --sp:#E5484D;
+  --sl:#3FA7D6; --do:#6CC6A4; --ra:#F2C14E; --fa:#C987D6; --mx:#9AB8C2;
+  --ok:#57C08D; --gap:#F0666A; --lancetta:#E5484D; --selez:#EEF6F4; --selez-testo:#06222B;
+  --ombra:0 14.5px 32.5px -18px rgba(0,0,0,.6);
+  --f:'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; --fd:'Saira', 'Arial Narrow', 'Roboto Condensed', system-ui, sans-serif;
+  --stretto:74%;
+  color-scheme:dark;
+}
+:root[data-theme="sole"], :root[data-theme="light"]{
+  --acqua:#E6F1F2; --vasca:#FFFFFF; --vasca2:#F3F9F9; --pozzo:#D7E8EA; --linea:#A9C8CE; --linea2:#C9DEE1;
+  --gesso:#06222B; --tenue:#3F616B; --tenue2:#6C8A92;
+  --en1:#1B7FB3; --tec:#6A7C86; --en2:#C18B0C; --en3:#CF5F17; --sp:#C92A32;
+  --sl:#1B7FB3; --do:#23946B; --ra:#C18B0C; --fa:#9B4DAA; --mx:#5C7D88;
+  --ok:#1E8A55; --gap:#C92A32; --selez:#06222B; --selez-testo:#FFFFFF;
+  --ombra:0 14.5px 32.5px -22px rgba(6,34,43,.35);
+  color-scheme:light;
+}
+:root{box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 97px); -webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--acqua); color:var(--gesso); font-family:var(--f); font-size:13px; line-height:1.45;
+  padding-bottom:calc(68px + env(safe-area-inset-bottom,0px)); min-height:100vh;
+  -webkit-tap-highlight-color:transparent; overscroll-behavior-y:none;
+}
+button,input,select,textarea{font:inherit; color:inherit}
+button{cursor:pointer; -webkit-user-select:none; user-select:none; touch-action:manipulation}
+input,select,textarea{font-size:13px}
+:focus-visible{outline:2px solid var(--en1); outline-offset:2px}
+h1,h2,h3,p{margin:0}
+.num{font-family:var(--fd); font-stretch:var(--stretto); font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.01em}
+.muto{color:var(--tenue)}
+.nascosto,[hidden]{display:none !important}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* ---------- testata ---------- */
+.testa{position:sticky; top:env(safe-area-inset-top,0px); z-index:40; background:var(--acqua);
+  padding:8px 13px 8px; border-bottom:1px solid var(--linea2)}
+.testa-riga{display:flex; align-items:center; gap:8px; max-width:1180px; margin:0 auto}
+.marchio{font-family:var(--fd); display:flex; align-items:center; gap:6.5px; font-stretch:80%; font-weight:800; font-size:17px; letter-spacing:-.01em}
+.marchio svg{width:24.5px; height:10px}
+.gara-chip{margin-left:auto; min-width:0; display:flex; align-items:center; gap:6.5px; border:1px solid var(--linea);
+  background:transparent; border-radius:999px; padding:5px 10px 5px 8px; font-size:11px; color:var(--tenue); white-space:nowrap; overflow:hidden}
+.gara-chip b{font-family:var(--fd); color:var(--gesso); font-stretch:var(--stretto); font-size:13px; font-weight:800}
+.gara-chip span{overflow:hidden; text-overflow:ellipsis}
+.gara-chip .bandierina{width:6.5px; height:6.5px; border-radius:2px; background:var(--lancetta); flex:none}
+.tondo{width:32.5px; height:32.5px; flex:none; border-radius:10px; border:1px solid var(--linea); background:transparent;
+  display:grid; place-items:center; padding:0}
+.tondo svg{width:16px; height:16px}
+.gruppi{display:flex; gap:3px; margin:8px auto 0; max-width:1180px; background:var(--pozzo); border-radius:10.5px; padding:3px}
+.gruppi button{font-family:var(--fd); flex:1; border:0; background:transparent; color:var(--tenue); border-radius:8px; padding:6.5px 3px;
+  font-stretch:80%; font-weight:700; font-size:13.5px; transition:background .18s, color .18s}
+.gruppi button[aria-pressed="true"]{background:var(--selez); color:var(--selez-testo)}
+
+/* ---------- impianto ---------- */
+main{max-width:1180px; margin:0 auto; padding:0 13px 19.5px}
+.vista{display:none}
+.vista.attiva{display:block; animation:entra .28s ease-out}
+@keyframes entra{from{opacity:0; transform:translateY(5px)} to{opacity:1; transform:none}}
+.sez{margin-top:21px}
+.sez-testa{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:8px}
+.sez-testa h2, h2.titoletto{font-size:12px; font-weight:650; color:var(--tenue); letter-spacing:.01em}
+.sez-testa .num{font-size:16px}
+.pannello{background:var(--vasca); border:1px solid var(--linea2); border-radius:16px; padding:13px}
+.nota{color:var(--tenue); font-size:11px; line-height:1.5}
+.nota + .nota{margin-top:5px}
+.riga{display:flex; align-items:center; gap:6.5px}
+.spazio{flex:1}
+
+/* ---------- bottoni ---------- */
+.btn{border:1px solid var(--linea); background:transparent; border-radius:10px; padding:9px 11px; font-weight:650;
+  font-size:12px; display:inline-flex; align-items:center; justify-content:center; gap:6.5px; min-height:35.5px}
+.btn svg{width:14.5px; height:14.5px; flex:none}
+.btn:active{transform:scale(.98)}
+.btn.pieno{background:var(--selez); color:var(--selez-testo); border-color:var(--selez)}
+.btn.accento{background:var(--en1); color:#04202A; border-color:var(--en1)}
+.btn.pericolo{border-color:color-mix(in srgb, var(--gap) 55%, transparent); color:var(--gap)}
+.btn.piccolo{min-height:29px; padding:6px 9px; font-size:11px; border-radius:8px}
+.btn[disabled]{opacity:.38; pointer-events:none}
+.primario{font-family:var(--fd); flex:1; border:0; border-radius:12px; padding:12px 13px; background:var(--selez); color:var(--selez-testo);
+  font-stretch:80%; font-weight:800; font-size:16px; min-height:45.5px; transition:transform .12s}
+.primario:active{transform:scale(.985)}
+.primario[disabled]{opacity:.35}
+.freccia{width:32.5px; height:32.5px; flex:none; border-radius:10px; border:1px solid var(--linea); background:transparent;
+  font-size:18px; line-height:1; display:grid; place-items:center; padding:0}
+.freccia svg{width:14.5px; height:14.5px}
+
+/* ---------- striscia dei giorni ---------- */
+.striscia-wrap{display:flex; align-items:stretch; gap:5px; margin-top:11px}
+.striscia{flex:1; display:grid; grid-template-columns:repeat(7,1fr); gap:3px}
+.giorno-btn{border:1px solid transparent; background:transparent; border-radius:10px; padding:5px 0 6px;
+  display:flex; flex-direction:column; align-items:center; gap:2.5px; color:var(--tenue); min-width:0}
+.giorno-btn .gn{font-size:11px}
+.giorno-btn .gd{font-family:var(--fd); font-stretch:var(--stretto); font-weight:800; font-size:15.5px; color:var(--gesso); line-height:1}
+.giorno-btn .gm{width:70%; height:3px; border-radius:2px; background:var(--pozzo); overflow:hidden; display:flex}
+.giorno-btn .gm i{height:100%}
+.giorno-btn.riposo .gd{color:var(--tenue2)}
+.giorno-btn.oggi{border-color:var(--linea)}
+.giorno-btn[aria-pressed="true"]{background:var(--selez); border-color:var(--selez)}
+.giorno-btn[aria-pressed="true"] .gd,.giorno-btn[aria-pressed="true"] .gn{color:var(--selez-testo)}
+.titolo-giorno{display:flex; align-items:flex-end; justify-content:space-between; gap:8px; margin-top:13px}
+.titolo-giorno h1{font-family:var(--fd); font-stretch:78%; font-weight:800; font-size:24.5px; line-height:1.02; letter-spacing:-.015em}
+.titolo-giorno p{color:var(--tenue); font-size:11px; margin-top:3px}
+
+/* ---------- corda di corsia ---------- */
+
+/* ---------- obiettivo del giorno ---------- */
+.pallino{width:8px; height:8px; border-radius:2.5px; flex:none}
+
+/* ---------- compositore ---------- */
+.compositore{padding:11px 13px 13px; position:relative}
+.modifica-barra{display:flex; align-items:center; justify-content:space-between; gap:6.5px; margin:-2px 0 8px;
+  padding:6.5px 8px 6.5px 10px; border-radius:10px; background:color-mix(in srgb, var(--en2) 18%, transparent); font-size:11px}
+.cmd-riga{display:flex; gap:6.5px}
+.cmd{flex:1; min-width:0; background:var(--pozzo); border:1px solid var(--linea); border-radius:11px; padding:10.5px 11px;
+  font-size:14.5px; font-weight:600; letter-spacing:.01em}
+.cmd::placeholder{color:var(--tenue2); font-weight:500}
+.cmd.errore{border-color:var(--gap)}
+.anteprima{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:10px 2px 2px; min-height:35.5px}
+.anteprima .desc{font-family:var(--fd); font-stretch:78%; font-weight:800; font-size:19.5px; line-height:1.05}
+.anteprima .desc small{font-family:var(--f); display:block; font-stretch:100%; font-weight:500; font-size:11px; color:var(--tenue); margin-top:2.5px}
+.anteprima .mt{font-size:24.5px; white-space:nowrap}
+.fila{margin-top:10px}
+.fila-et{font-size:11px; color:var(--tenue); margin:0 0 5px 0; display:flex; justify-content:space-between}
+.rotaia{display:grid; grid-template-columns:repeat(auto-fill, minmax(38.5px, 1fr)); gap:5px}
+.rotaia.largo{grid-template-columns:repeat(auto-fill, minmax(56.5px, 1fr))}
+.rotaia.testo{grid-template-columns:repeat(auto-fill, minmax(78px, 1fr))}
+.rotaia.frasi{grid-template-columns:repeat(auto-fill, minmax(113.5px, 1fr))}
+.rotaia .chip{min-width:0; width:100%; padding:6.5px 2px; white-space:nowrap; overflow:hidden; text-overflow:clip; font-size:14px; letter-spacing:-.01em}
+.rotaia .chip.t{font-size:12px; text-overflow:ellipsis; padding:6.5px 5px}
+.rotaia .chip.freq{padding:6.5px 8px 6.5px 10px; text-align:left}
+.chip{font-family:var(--fd); flex:none; scroll-snap-align:start; min-height:35.5px; min-width:38.5px; padding:6.5px 10.5px; border-radius:10px;
+  border:1px solid var(--linea); background:var(--pozzo); font-stretch:80%; font-weight:750; font-size:14.5px;
+  transition:background .14s, color .14s, border-color .14s, transform .1s}
+.chip:active{transform:scale(.95)}
+.chip.t{font-family:var(--f); font-stretch:100%; font-weight:600; font-size:12px}
+.chip[aria-pressed="true"]{background:var(--selez); color:var(--selez-testo); border-color:var(--selez)}
+.chip.col[aria-pressed="true"]{background:var(--c); border-color:var(--c); color:#04202A}
+.chip.col{box-shadow:inset 2.5px 0 0 var(--c)}
+.chip.col[aria-pressed="true"]{box-shadow:none}
+.chip.piu{border-style:dashed; color:var(--tenue); background:transparent; font-size:16px}
+.passo{display:flex; align-items:center; gap:5px}
+.passo .valore{font-family:var(--fd); flex:1; text-align:center; background:var(--pozzo); border:1px solid var(--linea); border-radius:10px;
+  min-height:35.5px; display:grid; place-items:center; font-stretch:var(--stretto); font-weight:800; font-size:18px}
+.passo .valore.vuoto{font-family:var(--f); color:var(--tenue2); font-weight:600; font-size:13px; font-stretch:100%}
+.passo .chip{min-width:42.5px}
+details.altro{margin-top:11px; border-top:1px solid var(--linea2); padding-top:8px}
+details.altro summary{list-style:none; cursor:pointer; color:var(--tenue); font-size:11px; display:flex; justify-content:space-between; align-items:center; min-height:26px}
+details.altro summary::-webkit-details-marker{display:none}
+details.altro summary::after{content:"+"; font-size:16px; line-height:1}
+details.altro[open] summary::after{content:"–"}
+.campo{display:block; width:100%; background:var(--pozzo); border:1px solid var(--linea); border-radius:10px; padding:9px 10px}
+textarea.campo{min-height:137.5px; resize:vertical; font-size:12px; line-height:1.55}
+label.et{display:block; font-size:11px; color:var(--tenue); margin:10px 0 5px 0}
+.azioni{display:flex; gap:6.5px; margin-top:13px; align-items:stretch}
+.seg{display:flex; background:var(--pozzo); border-radius:10.5px; padding:3px; gap:3px}
+.seg button{border:0; background:transparent; border-radius:8px; padding:6.5px 10px; color:var(--tenue); font-weight:650; font-size:11.5px}
+.seg button[aria-pressed="true"]{background:var(--vasca2); color:var(--gesso); box-shadow:inset 0 0 0 1px var(--linea)}
+.seg.largo button{flex:1}
+
+/* ---------- seduta ---------- */
+.elenco{list-style:none; margin:0; padding:0}
+.blocco-testa{display:flex; justify-content:space-between; align-items:baseline; padding:9px 2px 2px;
+  color:var(--tenue); font-size:11px; font-weight:650}
+.blocco-testa:first-child{padding-top:2px}
+.blocco-testa .num{font-size:12px}
+.voce{display:flex; align-items:center; gap:9px; width:100%; border:0; background:transparent; text-align:left;
+  padding:5px 2px; border-top:1px solid var(--linea2); border-radius:0}
+.blocco-testa + li .voce{border-top:0}
+.voce .zbar{width:4px; align-self:stretch; border-radius:2.5px; flex:none}
+.voce.prog .zbar{background:transparent !important; box-shadow:inset 0 0 0 2px var(--c)}
+.voce .desc{flex:1; min-width:0}
+.voce .desc b{font-family:var(--fd); display:block; font-stretch:78%; font-weight:800; font-size:17px; line-height:1.05}
+.voce .desc small{display:block; color:var(--tenue); font-size:11px; margin-top:0; line-height:1.3}
+.voce .mt{font-size:15.5px; white-space:nowrap}
+.voce.prog .mt{color:var(--tenue)}
+.voce.nuova{animation:lampo 1s ease-out}
+@keyframes lampo{from{background:color-mix(in srgb, var(--en1) 22%, transparent)} to{background:transparent}}
+.vuoto-seduta{padding:18px 3px; color:var(--tenue); font-size:12px; line-height:1.5}
+.totale{display:flex; justify-content:space-between; align-items:baseline; padding:11px 2px 0; border-top:2px solid var(--linea); margin-top:3px}
+.totale .num{font-size:27.5px}
+.barra{height:8px; border-radius:4px; overflow:hidden; display:flex; background:var(--pozzo); margin-top:8px}
+.barra i{height:100%}
+.legenda{display:flex; flex-wrap:wrap; gap:5px 11px; margin-top:7px; font-size:11px; color:var(--tenue)}
+.legenda span{display:inline-flex; align-items:center; gap:5px}
+.legenda b{color:var(--gesso); font-weight:650}
+.azioni-seduta{display:grid; grid-template-columns:1fr 1fr; gap:6.5px; margin-top:13px}
+.azioni-seduta .btn{width:100%}
+.azioni-seduta .largo{grid-column:1 / -1}
+
+/* ---------- settimana ---------- */
+.nav-sett{display:flex; align-items:center; gap:8px; margin-top:13px}
+.nav-sett .centro{flex:1; min-width:0}
+.nav-sett h1{font-family:var(--fd); font-stretch:78%; font-weight:800; font-size:22.5px; line-height:1.05; letter-spacing:-.015em}
+.nav-sett p{color:var(--tenue); font-size:11px; margin-top:2.5px}
+.eroe{margin-top:11px; padding:14.5px 14.5px 13px; position:relative; overflow:hidden}
+.eroe .grande{display:flex; align-items:baseline; gap:6.5px; flex-wrap:wrap}
+.eroe .grande .num{font-size:clamp(52px, 19vw, 84px); line-height:.86; letter-spacing:-.035em}
+.eroe .grande span:not(.num){font-family:var(--fd); font-stretch:var(--stretto); font-weight:700; font-size:19.5px; color:var(--tenue)}
+.eroe .sotto{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; font-size:11.5px; color:var(--tenue); margin-top:5px}
+.eroe .sotto b{font-family:var(--fd); color:var(--gesso); font-stretch:var(--stretto); font-weight:800; font-size:14.5px}
+.colonne{display:grid; grid-template-columns:repeat(7,1fr); gap:6.5px; align-items:end; height:121.5px}
+.colonna{display:flex; flex-direction:column; justify-content:flex-end; align-items:stretch; gap:5px; height:100%;
+  border:0; background:transparent; padding:0; min-width:0}
+.colonna .pila{position:relative; display:flex; flex-direction:column-reverse; border-radius:6px; overflow:hidden; min-height:2.5px; background:var(--pozzo)}
+.colonna .pila i{display:block}
+.colonna .pila.prog{outline:1.5px dashed var(--linea); outline-offset:-1.5px; background:transparent}
+.colonna small{font-size:11px; color:var(--tenue); text-align:center; line-height:1.2; white-space:nowrap}
+.colonna small b{font-family:var(--fd); display:block; color:var(--gesso); font-stretch:var(--stretto); font-weight:800; font-size:11px}
+.colonna.oggi small{color:var(--gesso)}
+.area-colonne{position:relative}
+.tab-zone{display:grid; gap:10px}
+.tz{display:grid; grid-template-columns:1fr auto; gap:3px 10px; align-items:baseline}
+.tz .nome{display:flex; align-items:center; gap:6.5px; font-weight:650}
+.tz .val{font-variant-numeric:tabular-nums; font-size:11px; color:var(--tenue); text-align:right}
+.tz .val b{color:var(--gesso)}
+.tz .delta{font-weight:700}
+.tz .bar{grid-column:1 / -1; height:8px; border-radius:4px; background:var(--pozzo); position:relative; overflow:hidden}
+.tz .bar i{position:absolute; left:0; top:0; bottom:0; border-radius:4px}
+.neg{color:var(--gap)} .pos{color:var(--ok)}
+
+/* ---------- stagione ---------- */
+
+/* ---------- strumenti ---------- */
+.griglia-2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+
+
+/* ---------- storico, frequenti ---------- */
+textarea.campo.diario{min-height:0; font-size:12px}
+.anteprima .mt{text-align:right; white-space:nowrap}
+.chip.freq{font-family:var(--f); font-stretch:100%; font-weight:650; font-size:12px; box-shadow:inset 2.5px 0 0 var(--c)}
+.storico{list-style:none; margin:10px 0 0; padding:0}
+.storico li button{display:flex; width:100%; align-items:baseline; gap:10px; border:0; border-top:1px solid var(--linea2); background:transparent; padding:9px 2px; text-align:left}
+.storico li:first-child button{border-top:0}
+.storico .sd{flex:1; font-size:12px}
+.storico .sd small{display:block; color:var(--tenue); font-size:11px}
+.storico .sp{font-family:var(--fd); font-stretch:var(--stretto); font-weight:800; font-size:16px}
+.passi-graf{display:flex; align-items:flex-end; gap:3px; height:52px; margin-top:10px}
+.passi-graf i{flex:1; border-radius:3px 3px 2px 2px; background:var(--en1); min-height:3px}
+
+/* ---------- dati ---------- */
+.lista-dati{display:grid; gap:8px}
+.voci-mie{display:flex; flex-wrap:wrap; gap:5px; margin-top:5px}
+.voci-mie button{border:1px solid var(--linea); background:var(--pozzo); border-radius:8px; padding:5px 8px; font-size:11px}
+.voci-mie button::after{content:"  ✕"; color:var(--tenue)}
+.codice{background:var(--pozzo); border:1px solid var(--linea2); border-radius:10px; padding:10px; font-size:11px;
+  line-height:1.5; overflow:auto; max-height:260px; white-space:pre; font-family:ui-monospace, 'SF Mono', Menlo, Consolas, monospace}
+.passi-istr{margin:8px 0 0; padding-left:16px; color:var(--tenue); font-size:11px; line-height:1.55}
+.stato-sync{display:flex; align-items:center; gap:6.5px; font-size:11px; color:var(--tenue)}
+.stato-sync i{width:7px; height:7px; border-radius:50%; background:var(--tenue2); flex:none}
+.stato-sync.ok i{background:var(--ok)} .stato-sync.err i{background:var(--gap)} .stato-sync.lav i{background:var(--en2); animation:pulsa 1s infinite}
+@keyframes pulsa{50%{opacity:.3}}
+
+/* ---------- barra di navigazione ---------- */
+.navbar{position:fixed; left:0; right:0; bottom:0; z-index:50; background:color-mix(in srgb, var(--acqua) 92%, transparent);
+  -webkit-backdrop-filter:blur(11px); backdrop-filter:blur(11px); border-top:1px solid var(--linea2);
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+.navbar-in{display:flex; max-width:640px; margin:0 auto}
+.navbar button{flex:1; border:0; background:transparent; color:var(--tenue); padding:7px 2px 8px; display:flex; flex-direction:column;
+  align-items:center; gap:2.5px; font-size:11px; font-weight:650; position:relative}
+.navbar svg{width:18.5px; height:18.5px}
+.navbar button[aria-pressed="true"]{color:var(--gesso)}
+.navbar button[aria-pressed="true"]::before{content:""; position:absolute; top:0; left:28%; right:28%; height:2.5px; border-radius:0 0 2.5px 2.5px; background:var(--en1)}
+
+/* ---------- foglio (bottom sheet) ---------- */
+.foglio{position:fixed; inset:0; z-index:80; display:flex; align-items:flex-end; justify-content:center}
+.foglio[hidden]{display:none}
+.foglio-fondo{position:absolute; inset:0; background:rgba(2,14,18,.55); animation:sfuma .2s}
+.foglio-corpo{position:relative; width:100%; max-width:560px; max-height:88vh; overflow:auto; background:var(--vasca);
+  border:1px solid var(--linea2); border-bottom:0; border-radius:19.5px 19.5px 0 0; padding:8px 14.5px calc(14.5px + env(safe-area-inset-bottom,0px));
+  box-shadow:var(--ombra); animation:sale .26s cubic-bezier(.2,.8,.2,1)}
+.foglio-corpo::before{content:""; display:block; width:32.5px; height:4px; border-radius:2.5px; background:var(--linea); margin:0 auto 10px}
+.foglio-corpo h3{font-family:var(--fd); font-stretch:80%; font-weight:800; font-size:19.5px; line-height:1.1; margin-bottom:3px}
+.foglio-corpo .sott{color:var(--tenue); font-size:11px; margin-bottom:10px}
+.menu{display:grid; gap:5px; margin-top:8px}
+.menu button{display:flex; align-items:center; gap:10px; border:0; background:var(--pozzo); border-radius:11px; padding:11px 11px;
+  font-size:13px; font-weight:600; text-align:left; min-height:42.5px}
+.menu button svg{width:16px; height:16px; flex:none; color:var(--tenue)}
+.menu button.pericolo{color:var(--gap)} .menu button.pericolo svg{color:var(--gap)}
+@keyframes sale{from{transform:translateY(32.5px); opacity:.4} to{transform:none; opacity:1}}
+@keyframes sfuma{from{opacity:0}}
+@media (min-width:700px){
+  .foglio{align-items:center}
+  .foglio-corpo{border-radius:19.5px; border-bottom:1px solid var(--linea2); padding-bottom:16px}
+}
+.sugg{display:grid; gap:5px; margin-top:6.5px}
+.sugg label{display:flex; align-items:center; gap:10px; background:var(--pozzo); border-radius:11px; padding:10px 11px}
+.sugg input{width:18px; height:18px; accent-color:var(--en1); flex:none}
+.sugg .desc{flex:1}
+.sugg .desc b{font-family:var(--fd); display:block; font-stretch:80%; font-weight:800; font-size:15.5px}
+.sugg .desc small{color:var(--tenue); font-size:11px}
+
+/* ---------- toast ---------- */
+.toast{position:fixed; left:0; right:0; margin:0 auto; width:max-content; bottom:calc(74.5px + env(safe-area-inset-bottom,0px));  z-index:90;
+  display:flex; align-items:center; gap:11px; background:var(--selez); color:var(--selez-testo); border-radius:11px;
+  padding:9px 10px 9px 13px; font-size:11.5px; font-weight:600; box-shadow:var(--ombra); max-width:calc(100vw - 26px); pointer-events:none}
+.toast[hidden]{display:none}
+.toast.via{animation:toastin .22s ease-out}
+@keyframes toastin{from{transform:translateY(10px); opacity:0}}
+.toast button{pointer-events:auto; border:0; background:transparent; color:inherit; font-weight:800; text-decoration:underline; text-underline-offset:2.5px; padding:3px 5px}
+
+
+@media (min-width:960px){
+  .griglia-seduta{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:22.5px; align-items:start}
+  .griglia-seduta .colonna-dx{position:sticky; top:121.5px}
+  .griglia-sett{display:grid; grid-template-columns:1fr 1fr; gap:22.5px; align-items:start}
+  .griglia-sett .sez:first-child{margin-top:21px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important}
+}
+
+/* campi sempre a 14.5px: sotto questa misura iOS ingrandisce la pagina al tocco */
+input,select,textarea,.cmd,.campo,.rip-tab input{font-size:16px}
+
+/* ---------- modalità, carattere, anno ---------- */
+.modo-tondo{border-color:var(--en2); color:var(--en2); background:color-mix(in srgb, var(--en2) 14%, transparent)}
+.modo{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.modo button{display:flex; flex-direction:column; align-items:flex-start; gap:2px; text-align:left; padding:12px; border-radius:14px;
+  border:1.5px solid var(--linea); background:var(--pozzo); min-height:88px}
+.modo button svg{width:20px; height:20px; margin-bottom:4px; color:var(--tenue)}
+.modo button b{font-family:var(--fd); font-stretch:80%; font-weight:800; font-size:20px; line-height:1.1}
+.modo button small{font-size:12px; color:var(--tenue); line-height:1.3}
+.modo button[aria-pressed="true"]{background:var(--selez); color:var(--selez-testo); border-color:var(--selez)}
+.modo button[aria-pressed="true"] svg, .modo button[aria-pressed="true"] small{color:inherit}
+.modo button#modo-guardo[aria-pressed="true"]{background:var(--en2); border-color:var(--en2); color:#241a00}
+.font-griglia{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.font-griglia button{display:flex; flex-direction:column; align-items:flex-start; gap:4px; text-align:left; padding:11px 12px; border-radius:13px;
+  border:1.5px solid var(--linea); background:var(--pozzo); min-height:78px}
+.font-griglia .fg-n{font-size:16px; font-weight:700; line-height:1.1; overflow-wrap:anywhere}
+.font-griglia .fg-e{font-size:24px; font-weight:800; line-height:1; letter-spacing:-.01em; font-variant-numeric:tabular-nums}
+.font-griglia .fg-e small{font-size:12px; font-weight:600; color:var(--tenue); margin-left:3px}
+.font-griglia button[aria-pressed="true"]{border-color:var(--en1); box-shadow:inset 0 0 0 1px var(--en1); background:color-mix(in srgb, var(--en1) 12%, var(--pozzo))}
+.sola-lettura, body.ro .solo-scrivo{display:none !important}
+body.ro .sola-lettura{display:block !important}
+.riga-lettura{display:flex; align-items:center; gap:10px; padding:10px 12px !important; border-color:var(--en2); background:color-mix(in srgb, var(--en2) 10%, var(--vasca))}
+.riga-lettura svg{width:18px; height:18px; color:var(--en2); flex:none}
+.riga-lettura b{font-family:var(--fd); font-stretch:82%; font-weight:800; font-size:16px}
+body.ro .ob-voce, body.ro .gara{pointer-events:none}
+body.ro #condividi{grid-column:1 / -1}
+body.ro input:disabled, body.ro textarea:disabled{opacity:.6}
+.anno-testa{display:flex; align-items:center; gap:8px; margin-top:13px}
+.anno-testa .centro{flex:1; min-width:0}
+.anno-testa h1{font-family:var(--fd); font-stretch:78%; font-weight:800; font-size:22.5px; line-height:1.05; letter-spacing:-.015em}
+.anno-testa p{color:var(--tenue); font-size:11px; margin-top:2.5px}
+.anno-opz{display:grid; gap:6px; margin-top:11px}
+.anno-opz .seg button{padding:7px 9px; font-size:12.5px}
+.anno-graf{display:grid; grid-template-columns:28px 1fr; column-gap:4px}
+.anno-y{position:relative; height:150px}
+.anno-y span{position:absolute; right:2px; transform:translateY(50%); font-size:10px; color:var(--tenue); font-variant-numeric:tabular-nums}
+.anno-plot{position:relative; height:150px; touch-action:pan-y; user-select:none; -webkit-user-select:none}
+.anno-linee i{position:absolute; left:0; right:0; border-top:1px solid var(--linea2)}
+.anno-linee i.media{border-top:1.5px dashed var(--tenue2)}
+.anno-linee i.media span{position:absolute; right:0; top:-14px; font-size:10px; color:var(--tenue); font-style:normal}
+.anno-cols{position:absolute; inset:0; display:grid; gap:2px; align-items:stretch}
+.anno-col{position:relative; display:flex; align-items:flex-end; border:0; background:transparent; padding:0; min-width:0; border-radius:3px}
+.anno-col .pila{width:100%; display:flex; flex-direction:column-reverse; border-radius:2px 2px 0 0; overflow:hidden; min-height:2px; background:var(--pozzo)}
+.anno-col .pila i{display:block; width:100%}
+.anno-col.vuota .pila{background:var(--linea2); opacity:.7}
+.anno-col.futura .pila{background:transparent; box-shadow:inset 0 -1.5px 0 var(--linea2)}
+.anno-col[aria-pressed="true"]{background:color-mix(in srgb, var(--gesso) 16%, transparent); box-shadow:0 0 0 1.5px var(--gesso)}
+.anno-col.corrente::after{content:""; position:absolute; bottom:-8px; left:50%; width:5px; height:5px; margin-left:-2.5px; border-radius:50%; background:var(--gesso)}
+.anno-mesi{grid-column:2; display:grid; margin-top:6px; height:14px}
+.anno-mesi span{font-size:10px; color:var(--tenue); white-space:nowrap; overflow:visible}
+.anno-dett h3{font-family:var(--fd); font-stretch:80%; font-weight:800; font-size:18px; line-height:1.1}
+.anno-dett .dt-testa{display:flex; align-items:center; gap:8px}
+.anno-dett .dt-testa .centro{flex:1; min-width:0}
+.anno-dett .dt-testa p{font-size:11px; color:var(--tenue); margin-top:2px}
+.anno-dett .dt-num{display:flex; align-items:baseline; gap:6px; margin-top:12px}
+.anno-dett .dt-num .num{font-size:38px; line-height:.95}
+.anno-dett .dt-num span:not(.num){color:var(--tenue); font-size:14px}
+.anno-dett .dt-riga{display:flex; flex-wrap:wrap; gap:4px 14px; font-size:12.5px; color:var(--tenue); margin-top:8px}
+.anno-dett .dt-riga b{color:var(--gesso)}
+.anno-dett .dt-nota{font-size:13px; margin-top:8px; padding-top:8px; border-top:1px solid var(--linea2)}
+.anno-dett .dt-nota small{display:block; font-size:11px; color:var(--tenue)}
+.anno-dett .azioni{margin-top:12px}
+.cell-cifre{display:grid; grid-template-columns:1fr 1fr; gap:14px 12px; margin-top:12px}
+.cell-cifre .v{font-family:var(--fd); font-stretch:var(--stretto); font-weight:800; font-size:24px; line-height:1}
+.cell-cifre .k{font-size:11.5px; color:var(--tenue); margin-top:3px}
+.ob-anno{display:grid; gap:10px}
+.ob-anno .oa-t{display:flex; justify-content:space-between; align-items:baseline; gap:8px; font-size:14px; font-weight:650}
+.ob-anno .oa-t small{font-weight:500; color:var(--tenue); font-size:11.5px}
+.ob-anno .avanz{height:6px; border-radius:3px; background:var(--pozzo); overflow:hidden; margin-top:5px}
+.ob-anno .avanz i{display:block; height:100%; background:var(--ok)}
+.calore-wrap{overflow-x:auto; margin:0 -13px; padding:0 13px 4px}
+.calore{display:grid; grid-auto-flow:column; grid-template-rows:repeat(7,10px); gap:2.5px; width:max-content}
+.calore button{width:10px; height:10px; border-radius:2.5px; background:var(--pozzo); border:0; padding:0}
+.calore button.oggi{box-shadow:0 0 0 1.5px var(--gesso)}
+.calore button.fuori{background:transparent; pointer-events:none}
+.calore-mesi{display:flex; font-size:10px; color:var(--tenue); margin-bottom:6px; width:max-content; position:relative; height:14px}
+.calore-mesi span{position:absolute}
+
+/* ---------- esordienti ---------- */
+.caricamento{position:fixed; inset:0; z-index:120; background:color-mix(in srgb, var(--acqua) 94%, transparent);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); display:grid; place-items:center; animation:sfuma .2s}
+.caricamento[hidden]{display:none}
+.car-corpo{display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; padding:24px}
+.car-corpo b{font-family:var(--fd); font-stretch:80%; font-weight:800; font-size:22px}
+.car-corpo span{font-size:14px; color:var(--tenue)}
+.car-corda{position:relative; display:flex; gap:5px; margin-bottom:6px}
+.car-corda::before{content:""; position:absolute; left:-6px; right:-6px; top:50%; height:2px; margin-top:-1px; background:var(--linea)}
+.car-corda i{position:relative; width:20px; height:12px; border-radius:6px; background:var(--en1); animation:galleggia 1.2s ease-in-out infinite}
+.car-corda i:nth-child(2){animation-delay:.1s; background:var(--do)} .car-corda i:nth-child(3){animation-delay:.2s; background:var(--ra)}
+.car-corda i:nth-child(4){animation-delay:.3s; background:var(--fa)} .car-corda i:nth-child(5){animation-delay:.4s; background:var(--en1)}
+.car-corda i:nth-child(6){animation-delay:.5s; background:var(--do)} .car-corda i:nth-child(7){animation-delay:.6s; background:var(--sp)}
+@keyframes galleggia{0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)}}
+@media (prefers-reduced-motion:reduce){ .car-corda i{animation:none} }
+.lavagna-btn{background:var(--pozzo); font-family:var(--fd); font-stretch:85%; font-weight:800; font-size:16px; min-height:48px}
+.lavagna{position:fixed; inset:0; z-index:100; background:var(--acqua); display:flex; flex-direction:column;
+  padding:calc(10px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+.lavagna[hidden]{display:none}
+.lv-testa{display:flex; align-items:center; gap:10px; justify-content:space-between}
+.lv-testa span{font-size:13px; color:var(--tenue); font-weight:600; text-align:center; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.lv-corpo{flex:1; overflow:auto; max-width:760px; width:100%; margin:8px auto 0; padding-bottom:20px}
+.lv-blocco{font-family:var(--fd); font-stretch:85%; font-weight:800; font-size:17px; color:var(--c); margin:22px 0 4px; text-transform:none}
+.lv-blocco:first-child{margin-top:8px}
+.lv-serie{border-left:6px solid var(--c); padding:6px 0 8px 14px; margin-top:8px}
+.lv-riga{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px}
+.lv-riga b{font-family:var(--fd); font-stretch:72%; font-weight:900; font-size:clamp(34px, 10vw, 60px); line-height:1}
+.lv-riga span{font-family:var(--fd); font-stretch:85%; font-weight:800; font-size:clamp(22px, 6.4vw, 38px); line-height:1.05}
+.lv-serie small{display:block; font-size:clamp(16px, 4.4vw, 22px); color:var(--tenue); margin-top:4px}
+.lv-nota{margin-top:22px; font-size:clamp(17px, 4.6vw, 22px); color:var(--gesso); border-top:1px solid var(--linea2); padding-top:12px}
+.lv-totale{margin-top:14px; font-size:14px; color:var(--tenue)}
+.gare-lista{list-style:none; margin:8px 0 0; padding:0}
+.gara{display:flex; align-items:center; gap:12px; width:100%; border:0; border-top:1px solid var(--linea2); background:transparent; padding:9px 0; text-align:left}
+.gare-lista li:first-child .gara{border-top:0}
+.gara .gg{font-size:24px; min-width:52px; line-height:.95; color:var(--lancetta)}
+.gara .gg small{display:block; font-family:var(--f); font-stretch:100%; font-size:11px; font-weight:600; color:var(--tenue)}
+.gara .nome b{display:block; font-weight:700; font-size:15px}
+.gara .nome span{font-size:12px; color:var(--tenue)}
+.gara.passata{opacity:.6} .gara.passata .gg{font-size:14px; color:var(--ok)}
+.imp-gruppi{display:grid; gap:8px}
+input[type="date"].campo{-webkit-appearance:none; appearance:none; display:block; width:100%; min-width:0; max-width:100%; min-height:44px; text-align:left; line-height:1.2}
+input[type="date"].campo::-webkit-date-and-time-value{text-align:left; margin:0}
+input[type="date"].campo::-webkit-calendar-picker-indicator{opacity:.6}
+.griglia-2 > *, .date-2 > *{min-width:0}
+.date-2{display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:10px}
+.idee{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+.idee .chip{min-height:34px; padding:6px 10px; font-size:13px; font-weight:600; color:var(--tenue); background:transparent; border-style:dashed}
+.poco{margin-left:6px; font-size:11px; font-weight:650; color:var(--en2); border:1px solid color-mix(in srgb, var(--en2) 45%, transparent); padding:0 6px; border-radius:6px; line-height:18px}
+.tz .nome{flex-wrap:wrap}
+.testa-dx{margin-left:auto; display:flex; align-items:center; gap:6px; min-width:0}
+.testa-dx .gara-chip{margin-left:0}
+.sotto-marchio{font-family:var(--f); font-stretch:100%; font-weight:600; font-size:13px; color:var(--tenue); margin-left:2px}
+.gara-chip.ok i{background:var(--ok)} .gara-chip.att i{background:var(--en2)} .gara-chip.err i{background:var(--gap)}
+.gara-chip i{width:7px; height:7px; border-radius:50%; flex:none; background:var(--tenue2)}
+.stato-invio{font-size:11.5px; color:var(--tenue)}
+.stato-invio.ok{color:var(--ok)} .stato-invio.err{color:var(--gap)}
+.ob-periodo{padding:12px 13px}
+.ob-lista{list-style:none; margin:0; padding:0; display:grid; gap:2px}
+.ob-voce{display:flex; align-items:flex-start; gap:9px; width:100%; border:0; background:transparent; text-align:left; padding:6px 0; font-size:14px; line-height:1.35}
+.ob-voce .casella{width:19px; height:19px; border-radius:6px; border:1.5px solid var(--linea); flex:none; display:grid; place-items:center; margin-top:0}
+.ob-voce .casella svg{width:13px; height:13px; opacity:0}
+.ob-voce[aria-pressed="true"] .casella{background:var(--ok); border-color:var(--ok); color:#04202A}
+.ob-voce[aria-pressed="true"] .casella svg{opacity:1}
+.ob-voce[aria-pressed="true"] .ob-testo{color:var(--tenue); text-decoration:line-through; text-decoration-color:color-mix(in srgb, var(--tenue) 60%, transparent)}
+.ob-voce .ob-testo{flex:1}
+.periodo{margin-top:16px}
+.periodo.passato{opacity:.72}
+.periodo-testa{display:flex; align-items:flex-start; gap:10px}
+.periodo-testa .centro{flex:1; min-width:0}
+.periodo-testa h3{font-family:var(--fd); font-stretch:80%; font-weight:800; font-size:19px; line-height:1.1}
+.periodo-testa p{font-size:12px; color:var(--tenue); margin-top:2px}
+.periodo-testa .num{font-size:18px}
+.periodo .avanz{height:6px; border-radius:3px; background:var(--pozzo); overflow:hidden; margin:10px 0 6px}
+.periodo .avanz i{display:block; height:100%; background:var(--ok); border-radius:3px}
+.aggiungi-ob{display:flex; gap:6px; margin-top:8px}
+.aggiungi-ob .campo{flex:1; padding:9px 10px}
+.periodo-vuoto{margin-top:18px; color:var(--tenue); font-size:14px}
+.colonne.storia{height:120px; grid-template-columns:repeat(8,1fr); gap:5px}
+.eroe .sotto{justify-content:flex-start; gap:4px 16px}
+.colonna.corrente small{color:var(--gesso)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-seduta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h11M4 12h16M4 17h8"/><circle cx="19" cy="17" r="2.2"/></symbol>
+    <symbol id="i-sett" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 20v-7M10 20V8M15 20v-5M20 20V5"/></symbol>
+    <symbol id="i-stag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M2 20c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M12 10V3l5 2.5L12 8"/></symbol>
+    <symbol id="i-storico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6"/><path d="M3 4v4h4M12 8v4.5l3 2"/></symbol>
+    <symbol id="i-dati" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="6" rx="7" ry="2.8"/><path d="M5 6v6c0 1.5 3 2.8 7 2.8s7-1.3 7-2.8V6M5 12v6c0 1.5 3 2.8 7 2.8s7-1.3 7-2.8v-6"/></symbol>
+    <symbol id="i-sole" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-luna" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+    <symbol id="i-sx" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-dx" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-copia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="i-modelli" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></symbol>
+    <symbol id="i-duplica" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></symbol>
+    <symbol id="i-matita" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 20l1-4L16 5l3 3L8 19z"/></symbol>
+    <symbol id="i-su" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-giu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-cestino" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+    <symbol id="i-spunta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
+    <symbol id="i-testo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 6h14M5 10h14M5 14h9M5 18h6"/></symbol>
+    <symbol id="i-cond" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></symbol>
+    <symbol id="i-bacchetta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 20L15 9M14 4v3M19.5 9.5h-3M17.5 5.5l-2 2M18 3l1 1"/></symbol>
+    <symbol id="i-obiettivo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".8" fill="currentColor"/></symbol>
+    <symbol id="i-lavagna" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 20l2-4M17 20l-2-4M7 8h6M7 11h9"/></symbol>
+    <symbol id="i-impostazioni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+    <symbol id="i-lucchetto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-anno" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 20v-6M8.5 20V9M12 20v-8M15.5 20V6M19 20v-5"/></symbol>
+    <symbol id="i-piu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  </defs>
+</svg>
+
+<header class="testa">
+  <div class="testa-riga">
+    <div class="marchio" aria-label="Vasca Esordienti">
+      <svg viewBox="0 0 30 12" aria-hidden="true"><rect style="fill:var(--en1)" x="0" y="3" width="6" height="6" rx="3"/><rect style="fill:var(--en1)" x="8" y="3" width="6" height="6" rx="3"/><rect style="fill:var(--en2)" x="16" y="3" width="6" height="6" rx="3"/><rect style="fill:var(--sp)" x="24" y="3" width="6" height="6" rx="3"/></svg>
+      Vasca <span class="sotto-marchio">Esordienti</span>
+    </div>
+    <div class="testa-dx">
+      <button class="gara-chip" id="foglio-chip" hidden></button>
+      <button class="tondo modo-tondo" id="modo-chip" hidden aria-label="Solo lettura: tocca per cambiare"><svg><use href="#i-lucchetto"/></svg></button>
+      <button class="tondo" id="tema" aria-label="Passa al tema chiaro"><svg><use href="#i-sole"/></svg></button>
+    </div>
+  </div>
+  <div class="gruppi" id="gruppi" role="group" aria-label="Gruppo"></div>
+</header>
+
+<main>
+<!-- =================== SEDUTA =================== -->
+<section class="vista attiva" id="v-seduta" aria-label="Seduta">
+  <div class="striscia-wrap">
+    <button class="freccia" id="st-prec" aria-label="Settimana precedente"><svg><use href="#i-sx"/></svg></button>
+    <div class="striscia" id="striscia"></div>
+    <button class="freccia" id="st-succ" aria-label="Settimana successiva"><svg><use href="#i-dx"/></svg></button>
+  </div>
+  <div class="titolo-giorno">
+    <div><h1 id="g-titolo">Oggi</h1><p id="g-sotto"></p></div>
+    <button class="btn piccolo" id="vai-oggi">Oggi</button>
+  </div>
+
+  <div class="griglia-seduta">
+    <div class="colonna-sx">
+      <div class="sez" id="sez-obiettivi-giorno" hidden>
+        <div class="pannello ob-periodo">
+          <div class="sez-testa" style="margin-bottom:6px"><h2 id="obg-titolo">Obiettivi del periodo</h2><span class="num" id="obg-conta"></span></div>
+          <ul class="ob-lista" id="obg-lista"></ul>
+        </div>
+      </div>
+      <div class="sez sola-lettura" id="sola-lettura">
+        <div class="pannello riga-lettura"><svg><use href="#i-lucchetto"/></svg><b>Solo lettura</b><span class="spazio"></span><button class="btn piccolo" id="passa-scrivo">Scrivo</button></div>
+      </div>
+      <div class="sez solo-scrivo" id="sez-compositore">
+        <div class="pannello compositore" id="compositore">
+          <div id="modifica-barra"></div>
+          <div class="cmd-riga">
+            <input class="cmd" id="cmd" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+              enterkeyhint="done" placeholder="8x50 dorso" aria-label="Serie in formato testo">
+            <button class="freccia" id="apri-incolla" aria-label="Incolla una seduta intera" title="Incolla una seduta intera" style="width:52px;height:auto;border-radius:14px"><svg><use href="#i-testo"/></svg></button>
+          </div>
+          <div class="anteprima" aria-live="polite">
+            <div class="desc" id="prev-desc">Componi la serie</div>
+            <div class="mt"><span class="num" id="prev-metri">0 m</span></div>
+          </div>
+
+          <div class="fila" id="fila-freq" hidden><div class="fila-et">Frequenti</div><div class="rotaia frasi" id="r-freq"></div></div>
+          <div class="fila"><div class="fila-et">Ripetizioni</div><div class="rotaia" id="r-rip"></div></div>
+          <div class="fila"><div class="fila-et">Distanza</div><div class="rotaia" id="r-dist"></div></div>
+          <div class="fila"><div class="fila-et">Stile</div><div class="rotaia" id="r-stile"></div></div>
+          <div class="fila"><div class="fila-et">Blocco</div><div class="rotaia largo" id="r-blocco"></div></div>
+
+          <div id="altro">
+            <div class="fila"><div class="fila-et">Giri</div><div class="rotaia" id="r-giri"></div></div>
+            <div class="fila"><div class="fila-et">Attrezzi</div><div class="rotaia testo" id="r-attr"></div></div>
+            <label class="et" for="nota">Nota</label>
+            <input class="campo" id="nota" type="text" placeholder="" autocomplete="off">
+          </div>
+
+          <div class="azioni">
+            <button class="primario" id="aggiungi" disabled>Aggiungi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="colonna-dx">
+      <div class="sez">
+        <div class="sez-testa"><h2 id="sed-titolo">Seduta</h2><span class="num" id="sed-tot">0 m</span></div>
+        <ul class="elenco" id="elenco"></ul>
+        <div id="sed-sintesi"></div>
+        <div class="azioni-seduta">
+          <button class="btn largo lavagna-btn" id="apri-lavagna"><svg><use href="#i-lavagna"/></svg>Mostra ai bambini</button>
+          <button class="btn" id="condividi"><svg><use href="#i-cond"/></svg>Condividi</button>
+          <button class="btn solo-scrivo" id="apri-modelli"><svg><use href="#i-modelli"/></svg>Modelli</button>
+          <button class="btn largo solo-scrivo" id="duplica-giorno"><svg><use href="#i-duplica"/></svg>Copia su un altro giorno o gruppo</button>
+        </div>
+      </div>
+      <div class="sez" id="sez-diario">
+        <div class="sez-testa"><h2>Note</h2><span class="stato-invio" id="stato-invio"></span></div>
+        <textarea class="campo diario" id="diario" rows="2" aria-label="Note della giornata"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== SETTIMANA =================== -->
+<section class="vista" id="v-settimana" aria-label="Settimana">
+  <div class="nav-sett">
+    <button class="freccia" id="w-prec" aria-label="Settimana precedente"><svg><use href="#i-sx"/></svg></button>
+    <div class="centro"><h1 id="w-titolo">Settimana</h1><p id="w-date"></p></div>
+    <button class="freccia" id="w-succ" aria-label="Settimana successiva"><svg><use href="#i-dx"/></svg></button>
+  </div>
+  <div class="pannello eroe">
+    <div class="grande"><span class="num" id="w-fatto">0</span><span>m</span></div>
+    <div class="sotto" id="w-sotto"></div>
+    <div class="barra" id="w-barra" style="margin-top:14px"></div>
+  </div>
+  <div class="griglia-sett">
+    <div>
+      <div class="sez">
+        <div class="sez-testa"><h2>Metri per giorno</h2></div>
+        <div class="pannello"><div class="area-colonne"><div class="colonne" id="w-giorni"></div></div></div>
+      </div>
+      <div class="sez">
+        <div class="sez-testa"><h2>Ultime settimane</h2></div>
+        <div class="pannello"><div class="colonne storia" id="w-storia"></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sez">
+        <div class="sez-testa"><h2>Com'è fatta</h2></div>
+        <div class="pannello"><div class="tab-zone" id="w-zone"></div></div>
+      </div>
+      <div class="sez">
+        <div class="sez-testa"><h2>Stili</h2></div>
+        <div class="pannello"><div class="tab-zone" id="w-stili"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== OBIETTIVI =================== -->
+<section class="vista" id="v-obiettivi" aria-label="Obiettivi">
+  <div class="nav-sett"><div class="centro"><h1 id="ob-titolo">Obiettivi</h1></div>
+    <button class="btn piccolo solo-scrivo" id="ob-nuovo"><svg><use href="#i-piu"/></svg>Periodo</button></div>
+  <div id="ob-gare"></div>
+  <div id="ob-periodi"></div>
+</section>
+
+<!-- =================== ANNO =================== -->
+<section class="vista" id="v-anno" aria-label="Anno">
+  <div class="anno-testa">
+    <button class="freccia" id="an-prec" aria-label="Periodo precedente"><svg><use href="#i-sx"/></svg></button>
+    <div class="centro"><h1 id="an-titolo">Stagione</h1><p id="an-date"></p></div>
+    <button class="freccia" id="an-succ" aria-label="Periodo successivo"><svg><use href="#i-dx"/></svg></button>
+  </div>
+  <div class="anno-opz">
+    <div class="seg largo" id="an-scope" role="group" aria-label="Quali gruppi"></div>
+    <div class="seg largo" id="an-modo" role="group" aria-label="Periodo"></div>
+  </div>
+  <div class="pannello eroe" style="margin-top:12px">
+    <div class="grande"><span class="num" id="an-tot">0</span><span>m</span></div>
+    <div class="sotto" id="an-sotto"></div>
+  </div>
+  <div class="sez">
+    <div class="sez-testa"><h2>Settimana per settimana</h2><span class="num" id="an-sett-n"></span></div>
+    <div class="pannello">
+      <div class="anno-graf" id="an-graf"></div>
+      <div class="legenda" id="an-leg" style="margin-top:12px"></div>
+    </div>
+  </div>
+  <div class="sez">
+    <div class="pannello" id="an-dett"></div>
+  </div>
+  <div class="griglia-sett">
+    <div>
+      <div class="sez">
+        <div class="sez-testa"><h2>Stili nella stagione</h2></div>
+        <div class="pannello"><div class="tab-zone" id="an-stili"></div></div>
+      </div>
+      <div class="sez">
+        <div class="sez-testa"><h2>Com'è fatta</h2></div>
+        <div class="pannello"><div class="tab-zone" id="an-blocchi"></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sez">
+        <div class="sez-testa"><h2>Gare</h2></div>
+        <div class="pannello"><ul class="gare-lista" id="an-gare"></ul></div>
+      </div>
+      <div class="sez">
+        <div class="sez-testa"><h2>Obiettivi</h2><span class="num" id="an-ob-n"></span></div>
+        <div class="pannello" id="an-obiettivi"></div>
+      </div>
+    </div>
+  </div>
+  <div class="sez">
+    <div class="sez-testa"><h2>Ogni giorno</h2><span class="num" id="an-giorni-n"></span></div>
+    <div class="pannello"><div class="calore-wrap" id="an-calore"></div></div>
+  </div>
+</section>
+
+<!-- =================== FOGLIO =================== -->
+<section class="vista" id="v-foglio" aria-label="Impostazioni">
+  <div class="sez">
+    <div class="sez-testa"><h2>Modalità</h2></div>
+    <div class="pannello">
+      <div class="modo" role="group" aria-label="Modalità di questo dispositivo">
+        <button id="modo-scrivo" aria-pressed="true"><svg><use href="#i-matita"/></svg><b>Scrivo</b><small>Aggiungo e modifico</small></button>
+        <button id="modo-guardo" aria-pressed="false"><svg><use href="#i-lucchetto"/></svg><b>Guardo</b><small>Solo consultazione</small></button>
+      </div>
+    </div>
+  </div>
+  <div class="sez">
+    <div class="sez-testa"><h2>Carattere</h2></div>
+    <div class="pannello"><div class="font-griglia" id="font-sel" role="group" aria-label="Carattere della pagina"></div></div>
+  </div>
+  <div class="sez">
+    <div class="sez-testa"><h2>Foglio Google</h2></div>
+    <div class="pannello">
+      <div class="stato-sync" id="fg-stato"><i></i><span>Non collegato</span></div>
+      <label class="et" for="fg-url">Indirizzo dello script</label>
+      <input class="campo" id="fg-url" type="url" inputmode="url" autocapitalize="off" spellcheck="false" placeholder="https://script.google.com/macros/s/…/exec">
+      <label class="et" for="fg-token">Parola d'ordine</label>
+      <input class="campo" id="fg-token" type="password" autocapitalize="off" spellcheck="false" autocomplete="off">
+      <div class="azioni"><button class="primario" id="fg-prova">Collega</button></div>
+      <div class="griglia-2" style="margin-top:8px">
+        <button class="btn" id="fg-ricarica">Ricarica dal foglio</button>
+        <button class="btn solo-scrivo" id="fg-tutto">Rimanda tutto</button>
+      </div>
+      <details class="altro">
+        <summary>Come collegare il foglio</summary>
+        <ol class="passi-istr">
+          <li>Crea un Foglio Google nuovo, poi Estensioni, Apps Script.</li>
+          <li>Cancella tutto, incolla lo script qui sotto e nella riga PAROLA scrivi la tua parola d'ordine. Salva.</li>
+          <li>Esegui il deployment, Nuovo deployment, tipo App web. Esegui come: Me. Chi ha accesso: Chiunque.</li>
+          <li>Autorizza con il tuo account. Se compare "Google non ha verificato questa app": Avanzate, poi Vai al progetto.</li>
+          <li>Copia qui sopra l'indirizzo che finisce con /exec e la stessa parola d'ordine, poi tocca Collega.</li>
+        </ol>
+        <div class="riga" style="margin:12px 0 8px"><span class="muto" style="font-size:12px">Codice.gs</span><span class="spazio"></span><button class="btn piccolo" id="copia-script"><svg><use href="#i-copia"/></svg>Copia lo script</button></div>
+        <pre class="codice" id="script-codice"></pre>
+      </details>
+    </div>
+  </div>
+  <div class="sez">
+    <div class="sez-testa"><h2>Nomi dei gruppi</h2></div>
+    <div class="pannello"><div class="imp-gruppi" id="imp-gruppi"></div></div>
+  </div>
+  <div class="sez">
+    <div class="sez-testa"><h2>Vasca</h2></div>
+    <div class="pannello"><div class="seg largo" id="imp-vasca" role="group" aria-label="Lunghezza della vasca"></div></div>
+  </div>
+  <div class="sez">
+    <div class="sez-testa"><h2>Salvataggio</h2></div>
+    <div class="pannello">
+      <p class="nota" id="d-stato"></p>
+      <div class="griglia-2" style="margin-top:12px">
+        <button class="btn" id="exp-json">Esporta backup</button>
+        <button class="btn solo-scrivo" id="imp-json">Importa backup</button>
+        <button class="btn" id="exp-csv" style="grid-column:1/-1">Esporta per Excel</button>
+      </div>
+      <input type="file" id="file-json" accept=".json,application/json" hidden>
+    </div>
+  </div>
+  <div class="sez">
+    <div class="sez-testa"><h2>Voci mie</h2></div>
+    <div class="pannello"><div id="d-voci"></div></div>
+  </div>
+  <div class="sez solo-scrivo">
+    <div class="sez-testa"><h2>Azzera</h2></div>
+    <div class="pannello">
+      <div class="griglia-2">
+        <button class="btn pericolo" id="canc-gruppo">Cancella le serie del gruppo</button>
+        <button class="btn pericolo" id="canc-tutto">Cancella tutto</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<nav class="navbar" aria-label="Sezioni">
+  <div class="navbar-in" id="navbar">
+    <button data-v="v-seduta" aria-pressed="true"><svg><use href="#i-seduta"/></svg>Seduta</button>
+    <button data-v="v-settimana" aria-pressed="false"><svg><use href="#i-sett"/></svg>Settimana</button>
+    <button data-v="v-obiettivi" aria-pressed="false"><svg><use href="#i-obiettivo"/></svg>Obiettivi</button>
+    <button data-v="v-anno" aria-pressed="false"><svg><use href="#i-anno"/></svg>Anno</button>
+    <button data-v="v-foglio" aria-pressed="false"><svg><use href="#i-impostazioni"/></svg>Impostazioni</button>
+  </div>
+</nav>
+
+<div class="lavagna" id="lavagna" hidden role="dialog" aria-modal="true" aria-label="Seduta per i bambini">
+  <div class="lv-testa">
+    <button class="btn piccolo" id="lv-chiudi">Chiudi</button>
+    <span id="lv-titolo"></span>
+    <button class="btn piccolo" id="lv-metri">In metri</button>
+  </div>
+  <div class="lv-corpo" id="lv-corpo"></div>
+</div>
+
+<div class="caricamento" id="caricamento" hidden role="status" aria-live="polite">
+  <div class="car-corpo">
+    <div class="car-corda" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <b>Vasca Esordienti</b>
+    <span id="car-testo">Carico le sedute dal foglio</span>
+  </div>
+</div>
+
+<div class="foglio" id="foglio" hidden><div class="foglio-fondo" id="foglio-fondo"></div><div class="foglio-corpo" id="foglio-corpo" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast" hidden role="status"></div>
+<script>
+"use strict";
+/* ================= utilità ================= */
+["append", "prepend"].forEach(n => {
+  const orig = Element.prototype[n];
+  Element.prototype[n] = function(...a){ return orig.apply(this, a.filter(x => x !== null && x !== undefined && x !== false)); };
+});
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+function el(tag, attrs, ...kids){
+  const e = document.createElement(tag);
+  if (attrs) for (const k in attrs){
+    const v = attrs[k];
+    if (v === null || v === undefined || v === false) continue;
+    if (k === "class") e.className = v;
+    else if (k === "style") e.style.cssText = v;
+    else if (k === "html") e.innerHTML = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? "" : v);
+  }
+  kids.flat(9).forEach(c => { if (c === null || c === undefined || c === false) return; e.append(c.nodeType ? c : document.createTextNode(String(c))); });
+  return e;
+}
+const icona = id => { const s = document.createElementNS("http://www.w3.org/2000/svg","svg"); const u = document.createElementNS("http://www.w3.org/2000/svg","use"); u.setAttribute("href", "#" + id); s.append(u); return s; };
+const fmt = n => Math.round(n || 0).toLocaleString("it-IT");
+const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+
+const isoDi = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+const daIso = s => new Date(s + "T12:00:00");
+const oggi = () => isoDi(new Date());
+const piuGiorni = (s, n) => { const d = daIso(s); d.setDate(d.getDate() + n); return isoDi(d); };
+const dow = s => (daIso(s).getDay() + 6) % 7;
+const lunediDi = s => piuGiorni(s, -dow(s));
+const diffGiorni = (a, b) => Math.round((daIso(b) - daIso(a)) / 864e5);
+const GIORNI = ["lun","mar","mer","gio","ven","sab","dom"];
+const GIORNI_L = ["lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"];
+const MESI = ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
+const MESI_L = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+const dataBreve = s => { const d = daIso(s); return d.getDate() + " " + MESI[d.getMonth()]; };
+const dataLunga = s => { const d = daIso(s); return GIORNI_L[dow(s)] + " " + d.getDate() + " " + MESI_L[d.getMonth()]; };
+const maiusc = t => t.charAt(0).toUpperCase() + t.slice(1);
+
+function fmtTempo(sec, decimi){
+  if (!(sec > 0)) return decimi ? "0\"0" : "0\"";
+  const m = Math.floor(sec / 60), s = sec - m * 60;
+  if (decimi){
+    const si = Math.floor(s), d = Math.floor((s - si) * 10 + 1e-6);
+    return m ? m + "'" + String(si).padStart(2, "0") + "\"" + d : si + "\"" + d;
+  }
+  const si = Math.round(s);
+  if (si === 60) return (m + 1) + "'00\"";
+  return m ? m + "'" + String(si).padStart(2, "0") + "\"" : si + "\"";
+}
+function leggiTempo(t){
+  t = String(t || "").trim().replace(/^p|^@/i, "").replace(/"/g, ".").replace(/\.$/, "");
+  if (!t) return 0;
+  let m = t.match(/^(\d{1,2})[:'.,](\d{1,2})(?:[.,:'](\d{1,2}))?$/);
+  if (m) return (+m[1]) * 60 + (+m[2]) + (m[3] ? +("0." + m[3]) : 0);
+  m = t.match(/^(\d{1,3})(?:[.,](\d{1,2}))?$/);
+  if (m) return +m[1] + (m[2] ? +("0." + m[2]) : 0);
+  return 0;
+}
+
+/* ================= costanti del dominio ================= */
+const GRUPPI = [{id:"esa", nome:"Esordienti A"}, {id:"esb", nome:"Esordienti B"}, {id:"esc", nome:"Esordienti C"}];
+const STILI = [["sl","SL"],["do","DO"],["ra","RA"],["fa","FA"],["mx","MX"]];
+const BLOCCHI = [["wu","Risc","Riscaldamento"],["tec","Tec","Tecnica"],["pre","Pre","Preparatoria"],["main","Serie","Serie centrale"],["comp","Compl","Complementare"],["gioco","Gioco","Gioco"],["def","Defat","Defaticamento"]];
+const ATTREZZI = ["gambe","tavoletta","pinne","pull","palette","snorkel","scull","drill","subacquee","virate","partenze","respirazione"];
+const BASE = {
+  rip:[1,2,3,4,5,6,8,10,12,16],
+  dist:[25,50,75,100,150,200,300,400],
+  giri:[1,2,3,4],
+  stile:STILI.map(x => x[0]),
+  blocco:BLOCCHI.map(x => x[0]),
+  attr:ATTREZZI.slice()
+};
+
+/* ================= memoria locale ================= */
+const Mem = (() => {
+  let ok = true; const cache = {};
+  try { localStorage.setItem("__v", "1"); localStorage.removeItem("__v"); } catch (e){ ok = false; }
+  return {
+    get ok(){ return ok; },
+    leggi(k, d){ try { const v = ok ? localStorage.getItem(k) : cache[k]; return v ? JSON.parse(v) : d; } catch (e){ return d; } },
+    scrivi(k, v){ const s = JSON.stringify(v); try { if (ok) localStorage.setItem(k, s); else cache[k] = s; } catch (e){ ok = false; cache[k] = s; } }
+  };
+})();
+const K = {serie:"esord_serie", pref:"esord_pref", modelli:"esord_modelli", foglio:"esord_foglio", coda:"esord_coda", note:"esord_note", obiettivi:"esord_obiettivi", gare:"esord_gare", tombe:"esord_tombe"};
+
+/* ================= stato ================= */
+let serie = Mem.leggi(K.serie, []);
+let pref = Object.assign({gruppo:"esa", tema:null, voci:{}, cfg:{}, nomi:{}, vasca:25, impTs:0, dev:"",
+  modo:"scrivo", font:"classico", annoModo:"stagione", annoTutti:false}, Mem.leggi(K.pref, {}));
+if (!pref.dev) pref.dev = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+let modelli = Mem.leggi(K.modelli, []);
+let note = Mem.leggi(K.note, {});
+let obiettivi = Mem.leggi(K.obiettivi, []);
+let gare = Mem.leggi(K.gare, []);
+/* le cancellazioni vanno ricordate, altrimenti un altro dispositivo rimanda indietro quello che hai tolto */
+let tombe = Object.assign({sedute:{}, liste:{}}, Mem.leggi(K.tombe, {}));
+["obiettivi", "gare", "modelli"].forEach(n => { if (!tombe.liste[n]) tombe.liste[n] = {}; });
+const tombaSeduta = (s, t) => { const k = s.g + "|" + s.d; (tombe.sedute[k] = tombe.sedute[k] || {})[s.id] = t || Date.now(); };
+const tombaLista = (nome, id) => { tombe.liste[nome][id] = Date.now(); salva.tombe(); };
+let foglio = Object.assign({url:"", token:"", ultimo:"", caricato:"", legato:"", esito:"", errore:""}, Mem.leggi(K.foglio, {}));
+let coda = Object.assign({sedute:{}, altro:0}, Mem.leggi(K.coda, {}));
+if (coda.obiettivi){ coda.altro = coda.obiettivi; delete coda.obiettivi; }
+const salva = {
+  serie: () => { Mem.scrivi(K.serie, serie); registraCambi(); },
+  pref: () => Mem.scrivi(K.pref, pref),
+  modelli: () => { Mem.scrivi(K.modelli, modelli); segnaAltro(); },
+  note: () => Mem.scrivi(K.note, note),
+  obiettivi: () => { Mem.scrivi(K.obiettivi, obiettivi); segnaAltro(); },
+  gare: () => { Mem.scrivi(K.gare, gare); segnaAltro(); },
+  foglio: () => Mem.scrivi(K.foglio, foglio),
+  coda: () => Mem.scrivi(K.coda, coda),
+  tombe: () => Mem.scrivi(K.tombe, tombe)
+};
+function cfg(g){
+  g = g || pref.gruppo;
+  if (!pref.cfg[g]) pref.cfg[g] = {};
+  return pref.cfg[g];
+}
+const soloLettura = () => pref.modo === "guardo";
+
+/* ================= voci e nomi ================= */
+function voci(cat){
+  const mie = (pref.voci[cat] || []);
+  let dalDato = [];
+  if (cat === "stile") dalDato = serie.map(s => s.s);
+  else if (cat === "blocco") dalDato = serie.map(s => s.b);
+  else if (cat === "attr") dalDato = serie.flatMap(s => s.a || []);
+  const out = [];
+  BASE[cat].concat(mie, dalDato).forEach(v => { if (v !== undefined && v !== null && v !== "" && !out.includes(v)) out.push(v); });
+  if (["rip","dist","giri"].includes(cat)) out.sort((a, b) => a - b);
+  return out;
+}
+const nomeStile = s => (STILI.find(x => x[0] === s) || [s, s])[1];
+const nomeBlocco = (b, lungo) => { const x = BLOCCHI.find(y => y[0] === b); return x ? x[lungo ? 2 : 1] : b; };
+const nomeGruppo = g => (pref.nomi && pref.nomi[g]) || (GRUPPI.find(x => x.id === g) || {nome:g}).nome;
+
+function coloreDa(t){ let h = 0; t = String(t); for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) % 360; return "hsl(" + h + " 45% 58%)"; }
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue("--" + n).trim();
+function colore(id){ if (/^[a-z0-9]+$/i.test(String(id))){ const v = cssVar(id); if (v) return v; } return coloreDa(id); }
+
+/* ================= serie e somme ================= */
+const metri = s => (s.gi || 1) * (s.r || 1) * (s.m || 0);
+const totale = l => l.reduce((a, s) => a + metri(s), 0);
+const serieGiorno = (d, g) => serie.filter(s => s.d === d && s.g === (g || pref.gruppo)).sort((a, b) => ((a.o || 0) - (b.o || 0)) || ((a.ts || 0) - (b.ts || 0)));
+const serieTra = (a, b, g) => serie.filter(s => s.g === (g || pref.gruppo) && s.d >= a && s.d <= b);
+function perBlocco(l){ const z = {}; voci("blocco").forEach(k => z[k] = 0); l.forEach(s => z[s.b] = (z[s.b] || 0) + metri(s)); return z; }
+const GAMBE = ["gambe", "tavoletta", "tavola"];
+const conGambe = s => (s.a || []).some(a => GAMBE.includes(String(a).toLowerCase()));
+const metriTecnica = l => totale(l.filter(s => s.b === "tec" || (s.a || []).some(a => a === "drill" || a === "scull")));
+const metriGambe = l => totale(l.filter(conGambe));
+const COLORI_BLOCCO = {wu:"do", tec:"tec", pre:"mx", main:"en1", comp:"ra", gioco:"fa", def:"sl"};
+const coloreBlocco = b => colore(COLORI_BLOCCO[b] || b);
+function perStile(l){ const z = {}; voci("stile").forEach(k => z[k] = 0); l.forEach(s => z[s.s] = (z[s.s] || 0) + metri(s)); return z; }
+const giorniCon = (a, b, g) => new Set(serieTra(a, b, g).map(s => s.d)).size;
+
+/* ================= note di giornata ================= */
+const chiaveG = (d, g) => (g || pref.gruppo) + "|" + d;
+const notaDi = (d, g) => (note[chiaveG(d, g)] || {}).t || "";
+function scriviNota(d, g, t){
+  if (soloLettura()) return;
+  const k = chiaveG(d, g);
+  note[k] = {t, ts:Date.now()};
+  salva.note(); accoda(k);
+}
+
+/* ================= obiettivi del periodo ================= */
+const periodiDi = g => obiettivi.filter(p => p.g === (g || pref.gruppo)).sort((a, b) => a.dal < b.dal ? 1 : a.dal > b.dal ? -1 : 0);
+const periodoAttivo = (d, g) => periodiDi(g).find(p => d >= p.dal && d <= p.al) || null;
+
+/* ================= vasche: i bambini contano le vasche, non i metri ================= */
+function vasche(m){
+  const L = pref.vasca || 25;
+  if (!m || m % L) return "";
+  const n = m / L;
+  return n + (n === 1 ? " vasca" : " vasche");
+}
+
+/* ================= gare ================= */
+const gareDi = g => gare.filter(x => x.g === (g || pref.gruppo)).sort((a, b) => a.data < b.data ? -1 : a.data > b.data ? 1 : 0);
+const prossimaGara = (d, g) => gareDi(g).find(x => x.data >= (d || oggi())) || null;
+const traGiorni = x => { const n = diffGiorni(oggi(), x.data); return n === 0 ? "oggi" : n === 1 ? "domani" : n > 0 ? "tra " + n + " giorni" : (-n === 1 ? "ieri" : -n + " giorni fa"); };
+
+/* ================= interprete del testo ================= */
+const V_STILE = {sl:"sl", sti:"sl", libero:"sl", crawl:"sl", fr:"sl", free:"sl", do:"do", dorso:"do", bk:"do", ra:"ra", rana:"ra", br:"ra",
+  fa:"fa", df:"fa", delfino:"fa", farfalla:"fa", fly:"fa", mx:"mx", misti:"mx", misto:"mx", im:"mx"};
+const V_ZONA = {en1:"en1", "en-1":"en1", a1:"en1", a2:"en1", aerobico:"en1", tec:"tec", tecnica:"tec", en2:"en2", "en-2":"en2", b1:"en2", soglia:"en2",
+  en3:"en3", "en-3":"en3", b2:"en3", vo2:"en3", sp:"sp", sprint:"sp", vel:"sp", velocita:"sp", "velocità":"sp"};
+const V_BLOCCO = {wu:"wu", risc:"wu", riscaldamento:"wu", pre:"pre", prep:"pre", main:"main", serie:"main", centrale:"main",
+  comp:"comp", compl:"comp", complementare:"comp", def:"def", defat:"def", defaticamento:"def", scioglimento:"def", gioco:"gioco", giochi:"gioco"};
+const V_ATTR = {}; ATTREZZI.forEach(a => V_ATTR[a.toLowerCase()] = a);
+Object.assign(V_ATTR, {sculling:"scull", pb:"pull", pullbuoy:"pull", pinnette:"pinne", gambe:"gambe", kick:"gambe", tavola:"tavoletta", tav:"tavoletta", resp:"respirazione", virata:"virate", partenza:"partenze", sub:"subacquee"});
+
+function vocab(base, cat){
+  const v = Object.assign({}, base);
+  if (BASE[cat]) voci(cat).forEach(id => { const k = String(id).toLowerCase(); if (v[k] === undefined) v[k] = id; });
+  return v;
+}
+function leggiRiga(riga, predef){
+  predef = predef || {};
+  let t = " " + String(riga || "").trim() + " ";
+  if (!t.trim() || t.trim().startsWith("#")) return null;
+  t = t.replace(/(\d)\.(\d{3})\b/g, "$1$2").replace(/×/g, "x");
+  const VS = vocab(V_STILE, "stile"), VZ = vocab(V_ZONA, "zona"), VB = vocab(V_BLOCCO, "blocco"), VA = vocab(V_ATTR, "attr");
+  const r = {gi:1, r:1, m:0, s:predef.s || "sl", z:"", b:predef.b || "main", a:[], p:0, n:""};
+  let gi = t.match(/(\d+)\s*x\s*\(\s*(\d+)\s*x\s*(\d+)/i) || t.match(/(\d+)\s*x\s*(\d+)\s*x\s*(\d+)/i);
+  if (gi){ r.gi = +gi[1]; r.r = +gi[2]; r.m = +gi[3]; t = t.replace(gi[0], " ").replace(/[()]/g, " "); }
+  else {
+    const mu = t.match(/(\d+)\s*x\s*(\d+)/i);
+    if (mu){ r.r = +mu[1]; r.m = +mu[2]; t = t.replace(mu[0], " "); }
+    else {
+      const solo = t.match(/\s(\d{2,4})(?=\s)/);
+      if (solo){ r.m = +solo[1]; t = t.replace(solo[0], " "); }
+    }
+  }
+  t = t.replace(/[()]/g, " ");
+  let visto = {s:false, z:false, b:false};
+  const multi = [["attr", VA], ["stile", VS], ["zona", VZ], ["blocco", VB]];
+  multi.forEach(([cat, voc]) => {
+    Object.keys(voc).filter(k => /\s/.test(k)).sort((a, b) => b.length - a.length).forEach(k => {
+      const i = t.toLowerCase().indexOf(k);
+      if (i < 0) return;
+      const val = voc[k];
+      if (cat === "attr") r.a.push(val);
+      else if (cat === "stile" && !visto.s){ r.s = val; visto.s = true; }
+      else if (cat === "zona" && !visto.z){ r.z = val; visto.z = true; }
+      else if (cat === "blocco" && !visto.b){ r.b = val; visto.b = true; }
+      else return;
+      t = t.slice(0, i) + " " + t.slice(i + k.length);
+    });
+  });
+  const pezzi = t.split(/[\s,;]+/).filter(Boolean);
+  const primo = (pezzi[0] || "").toLowerCase();
+  if (primo === "tec" && pezzi.slice(1).some(x => VZ[x.toLowerCase()] !== undefined && x.toLowerCase() !== "tec")){ r.b = "tec"; visto.b = true; pezzi.shift(); }
+  const note = [];
+  pezzi.forEach(tok => {
+    const k = tok.toLowerCase().replace(/[.:]$/, "");
+    if (/^(p|@)?\d{1,2}[:'.]\d{2}"?$/.test(k) || /^(p|@)\d{2,3}"?$/.test(k)){ r.p = leggiTempo(k); return; }
+    if (VS[k] !== undefined && !visto.s){ r.s = VS[k]; visto.s = true; return; }
+    if (VZ[k] !== undefined && !visto.z){ r.z = VZ[k]; visto.z = true; if (k.startsWith("tec") && !visto.b){ r.b = "tec"; visto.b = true; } return; }
+    if (VB[k] !== undefined && !visto.b){ r.b = VB[k]; visto.b = true; return; }
+    if (VA[k] !== undefined){ if (!r.a.includes(VA[k])) r.a.push(VA[k]); return; }
+    note.push(tok);
+  });
+  if (!visto.b && (r.z === "tec" || r.a.includes("scull") || r.a.includes("drill"))){ r.b = "tec"; visto.b = true; }
+  r.bDaTesto = visto.b;
+  r.z = "";
+  r.n = note.join(" ");
+  if (!r.m) return {errore:true, parziale:r};
+  return r;
+}
+function leggiTesto(txt){
+  let blocco = null;
+  const out = [];
+  String(txt || "").split(/\n/).forEach(l => {
+    const tl = l.trim().toLowerCase().replace(/[:\s]+$/, "");
+    const b = BLOCCHI.find(x => x[0] === tl || x[1].toLowerCase() === tl || x[2].toLowerCase() === tl) || (V_BLOCCO[tl] ? BLOCCHI.find(x => x[0] === V_BLOCCO[tl]) : null);
+    if (b && !/\d/.test(tl)){ blocco = b[0]; return; }
+    const r = leggiRiga(l, blocco ? {b:blocco} : {});
+    if (r && !r.errore) out.push(r);
+  });
+  return out;
+}
+function descr(s){
+  const base = (s.r > 1 ? s.r + "×" + s.m : String(s.m));
+  const core = (s.gi > 1 ? s.gi + " × (" + base + ")" : base);
+  return core + " " + nomeStile(s.s);
+}
+function dettaglio(s, conBlocco){
+  const p = [];
+  if (conBlocco) p.push(nomeBlocco(s.b, true));
+  if (s.m >= (pref.vasca || 25) * 2 && vasche(s.m)) p.push(vasche(s.m));
+  if (s.p) p.push("partenza " + fmtTempo(s.p));
+  if (s.a && s.a.length) p.push(s.a.join(", "));
+  if (s.n) p.push(s.n);
+  return p.join(", ");
+}
+function aTesto(s, conBlocco){
+  const p = [];
+  if (conBlocco) p.push(s.b);
+  const base = s.r > 1 ? s.r + "x" + s.m : String(s.m);
+  p.push(s.gi > 1 ? s.gi + "x(" + base + ")" : base);
+  p.push(s.s);
+  (s.a || []).forEach(a => p.push(a));
+  if (s.p) p.push("p" + fmtTempo(s.p).replace(/"$/, "").replace("'", ":"));
+  if (s.n) p.push(s.n);
+  return p.join(" ");
+}
+
+/* ================= firma di una serie, per frequenti e storico ================= */
+const firma = s => [s.gi || 1, s.r, s.m, s.s, (s.a || []).slice().sort().join("+")].join("|");
+
+
+/* ================= carattere della pagina ================= */
+const FONT_PRESET = [
+  {id:"classico", nome:"Classico", url:"family=Figtree:wght@400..800&family=Saira:wdth,wght@50..125,400..900",
+    pila:"'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif", pilaD:"'Saira', 'Arial Narrow', 'Roboto Condensed', system-ui, sans-serif"},
+  {id:"compatto", nome:"Compatto", url:"family=Archivo:wdth,wght@62..125,400..900",
+    pila:"'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif", pilaD:"'Archivo', 'Arial Narrow', 'Roboto Condensed', system-ui, sans-serif"},
+  {id:"sportivo", nome:"Sportivo", url:"family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800;900",
+    pila:"'Barlow', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif", pilaD:"'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', system-ui, sans-serif"},
+  {id:"netto", nome:"Netto", url:"family=Inter:wght@400..800&family=Inter+Tight:wght@600..900",
+    pila:"'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif", pilaD:"'Inter Tight', 'Inter', system-ui, sans-serif"},
+  {id:"rotondo", nome:"Rotondo", url:"family=Nunito:wght@400..900",
+    pila:"'Nunito', ui-rounded, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif", pilaD:"'Nunito', ui-rounded, system-ui, sans-serif"},
+  {id:"leggibile", nome:"Leggibile", url:"family=Atkinson+Hyperlegible:wght@400;700",
+    pila:"'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif", pilaD:"'Atkinson Hyperlegible', system-ui, sans-serif"},
+  {id:"sistema", nome:"Di sistema", url:null,
+    pila:"system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif", pilaD:"'Avenir Next Condensed', 'Arial Narrow', 'Roboto Condensed', system-ui, sans-serif"}
+];
+const fontAttuale = () => FONT_PRESET.find(x => x.id === pref.font) || FONT_PRESET[0];
+function caricaFont(p){
+  if (!p.url || document.getElementById("font-" + p.id)) return;
+  const l = document.createElement("link");
+  l.id = "font-" + p.id; l.rel = "stylesheet"; l.href = "https://fonts.googleapis.com/css2?" + p.url + "&display=swap";
+  document.head.append(l);
+}
+function applicaFont(){
+  const p = fontAttuale();
+  caricaFont(p);
+  const r = document.documentElement.style;
+  r.setProperty("--f", p.pila); r.setProperty("--fd", p.pilaD);
+  document.documentElement.dataset.font = p.id;
+}
+applicaFont();
+
+/* ===== unione delle modifiche di più dispositivi (identica nell'app e nello script del foglio) ===== */
+var SCADENZA_TOMBE = 180 * 864e5;
+function _vince(a, b){
+  var ta = a.ts || 0, tb = b.ts || 0;
+  return tb > ta || (tb === ta && JSON.stringify(b) > JSON.stringify(a));
+}
+function unisciTombe(a, b){
+  var out = {}, limite = Date.now() - SCADENZA_TOMBE;
+  [a, b].forEach(function(t){ Object.keys(t || {}).forEach(function(id){
+    var v = t[id] || 0;
+    if (v >= limite && (!(id in out) || v > out[id])) out[id] = v;
+  }); });
+  return out;
+}
+function unisciElementi(la, lb, tolte){
+  var mappa = {};
+  [la, lb].forEach(function(l){ (l || []).forEach(function(s){
+    if (!s || !s.id) return;
+    var x = mappa[s.id];
+    if (!x || _vince(x, s)) mappa[s.id] = s;
+  }); });
+  return Object.keys(mappa).sort().map(function(id){ return mappa[id]; })
+    .filter(function(s){ return !(tolte[s.id] >= (s.ts || 0)); });
+}
+function unisciSeduta(a, b){
+  a = a || {}; b = b || {};
+  var tolte = unisciTombe(a.tolte, b.tolte);
+  var na = {ts:a.notaTs || 0, t:a.nota || ""}, nb = {ts:b.notaTs || 0, t:b.nota || ""};
+  var nota = _vince(na, nb) ? nb : na;
+  return {g:b.g || a.g || "", d:b.d || a.d || "", serie:unisciElementi(a.serie, b.serie, tolte), tolte:tolte, nota:nota.t, notaTs:nota.ts};
+}
+function unisciListe(a, b){
+  a = a || {}; b = b || {};
+  var tolte = unisciTombe(a.tolte, b.tolte);
+  return {lista:unisciElementi(a.lista, b.lista, tolte), tolte:tolte};
+}
+function firmaSeduta(s){
+  s = s || {};
+  return JSON.stringify([(s.serie || []).map(function(x){ return x.id + ":" + (x.ts || 0); }).sort(), s.nota || "", s.notaTs || 0, Object.keys(s.tolte || {}).sort()]);
+}
+function firmaLista(l){
+  l = l || {};
+  return JSON.stringify([(l.lista || []).map(function(x){ return x.id + ":" + (x.ts || 0); }).sort(), Object.keys(l.tolte || {}).sort()]);
+}
+
+
+/* ================= stato dell'interfaccia ================= */
+let vista = "v-seduta";
+let dataSel = oggi();
+let dataW = null;
+const BOZZA0 = {gi:1, r:1, m:0, s:"sl", z:"en1", b:"main", a:[], p:0, n:""};
+let bozza = JSON.parse(JSON.stringify(BOZZA0));
+let bozzaBase = JSON.parse(JSON.stringify(BOZZA0));
+let statoF = 1;
+let inModifica = null;
+let ultimaAggiunta = null;
+const vibra = ms => { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e){} };
+
+/* ================= foglio, conferme, toast ================= */
+function apriFoglio(costruisci){
+  const f = $("#foglio"), c = $("#foglio-corpo");
+  c.innerHTML = "";
+  costruisci(c);
+  f.hidden = false;
+  document.body.style.overflow = "hidden";
+  setTimeout(() => { const x = c.querySelector("[data-fuoco]"); if (x) x.focus(); }, 60);
+}
+function chiudiFoglio(){ $("#foglio").hidden = true; document.body.style.overflow = ""; }
+$("#foglio-fondo").addEventListener("click", chiudiFoglio);
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  if (!$("#foglio").hidden) chiudiFoglio();
+});
+function chiediTesto(o){
+  return new Promise(ok => {
+    apriFoglio(c => {
+      const campo = el("input", {class:"campo", type:o.numero ? "number" : "text", inputmode:o.numero ? "numeric" : null, placeholder:o.esempio || "", "data-fuoco":true, autocomplete:"off"});
+      if (o.valore !== undefined) campo.value = o.valore;
+      const via = () => { const v = campo.value.trim(); if (!v) return; chiudiFoglio(); ok(v); };
+      campo.addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); via(); } });
+      c.append(el("h3", null, o.titolo), o.sott ? el("p", {class:"sott"}, o.sott) : null, campo,
+        el("div", {class:"azioni"}, el("button", {class:"btn", onclick:() => { chiudiFoglio(); ok(null); }}, "Annulla"),
+          el("button", {class:"primario", onclick:via}, o.etichetta || "Aggiungi")));
+    });
+  });
+}
+function conferma(titolo, testo, etichetta, pericolo){
+  return new Promise(ok => {
+    apriFoglio(c => {
+      c.append(el("h3", null, titolo), el("p", {class:"sott"}, testo),
+        el("div", {class:"azioni"}, el("button", {class:"btn", onclick:() => { chiudiFoglio(); ok(false); }}, "Annulla"),
+          el("button", {class:"primario", style:pericolo ? "background:var(--gap);color:#fff" : "", onclick:() => { chiudiFoglio(); ok(true); }}, etichetta)));
+    });
+  });
+}
+let toastTimer = null;
+function toast(msg, annulla){
+  const t = $("#toast");
+  t.innerHTML = "";
+  t.append(el("span", null, msg));
+  if (annulla) t.append(el("button", {onclick:() => { annulla(); t.hidden = true; }}, "Annulla"));
+  t.hidden = false; t.classList.remove("via"); void t.offsetWidth; t.classList.add("via");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.hidden = true; }, annulla ? 5500 : 2600);
+}
+function copiaTesto(testo){
+  return new Promise(ok => {
+    const ripiego = () => {
+      try {
+        const t = el("textarea", {readonly:true, style:"position:fixed;top:-1000px"}); t.value = testo; document.body.append(t);
+        t.select(); t.setSelectionRange(0, testo.length); const r = document.execCommand("copy"); t.remove(); ok(r);
+      } catch (e){ ok(false); }
+    };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(testo).then(() => ok(true), ripiego); else ripiego();
+  });
+}
+
+/* ================= testata: gruppi, tema ================= */
+function renderGruppi(){
+  const c = $("#gruppi"); c.innerHTML = "";
+  GRUPPI.forEach(G => c.append(el("button", {"aria-pressed":String(G.id === pref.gruppo), onclick:() => {
+    if (G.id === pref.gruppo) return;
+    pref.gruppo = G.id; salva.pref(); annullaModifica(true); renderTutto();
+  }}, nomeGruppo(G.id))));
+}
+const TEMA_OSPITE = (() => { const v = document.documentElement.getAttribute("data-theme"); return v === "light" ? "sole" : v === "dark" ? "notte" : null; })();
+function applicaTema(){
+  const t = pref.tema || TEMA_OSPITE || (window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "sole" : "notte");
+  document.documentElement.dataset.theme = t;
+  const m = $('meta[name="theme-color"]'); if (m) m.content = t === "sole" ? "#E6F1F2" : "#06222B";
+  const b = $("#tema"); b.innerHTML = ""; b.append(icona(t === "sole" ? "i-luna" : "i-sole"));
+  b.setAttribute("aria-label", t === "sole" ? "Passa al tema scuro" : "Passa al tema chiaro, per il sole a bordo vasca");
+}
+$("#tema").addEventListener("click", () => {
+  pref.tema = document.documentElement.dataset.theme === "sole" ? "notte" : "sole";
+  salva.pref(); applicaTema(); renderTutto();
+});
+/* ================= navigazione ================= */
+function vai(v){
+  vista = v;
+  $$(".vista").forEach(s => s.classList.toggle("attiva", s.id === v));
+  $$("#navbar button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === v)));
+  window.scrollTo({top:0});
+  renderVista();
+}
+$$("#navbar button").forEach(b => b.addEventListener("click", () => {
+  if (b.dataset.v === "v-settimana" && vista !== "v-settimana") dataW = dataSel;
+  vai(b.dataset.v);
+}));
+
+/* ================= SEDUTA ================= */
+function renderStriscia(){
+  const c = $("#striscia"); c.innerHTML = "";
+  const l = lunediDi(dataSel), og = oggi();
+  const tot = [];
+  for (let i = 0; i < 7; i++) tot.push(totale(serieGiorno(piuGiorni(l, i))));
+  const max = Math.max(1, ...tot);
+  for (let i = 0; i < 7; i++){
+    const d = piuGiorni(l, i);
+    const z = perStile(serieGiorno(d));
+    const barra = el("span", {class:"gm"});
+    voci("stile").forEach(k => { if (z[k] > 0) barra.append(el("i", {style:"width:" + (z[k] / max * 100) + "%;background:" + colore(k)})); });
+    c.append(el("button", {class:"giorno-btn" + (i === 6 ? " riposo" : "") + (d === og ? " oggi" : ""), "aria-pressed":String(d === dataSel),
+      "aria-label":dataLunga(d) + (tot[i] ? ", " + fmt(tot[i]) + " metri" : ""), onclick:() => { dataSel = d; renderSeduta(); }},
+      el("span", {class:"gn"}, GIORNI[i]), el("span", {class:"gd"}, daIso(d).getDate()), barra));
+  }
+  const p = periodoAttivo(dataSel);
+  $("#g-titolo").textContent = maiusc(dataLunga(dataSel));
+  const gara = prossimaGara(dataSel);
+  const vicina = gara && diffGiorni(oggi(), gara.data) <= 60 ? gara : null;
+  $("#g-sotto").textContent = nomeGruppo(pref.gruppo) + (p ? ", " + p.titolo : "") + (vicina ? ", " + vicina.nome + " " + traGiorni(vicina) : "");
+  $("#vai-oggi").hidden = dataSel === og;
+}
+$("#st-prec").addEventListener("click", () => { dataSel = piuGiorni(dataSel, -7); renderSeduta(); });
+$("#st-succ").addEventListener("click", () => { dataSel = piuGiorni(dataSel, 7); renderSeduta(); });
+$("#vai-oggi").addEventListener("click", () => { dataSel = oggi(); renderSeduta(); });
+
+function renderObiettiviGiorno(){
+  const p = periodoAttivo(dataSel), sez = $("#sez-obiettivi-giorno");
+  sez.hidden = !p || !(p.voci || []).length;
+  if (sez.hidden) return;
+  $("#obg-titolo").textContent = p.titolo;
+  const fatti = p.voci.filter(v => v.ok).length;
+  $("#obg-conta").textContent = fatti + "/" + p.voci.length;
+  const ul = $("#obg-lista"); ul.innerHTML = "";
+  p.voci.forEach(v => ul.append(el("li", null, voceObiettivo(p, v, renderObiettiviGiorno))));
+}
+
+/* ---------- compositore ---------- */
+function ricorda(cat, v){
+  if (!pref.voci[cat]) pref.voci[cat] = [];
+  if (!BASE[cat].includes(v) && !pref.voci[cat].includes(v)) pref.voci[cat].push(v);
+  salva.pref(); segnaImpostazioni();
+}
+async function aggiungiVoce(cat, numero, esempio, titolo){
+  let v = await chiediTesto({titolo, esempio, numero, etichetta:"Aggiungi"});
+  if (v === null) return null;
+  if (numero){ v = parseInt(v, 10); if (!(v > 0)) return null; } else v = v.slice(0, 18);
+  ricorda(cat, v);
+  return v;
+}
+const ROTAIE = {
+  rip:{id:"r-rip", et:v => "×" + v, on:v => bozza.r === v, tap:v => { bozza.r = v; }, piu:["Ripetizioni", "24", true]},
+  dist:{id:"r-dist", et:v => String(v), on:v => bozza.m === v, tap:v => { bozza.m = bozza.m === v ? 0 : v; }, piu:["Distanza in metri", "175", true]},
+  stile:{id:"r-stile", et:nomeStile, col:true, on:v => bozza.s === v, tap:v => { bozza.s = v; }, piu:["Nuovo stile", "SL/DO", false]},
+  blocco:{id:"r-blocco", et:v => nomeBlocco(v), t:true, on:v => bozza.b === v, tap:v => { bozza.b = v; }, piu:["Nuovo blocco", "Subacquee", false]},
+  giri:{id:"r-giri", et:v => "×" + v, on:v => bozza.gi === v, tap:v => { bozza.gi = v; }, piu:["Giri", "5", true]},
+  attr:{id:"r-attr", et:v => v, t:true, on:v => bozza.a.includes(v), tap:v => { const i = bozza.a.indexOf(v); if (i < 0) bozza.a.push(v); else bozza.a.splice(i, 1); }, piu:["Nuovo attrezzo", "drag socks", false]}
+};
+function costruisciRotaie(){
+  Object.keys(ROTAIE).forEach(cat => {
+    const R = ROTAIE[cat], c = $("#" + R.id);
+    const sl = c.scrollLeft;
+    c.innerHTML = "";
+    voci(cat).forEach(v => {
+      const b = el("button", {class:"chip" + (R.t ? " t" : "") + (R.col ? " col" : ""), "data-v":String(v), "aria-pressed":"false",
+        style:R.col ? "--c:" + colore(v) : null, onclick:() => { R.tap(v); vibra(6); dopoTocco(); }}, R.et(v));
+      c.append(b);
+    });
+    c.append(el("button", {class:"chip piu", "aria-label":R.piu[0], onclick:async () => {
+      const v = await aggiungiVoce(cat, R.piu[2], R.piu[1], R.piu[0]);
+      if (v === null) return;
+      if (cat === "attr"){ if (!bozza.a.includes(v)) bozza.a.push(v); } else R.tap(v);
+      if (cat === "dist") bozza.m = v;
+      costruisciRotaie(); dopoTocco();
+    }}, "+"));
+    c.scrollLeft = sl;
+  });
+  segnaRotaie();
+}
+function segnaRotaie(centra){
+  Object.keys(ROTAIE).forEach(cat => {
+    const R = ROTAIE[cat], c = $("#" + R.id);
+    $$(".chip[data-v]", c).forEach(b => {
+      const v = ["rip","dist","giri"].includes(cat) ? +b.dataset.v : b.dataset.v;
+      const on = R.on(v);
+      b.setAttribute("aria-pressed", String(on));
+    });
+  });
+}
+function dopoTocco(){
+  bozzaBase = JSON.parse(JSON.stringify(bozza));
+  $("#cmd").value = bozza.m ? aTesto(bozza) : "";
+  $("#cmd").classList.remove("errore");
+  segnaRotaie();
+  renderAnteprima();
+}
+function renderAnteprima(){
+  const ok = bozza.m > 0;
+  const d = $("#prev-desc"); d.innerHTML = "";
+  if (ok){ d.append(descr(bozza)); const det = dettaglio(bozza, true); if (det) d.append(el("small", null, det)); }
+  else d.append(el("span", {class:"muto", style:"font-size:16px;font-weight:600"}, $("#cmd").value.trim() ? "Manca la distanza" : "Nuova serie"));
+  $("#prev-metri").textContent = fmt(ok ? metri(bozza) : 0) + " m";
+  const b = $("#aggiungi");
+  b.disabled = !ok;
+  b.textContent = inModifica ? "Salva la modifica" : ok ? "Aggiungi " + fmt(metri(bozza)) + " m" : "Aggiungi";
+  $$("#stato-seg button").forEach(x => x.setAttribute("aria-pressed", String(+x.dataset.f === statoF)));
+  const mb = $("#modifica-barra"); mb.innerHTML = "";
+  if (inModifica) mb.append(el("div", {class:"modifica-barra"}, el("span", null, "Stai modificando una serie"), el("button", {class:"btn piccolo", onclick:() => annullaModifica()}, "Annulla")));
+}
+$("#cmd").addEventListener("input", () => {
+  const v = $("#cmd").value;
+  const r = leggiRiga(v, bozzaBase);
+  if (r && !r.errore){ if (r.bDaTesto) r.bPrima = bozzaBase.b; bozza = r; $("#cmd").classList.remove("errore"); }
+  else { bozza.m = 0; }
+  $("#nota").value = bozza.n || "";
+  segnaRotaie(true);
+  renderAnteprima();
+});
+$("#cmd").addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); if (bozza.m) aggiungi(); else $("#cmd").classList.add("errore"); } });
+$("#nota").addEventListener("input", () => { bozza.n = $("#nota").value; bozzaBase.n = bozza.n; $("#cmd").value = bozza.m ? aTesto(bozza) : $("#cmd").value; renderAnteprima(); });
+$$("#stato-seg button").forEach(b => b.addEventListener("click", () => { statoF = +b.dataset.f; renderAnteprima(); }));
+$("#aggiungi").addEventListener("click", () => aggiungi());
+
+function copiaSerie(b){ return {gi:b.gi || 1, r:b.r, m:b.m, s:b.s, z:"", b:b.b, a:(b.a || []).slice(), p:b.p || 0, n:b.n || ""}; }
+function nuovaSerie(b, d, g, f, o){ return Object.assign({id:uid(), g, d, f, o, ts:Date.now()}, copiaSerie(b)); }
+function prossimoOrdine(d, g){ const l = serieGiorno(d, g); return l.length ? Math.max(...l.map(s => s.o || 0)) + 10 : 10; }
+function aggiungi(){
+  if (!bozza.m || soloLettura()) return;
+  if (inModifica){
+    const s = serie.find(x => x.id === inModifica);
+    if (s){ Object.assign(s, copiaSerie(bozza), {f:statoF, ts:Date.now()}); ultimaAggiunta = s.id; }
+    inModifica = null;
+    toast("Modifica salvata");
+  } else {
+    const s = nuovaSerie(bozza, dataSel, pref.gruppo, statoF, prossimoOrdine(dataSel));
+    serie.push(s); ultimaAggiunta = s.id;
+    toast("Aggiunta " + descr(s), () => elimina([s.id], true));
+  }
+  salva.serie(); vibra(14);
+  bozza.n = ""; $("#nota").value = ""; bozza.p = 0;
+  if (bozza.bDaTesto){ bozza.b = bozza.bPrima || "main"; }
+  delete bozza.bDaTesto; delete bozza.bPrima;
+  dopoTocco();
+  renderSeduta(true);
+}
+function annullaModifica(silenzio){
+  if (!inModifica) return;
+  inModifica = null;
+  if (!silenzio){ bozza = JSON.parse(JSON.stringify(bozzaBase)); }
+  dopoTocco();
+}
+function elimina(ids, silenzio){
+  if (soloLettura()) return;
+  const tolte = serie.filter(s => ids.includes(s.id));
+  if (!tolte.length) return;
+  serie = serie.filter(s => !ids.includes(s.id));
+  const t = Date.now(); tolte.forEach(s => tombaSeduta(s, t)); salva.tombe();
+  salva.serie(); renderTutto();
+  if (!silenzio) toast(tolte.length === 1 ? "Eliminata " + descr(tolte[0]) : "Eliminate " + tolte.length + " serie", () => {
+    const t2 = Date.now();
+    tolte.forEach(s => { s.ts = t2; serie.push(s); const k = s.g + "|" + s.d; if (tombe.sedute[k]) delete tombe.sedute[k][s.id]; });
+    salva.tombe(); salva.serie(); renderTutto();
+  });
+}
+
+/* ---------- elenco della seduta ---------- */
+function renderElenco(anima){
+  const lista = serieGiorno(dataSel);
+  const ul = $("#elenco"); ul.innerHTML = "";
+  $("#sed-titolo").textContent = "Seduta " + nomeGruppo(pref.gruppo) + ", " + dataBreve(dataSel);
+  $("#sed-tot").textContent = fmt(totale(lista)) + " m";
+  if (!lista.length){
+    ul.append(el("li", {class:"vuoto-seduta"}, "Nessuna serie"));
+  }
+  voci("blocco").forEach(b => {
+    const g = lista.filter(s => s.b === b);
+    if (!g.length) return;
+    ul.append(el("li", {class:"blocco-testa"}, el("span", null, nomeBlocco(b, true)), el("span", {class:"num"}, fmt(totale(g)) + " m")));
+    g.forEach(s => {
+      const det = dettaglio(s);
+      ul.append(el("li", null, el("button", {class:"voce" + (anima && s.id === ultimaAggiunta ? " nuova" : ""), style:"--c:" + colore(s.s),
+        onclick:() => azioniSerie(s)},
+        el("span", {class:"zbar", style:"background:" + colore(s.s)}),
+        el("span", {class:"desc"}, el("b", null, descr(s)), det ? el("small", null, det) : null),
+        el("span", {class:"mt num"}, fmt(metri(s))))));
+    });
+  });
+  const sint = $("#sed-sintesi"); sint.innerHTML = "";
+  if (lista.length){
+    const st = perStile(lista), tot = totale(lista), tec = metriTecnica(lista), gb = metriGambe(lista);
+    const barra = el("div", {class:"barra"});
+    voci("stile").forEach(k => { if (st[k]) barra.append(el("i", {style:"width:" + (st[k] / tot * 100) + "%;background:" + colore(k)})); });
+    const leg = el("div", {class:"legenda"});
+    voci("stile").forEach(k => { if (st[k]) leg.append(el("span", null, el("i", {class:"pallino", style:"background:" + colore(k)}), nomeStile(k) + " ", el("b", null, pct(st[k], tot) + "%"))); });
+    sint.append(el("div", {class:"totale"}, el("span", {class:"muto"}, lista.length + " serie"), el("span", {class:"num"}, fmt(tot) + " m")),
+      barra, leg, (tec || gb) ? el("p", {class:"nota", style:"margin-top:6px"}, [tec ? "Tecnica " + pct(tec, tot) + "%" : "", gb ? "gambe " + pct(gb, tot) + "%" : ""].filter(Boolean).join(", ")) : null);
+  }
+  $("#condividi").disabled = !lista.length;
+  $("#apri-lavagna").disabled = !lista.length;
+  $("#duplica-giorno").disabled = !lista.length || soloLettura();
+  $("#apri-modelli").disabled = soloLettura();
+}
+
+function azioniSerie(s){
+  apriFoglio(c => {
+    c.append(el("h3", null, descr(s)), el("p", {class:"sott"}, [dettaglio(s, true), fmt(metri(s)) + " m"].filter(Boolean).join(", ")));
+    if (soloLettura()){
+      c.append(el("div", {class:"menu"}, el("button", {onclick:() => { chiudiFoglio(); storicoSerie(s); }}, icona("i-storico"), "Storico di questa serie")),
+        el("div", {class:"azioni"}, el("button", {class:"primario", onclick:chiudiFoglio}, "Chiudi")));
+      return;
+    }
+    const voce = (ic, t, fn, cls) => el("button", {class:cls || "", onclick:() => { chiudiFoglio(); fn(); }}, icona(ic), t);
+    c.append(el("div", {class:"menu"},
+      voce("i-matita", "Modifica", () => {
+        inModifica = s.id; bozza = copiaSerie(s); bozzaBase = copiaSerie(s);
+        $("#cmd").value = aTesto(bozza); $("#nota").value = bozza.n || ""; segnaRotaie(true); renderAnteprima();
+        $("#compositore").scrollIntoView({behavior:"smooth", block:"start"});
+      }),
+      voce("i-storico", "Storico di questa serie", () => storicoSerie(s)),
+      voce("i-copia", "Duplica sotto", () => {
+        const n = nuovaSerie(s, s.d, s.g, 1, (s.o || 0) + 5); serie.push(n); rinumera(s.d, s.g); ultimaAggiunta = n.id; salva.serie(); renderSeduta(true);
+        toast("Duplicata", () => elimina([n.id], true));
+      }),
+      voce("i-su", "Sposta su", () => sposta(s, -1)),
+      voce("i-giu", "Sposta giù", () => sposta(s, 1)),
+      voce("i-cestino", "Elimina", () => elimina([s.id]), "pericolo")));
+  });
+}
+function storicoSerie(s){
+  const k = firma(s);
+  const occ = serie.filter(x => x.g === s.g && firma(x) === k).sort((a, b) => a.d < b.d ? 1 : a.d > b.d ? -1 : 0);
+  apriFoglio(c => {
+    const conP = occ.filter(x => x.p).slice(0, 16).reverse();
+    c.append(el("h3", null, descr(s)), el("p", {class:"sott"}, occ.length + (occ.length === 1 ? " volta, " : " volte, ") + nomeGruppo(s.g)));
+    if (conP.length >= 2){
+      const vals = conP.map(x => x.p), mx = Math.max(...vals), mn = Math.min(...vals);
+      const prima = conP[0].p, ultima = conP[conP.length - 1].p;
+      c.append(el("div", {class:"riga", style:"justify-content:space-between;margin-top:4px"},
+        el("span", {class:"muto"}, "Partenza da " + fmtTempo(prima) + " a " + fmtTempo(ultima)),
+        el("b", {class:ultima < prima ? "pos" : ultima > prima ? "neg" : ""}, ultima === prima ? "stabile" : (ultima < prima ? "−" : "+") + Math.abs(ultima - prima) + "\"")),
+        el("div", {class:"passi-graf", "aria-hidden":"true"}, conP.map(x => el("i", {style:"height:" + (mx === mn ? 60 : 25 + (mx - x.p) / (mx - mn) * 75) + "%;background:" + colore(s.s)}))));
+    }
+    const ul = el("ul", {class:"storico"});
+    occ.slice(0, 30).forEach(x => ul.append(el("li", null, el("button", {onclick:() => { chiudiFoglio(); dataSel = x.d; vai("v-seduta"); }},
+      el("span", {class:"sd"}, maiusc(GIORNI[dow(x.d)]) + " " + dataBreve(x.d), x.n ? el("small", null, x.n) : null),
+      el("span", {class:"sp"}, x.p ? fmtTempo(x.p) : "–")))));
+    if (!occ.length) ul.append(el("li", {class:"nota"}, "Mai fatta"));
+    c.append(ul);
+  });
+}
+function rinumera(d, g){ serieGiorno(d, g).forEach((s, k) => { const o = (k + 1) * 10; if (s.o !== o){ s.o = o; s.ts = Date.now(); } }); }
+function sposta(s, verso){
+  rinumera(s.d, s.g);
+  const stessi = serieGiorno(s.d, s.g).filter(x => x.b === s.b);
+  const i = stessi.indexOf(s), j = i + verso;
+  if (j < 0 || j >= stessi.length){ toast(verso < 0 ? "È già la prima del blocco" : "È già l'ultima del blocco"); return; }
+  const t = stessi[j].o; stessi[j].o = s.o; s.o = t;
+  s.ts = Date.now(); stessi[j].ts = Date.now();
+  salva.serie(); renderSeduta();
+}
+
+/* ---------- incolla, condividi, modelli, duplica ---------- */
+$("#apri-incolla").addEventListener("click", () => {
+  if (soloLettura()) return;
+  apriFoglio(c => {
+    const ta = el("textarea", {class:"campo", spellcheck:"false", "data-fuoco":true, placeholder:"Riscaldamento\n400 mx en1\nTecnica\n8x50 do drill p1:00\nSerie\n3x(4x100 sl en2 p1:30)\n6x50 fa sp p1:30\nDefat\n200 sl en1"});
+    const btn = el("button", {class:"primario", disabled:true}, "Aggiungi le serie");
+    const agg = () => {
+      const r = leggiTesto(ta.value);
+      btn.disabled = !r.length;
+      btn.textContent = r.length ? "Aggiungi " + r.length + " serie, " + fmt(totale(r)) + " m" : "Aggiungi le serie";
+    };
+    ta.addEventListener("input", agg);
+    btn.addEventListener("click", () => {
+      const r = leggiTesto(ta.value); if (!r.length) return;
+      let o = prossimoOrdine(dataSel);
+      const nuove = r.map(x => { const s = nuovaSerie(x, dataSel, pref.gruppo, statoF, o); o += 10; return s; });
+      serie.push(...nuove); salva.serie(); chiudiFoglio(); renderSeduta();
+      toast("Aggiunte " + nuove.length + " serie", () => elimina(nuove.map(s => s.id), true));
+    });
+    c.append(el("h3", null, "Incolla una seduta"), ta, el("div", {class:"azioni"}, btn));
+  });
+});
+
+function sedutaTesto(d, g){
+  const lista = serieGiorno(d, g);
+  const righe = [nomeGruppo(g || pref.gruppo) + ", " + dataLunga(d) + ": " + fmt(totale(lista)) + " m"];
+  voci("blocco").forEach(b => {
+    const x = lista.filter(s => s.b === b);
+    if (!x.length) return;
+    righe.push("", nomeBlocco(b, true) + ", " + fmt(totale(x)) + " m");
+    x.forEach(s => { const det = dettaglio(s); righe.push(descr(s) + (det ? " (" + det + ")" : "")); });
+  });
+  return righe.join("\n");
+}
+$("#condividi").addEventListener("click", async () => {
+  const testo = sedutaTesto(dataSel);
+  if (navigator.share){ try { await navigator.share({text:testo}); return; } catch (e){ if (e && e.name === "AbortError") return; } }
+  const ok = await copiaTesto(testo);
+  toast(ok ? "Seduta copiata: incollala dove vuoi" : "Copia non riuscita");
+});
+
+$("#apri-modelli").addEventListener("click", () => {
+  if (soloLettura()) return;
+  const lista = serieGiorno(dataSel);
+  apriFoglio(c => {
+    c.append(el("h3", null, "Modelli"));
+    const menu = el("div", {class:"menu"});
+    const miei = modelli.filter(m => !m.g || m.g === pref.gruppo).concat(modelli.filter(m => m.g && m.g !== pref.gruppo));
+    if (!miei.length) menu.append(el("p", {class:"nota"}, "Nessun modello"));
+    miei.forEach(m => {
+      menu.append(el("div", {class:"riga"},
+        el("button", {style:"flex:1", onclick:() => {
+          let o = prossimoOrdine(dataSel);
+          const nuove = m.serie.map(x => { const s = nuovaSerie(x, dataSel, pref.gruppo, statoF, o); o += 10; return s; });
+          serie.push(...nuove); salva.serie(); chiudiFoglio(); renderSeduta();
+          toast("Caricato " + m.nome, () => elimina(nuove.map(s => s.id), true));
+        }}, icona("i-modelli"), el("span", {style:"flex:1"}, m.nome, el("small", {class:"muto", style:"display:block;font-weight:500;font-size:13px"},
+          fmt(totale(m.serie)) + " m, " + m.serie.length + " serie" + (m.g && m.g !== pref.gruppo ? ", da " + nomeGruppo(m.g) : "")))),
+        el("button", {class:"freccia", "aria-label":"Elimina il modello " + m.nome, onclick:async () => {
+          chiudiFoglio();
+          if (await conferma("Eliminare il modello?", m.nome + " sparisce dall'elenco. Le sedute già caricate restano.", "Elimina", true)){ modelli = modelli.filter(x => x.id !== m.id); tombaLista("modelli", m.id); salva.modelli(); toast("Modello eliminato"); }
+        }}, icona("i-cestino"))));
+    });
+    c.append(el("div", {class:"azioni"}, el("button", {class:"primario", disabled:!lista.length, onclick:async () => {
+      chiudiFoglio();
+      const nome = await chiediTesto({titolo:"Nome del modello", esempio:"Soglia lunga del lunedì", etichetta:"Salva"});
+      if (!nome) return;
+      modelli.push({id:uid(), nome:nome.slice(0, 40), g:pref.gruppo, serie:lista.map(copiaSerie), ts:Date.now()}); salva.modelli(); toast("Modello salvato");
+    }}, lista.length ? "Salva questa seduta come modello" : "Salva come modello")), menu);
+  });
+});
+
+$("#duplica-giorno").addEventListener("click", () => {
+  if (soloLettura()) return;
+  const lista = serieGiorno(dataSel);
+  let dest = piuGiorni(dataSel, 7), g = pref.gruppo, f = 1;
+  apriFoglio(c => {
+    const data = el("input", {class:"campo", type:"date", value:dest, onchange:e => { dest = e.target.value; }});
+    const segG = el("div", {class:"seg largo"});
+    const disegna = () => {
+      segG.innerHTML = ""; GRUPPI.forEach(G => segG.append(el("button", {"aria-pressed":String(G.id === g), onclick:() => { g = G.id; disegna(); }}, nomeGruppo(G.id))));
+    };
+    disegna();
+    c.append(el("h3", null, "Copia la seduta"), el("p", {class:"sott"}, lista.length + " serie, " + fmt(totale(lista)) + " m"),
+      el("label", {class:"et"}, "Data"), data, el("label", {class:"et"}, "Gruppo"), segG,
+      el("div", {class:"azioni"}, el("button", {class:"primario", onclick:() => {
+        if (!dest) return;
+        let o = prossimoOrdine(dest, g);
+        const nuove = lista.map(x => { const s = nuovaSerie(x, dest, g, f, o); o += 10; return s; });
+        serie.push(...nuove); salva.serie(); chiudiFoglio(); renderTutto();
+        toast("Copiata su " + nomeGruppo(g) + ", " + dataBreve(dest), () => elimina(nuove.map(s => s.id), true));
+      }}, "Copia")));
+  });
+});
+
+/* ---------- serie frequenti ---------- */
+function costruisciFrequenti(){
+  const c = $("#r-freq"), sl = c.scrollLeft, da = piuGiorni(oggi(), -70), conta = new Map();
+  serie.filter(x => x.g === pref.gruppo && x.d >= da).forEach(x => {
+    const k = firma(x), v = conta.get(k);
+    if (!v) conta.set(k, {n:1, s:x});
+    else { v.n++; if (x.d > v.s.d || (x.d === v.s.d && (x.ts || 0) > (v.s.ts || 0))) v.s = x; }
+  });
+  const top = Array.from(conta.values()).filter(v => v.n >= 3).sort((a, b) => b.n - a.n).slice(0, 6);
+  $("#fila-freq").hidden = !top.length;
+  c.innerHTML = "";
+  top.forEach(v => c.append(el("button", {class:"chip freq", style:"--c:" + colore(v.s.s), onclick:() => {
+    bozza = copiaSerie(v.s); bozza.n = "";
+    $("#nota").value = ""; vibra(6); dopoTocco(); segnaRotaie(true);
+  }}, descr(v.s))));
+  c.scrollLeft = sl;
+}
+
+/* ---------- note di giornata ---------- */
+let diarioTimer = null;
+function renderDiario(){
+  const t = $("#diario");
+  if (document.activeElement !== t) t.value = notaDi(dataSel);
+  t.disabled = soloLettura();
+  statoInvioSeduta();
+}
+$("#diario").addEventListener("input", () => {
+  if (soloLettura()) return;
+  const d = dataSel, g = pref.gruppo, v = $("#diario").value.trim();
+  clearTimeout(diarioTimer);
+  diarioTimer = setTimeout(() => scriviNota(d, g, v), 600);
+});
+
+/* ---------- lavagna: la seduta in grande, da mostrare ai bambini ---------- */
+let lavagnaMetri = false, lavagnaLock = null;
+const NOMI_STILE_LUNGHI = {sl:"stile libero", do:"dorso", ra:"rana", fa:"farfalla", mx:"misti"};
+function lineaLavagna(s){
+  const quante = (s.gi > 1 ? s.gi + " × " : "") + (s.r > 1 ? s.r + " × " : "");
+  const vs = vasche(s.m);
+  return {testo:quante + (lavagnaMetri || !vs ? s.m + " m" : vs), stile:NOMI_STILE_LUNGHI[s.s] || nomeStile(s.s),
+    extra:[(s.a || []).filter(a => !["drill", "scull"].includes(a)).join(", "), s.n].filter(Boolean).join(", ")};
+}
+function renderLavagna(){
+  const lista = serieGiorno(dataSel), box = $("#lv-corpo");
+  box.innerHTML = "";
+  $("#lv-titolo").textContent = maiusc(dataLunga(dataSel));
+  $("#lv-metri").textContent = lavagnaMetri ? "In vasche" : "In metri";
+  voci("blocco").forEach(b => {
+    const g = lista.filter(s => s.b === b);
+    if (!g.length) return;
+    box.append(el("h3", {class:"lv-blocco", style:"--c:" + coloreBlocco(b)}, nomeBlocco(b, true)));
+    g.forEach(s => {
+      const l = lineaLavagna(s);
+      box.append(el("div", {class:"lv-serie", style:"--c:" + colore(s.s)},
+        el("div", {class:"lv-riga"}, el("b", null, l.testo), el("span", null, l.stile)), l.extra ? el("small", null, l.extra) : null));
+    });
+  });
+  const nota = notaDi(dataSel);
+  if (nota) box.append(el("p", {class:"lv-nota"}, nota));
+  box.append(el("p", {class:"lv-totale"}, fmt(totale(lista)) + " m in tutto"));
+}
+async function apriLavagna(){
+  if (!serieGiorno(dataSel).length){ toast("Nessuna serie in questa data"); return; }
+  renderLavagna();
+  $("#lavagna").hidden = false; document.body.style.overflow = "hidden";
+  try { if ("wakeLock" in navigator) lavagnaLock = await navigator.wakeLock.request("screen"); } catch (e){}
+}
+function chiudiLavagna(){
+  $("#lavagna").hidden = true; document.body.style.overflow = "";
+  try { if (lavagnaLock) lavagnaLock.release(); } catch (e){}
+  lavagnaLock = null;
+}
+$("#apri-lavagna").addEventListener("click", apriLavagna);
+$("#lv-chiudi").addEventListener("click", chiudiLavagna);
+$("#lv-metri").addEventListener("click", () => { lavagnaMetri = !lavagnaMetri; renderLavagna(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#lavagna").hidden) chiudiLavagna(); });
+
+$("#passa-scrivo").addEventListener("click", () => impostaModo("scrivo"));
+$("#modo-chip").addEventListener("click", () => vai("v-foglio"));
+
+function renderSeduta(anima){
+  renderStriscia();
+  renderObiettiviGiorno();
+  costruisciFrequenti();
+  renderAnteprima();
+  renderElenco(anima);
+  renderDiario();
+}
+
+/* ================= animazione dei numeri ================= */
+const menoMoto = () => window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+function contaSu(nodo, a){
+  const da = +(nodo.dataset.v || 0);
+  nodo.dataset.v = a;
+  if (menoMoto() || da === a){ nodo.textContent = fmt(a); return; }
+  const t0 = performance.now(), dur = 700;
+  const passo = t => {
+    const k = clamp((t - t0) / dur, 0, 1), e = 1 - Math.pow(1 - k, 3);
+    nodo.textContent = fmt(da + (a - da) * e);
+    if (k < 1 && nodo.dataset.v == a) requestAnimationFrame(passo);
+  };
+  requestAnimationFrame(passo);
+}
+
+/* ================= SETTIMANA ================= */
+function pila(zz, tot, altezza){
+  const p = el("span", {class:"pila", style:"height:" + Math.max(3, altezza) + "px"});
+  if (tot) voci("stile").forEach(k => { if (zz[k]) p.append(el("i", {style:"height:" + (zz[k] / tot * 100) + "%;background:" + colore(k)})); });
+  return p;
+}
+const kilo = m => m ? (m / 1000).toLocaleString("it-IT", {maximumFractionDigits:1}) + "k" : "–";
+function renderSettimana(){
+  const ancora = dataW || dataSel, i = lunediDi(ancora), f = piuGiorni(i, 6), og = oggi();
+  const lista = serieTra(i, f), tot = totale(lista), n = giorniCon(i, f), z = perStile(lista);
+  $("#w-titolo").textContent = "Settimana del " + dataBreve(i);
+  $("#w-date").textContent = nomeGruppo(pref.gruppo) + ", " + dataBreve(i) + " – " + dataBreve(f);
+  contaSu($("#w-fatto"), tot);
+  const so = $("#w-sotto"); so.innerHTML = "";
+  so.append(el("span", null, el("b", null, n), n === 1 ? " seduta" : " sedute"));
+  if (n) so.append(el("span", null, el("b", null, fmt(tot / n) + " m"), " di media"));
+  const tec = metriTecnica(lista), gb = metriGambe(lista);
+  if (tec) so.append(el("span", null, "tecnica ", el("b", null, pct(tec, tot) + "%")));
+  if (gb) so.append(el("span", null, "gambe ", el("b", null, pct(gb, tot) + "%")));
+  const wb = $("#w-barra"); wb.innerHTML = "";
+  voci("stile").forEach(k => { if (z[k]) wb.append(el("i", {style:"width:" + (z[k] / tot * 100) + "%;background:" + colore(k)})); });
+  wb.hidden = !tot;
+
+  /* giorni */
+  const H = 87, tots = [];
+  for (let k = 0; k < 7; k++) tots.push(totale(serieGiorno(piuGiorni(i, k))));
+  const max = Math.max(1, ...tots);
+  const c = $("#w-giorni"); c.innerHTML = "";
+  for (let k = 0; k < 7; k++){
+    const d = piuGiorni(i, k);
+    c.append(el("button", {class:"colonna" + (d === og ? " oggi" : ""), "aria-label":dataLunga(d) + ", " + fmt(tots[k]) + " metri", onclick:() => { dataSel = d; vai("v-seduta"); }},
+      pila(perStile(serieGiorno(d)), tots[k], tots[k] / max * H),
+      el("small", null, el("b", null, kilo(tots[k])), GIORNI[k] + " " + daIso(d).getDate())));
+  }
+
+  /* ultime otto settimane */
+  const st = $("#w-storia"); st.innerHTML = "";
+  const sett = [];
+  for (let k = 7; k >= 0; k--){ const a = piuGiorni(i, -7 * k), b = piuGiorni(a, 6); const l = serieTra(a, b); sett.push({a, tot:totale(l), z:perStile(l)}); }
+  const maxS = Math.max(1, ...sett.map(x => x.tot));
+  sett.forEach((x, k) => st.append(el("button", {class:"colonna" + (k === 7 ? " corrente" : ""), "aria-label":"Settimana del " + dataBreve(x.a) + ", " + fmt(x.tot) + " metri", onclick:() => { dataW = x.a; renderSettimana(); }},
+    pila(x.z, x.tot, x.tot / maxS * 72), el("small", null, el("b", null, kilo(x.tot)), dataBreve(x.a)))));
+
+  /* blocchi: come è fatta la settimana */
+  const bl = perBlocco(lista), zc = $("#w-zone"); zc.innerHTML = "";
+  const maxB = Math.max(1, ...Object.values(bl));
+  voci("blocco").forEach(k => {
+    if (!bl[k]) return;
+    zc.append(el("div", {class:"tz"},
+      el("span", {class:"nome"}, el("i", {class:"pallino", style:"background:" + coloreBlocco(k)}), nomeBlocco(k, true)),
+      el("span", {class:"val"}, el("b", null, fmt(bl[k]) + " m"), "  " + pct(bl[k], tot) + "%"),
+      el("span", {class:"bar"}, el("i", {style:"width:" + (bl[k] / maxB * 100) + "%;background:" + coloreBlocco(k)}))));
+  });
+  if (!zc.children.length) zc.append(el("p", {class:"nota"}, "Nessuna serie"));
+
+  /* stili: per i piccoli conta l'equilibrio tra i quattro */
+  const sc = $("#w-stili"); sc.innerHTML = "";
+  const quattro = ["sl", "do", "ra", "fa"], maxS2 = Math.max(1, ...voci("stile").map(k => z[k] || 0));
+  const minimo = tot ? quattro.reduce((a, k) => (z[k] || 0) < (z[a] || 0) ? k : a, quattro[0]) : null;
+  voci("stile").forEach(k => {
+    if (!z[k] && !quattro.includes(k)) return;
+    sc.append(el("div", {class:"tz"},
+      el("span", {class:"nome"}, el("i", {class:"pallino", style:"background:" + colore(k)}), nomeStile(k),
+        tot && k === minimo ? el("span", {class:"poco"}, "il meno nuotato") : null),
+      el("span", {class:"val"}, el("b", null, fmt(z[k] || 0) + " m"), "  " + pct(z[k] || 0, tot) + "%"),
+      el("span", {class:"bar"}, el("i", {style:"width:" + ((z[k] || 0) / maxS2 * 100) + "%;background:" + colore(k)}))));
+  });
+}
+$("#w-prec").addEventListener("click", () => { dataW = piuGiorni(lunediDi(dataW || dataSel), -7); renderSettimana(); });
+$("#w-succ").addEventListener("click", () => { dataW = piuGiorni(lunediDi(dataW || dataSel), 7); renderSettimana(); });
+
+/* ================= OBIETTIVI DEL PERIODO ================= */
+function voceObiettivo(p, v, dopo){
+  return el("button", {class:"ob-voce", "aria-pressed":String(!!v.ok), onclick:() => {
+    if (soloLettura()) return;
+    v.ok = !v.ok; v.quando = v.ok ? oggi() : ""; p.ts = Date.now();
+    salva.obiettivi(); vibra(8); dopo();
+  }}, el("span", {class:"casella"}, icona("i-spunta")), el("span", {class:"ob-testo"}, v.t));
+}
+function statoPeriodo(p){ const og = oggi(); return og > p.al ? "passato" : og < p.dal ? "futuro" : "attivo"; }
+function renderObiettivi(){
+  $("#ob-titolo").textContent = "Obiettivi, " + nomeGruppo(pref.gruppo);
+  renderGare();
+  const box = $("#ob-periodi"); box.innerHTML = "";
+  const lista = periodiDi();
+  if (!lista.length) box.append(el("p", {class:"periodo-vuoto"}, "Nessun periodo"));
+  lista.forEach(p => box.append(schedaPeriodo(p)));
+}
+function schedaPeriodo(p){
+  const stato = statoPeriodo(p), fatti = p.voci.filter(v => v.ok).length;
+  const campo = el("input", {class:"campo", placeholder:"Nuovo obiettivo", "aria-label":"Nuovo obiettivo per " + p.titolo, autocomplete:"off"});
+  const aggiungi = () => {
+    if (soloLettura()) return;
+    const t = campo.value.trim(); if (!t) return;
+    p.voci.push({t:t.slice(0, 120), ok:false, quando:""}); p.ts = Date.now();
+    salva.obiettivi(); renderObiettivi();
+    setTimeout(() => { const x = $("#ob-periodi input[data-p='" + p.id + "']"); if (x) x.focus(); }, 30);
+  };
+  campo.dataset.p = p.id;
+  campo.addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); aggiungi(); } });
+  return el("div", {class:"pannello periodo " + stato, style:stato === "attivo" ? "border-color:var(--en1)" : ""},
+    el("div", {class:"periodo-testa"},
+      el("div", {class:"centro"}, el("h3", null, p.titolo),
+        el("p", null, dataBreve(p.dal) + " – " + dataBreve(p.al) + (stato === "attivo" ? ", in corso" : stato === "futuro" ? ", da iniziare" : ", concluso"))),
+      p.voci.length ? el("span", {class:"num"}, fatti + "/" + p.voci.length) : null,
+      el("button", {class:"freccia solo-scrivo", "aria-label":"Modifica " + p.titolo, onclick:() => modificaPeriodo(p)}, icona("i-matita"))),
+    p.voci.length ? el("div", {class:"avanz"}, el("i", {style:"width:" + pct(fatti, p.voci.length) + "%"})) : null,
+    el("ul", {class:"ob-lista"}, p.voci.map(v => el("li", null, voceObiettivo(p, v, renderObiettivi)))),
+    el("div", {class:"aggiungi-ob solo-scrivo"}, campo, el("button", {class:"freccia", "aria-label":"Aggiungi l'obiettivo", onclick:aggiungi}, icona("i-piu"))));
+}
+const IDEE_OBIETTIVI = ["Virata a capriola", "Virata di dorso", "Arrivo e virata a due mani", "Partenza dal blocco", "Partenza di dorso",
+  "Subacquee a delfino 5 m", "Respirazione bilaterale", "Rana: gambe e braccia a tempo", "Dorso: rotazione delle spalle", "Farfalla 25 m completa",
+  "100 misti con cambi regolari", "400 stile senza fermarsi", "Galleggiamento e scivolamento", "Virate e arrivi da regolamento"];
+function modificaPeriodo(p){
+  if (soloLettura()) return;
+  const nuovo = !p;
+  if (nuovo){
+    const ultimo = periodiDi()[0];
+    const dal = ultimo && ultimo.al >= oggi() ? piuGiorni(ultimo.al, 1) : oggi();
+    p = {id:uid(), g:pref.gruppo, titolo:"", dal, al:piuGiorni(dal, 27), voci:[], ts:Date.now()};
+  }
+  apriFoglio(c => {
+    const tit = el("input", {class:"campo", value:p.titolo, placeholder:"Ottobre", "data-fuoco":true, autocomplete:"off"});
+    const dal = el("input", {class:"campo", type:"date", value:p.dal});
+    const al = el("input", {class:"campo", type:"date", value:p.al});
+    const testo = el("textarea", {class:"campo", rows:6, placeholder:"Virata a capriola\nPartenza dal blocco\n200 misti completi"});
+    testo.value = p.voci.map(v => v.t).join("\n");
+    const idee = el("div", {class:"idee"});
+    const disegnaIdee = () => {
+      idee.innerHTML = "";
+      const righe = testo.value.split("\n").map(x => x.trim());
+      IDEE_OBIETTIVI.filter(t => !righe.includes(t)).forEach(t => idee.append(el("button", {class:"chip t", onclick:() => {
+        testo.value = (testo.value.trim() ? testo.value.replace(/\s+$/, "") + "\n" : "") + t; vibra(6); disegnaIdee();
+      }}, "+ " + t)));
+    };
+    testo.addEventListener("input", disegnaIdee);
+    disegnaIdee();
+    c.append(el("h3", null, nuovo ? "Nuovo periodo" : "Modifica il periodo"),
+      el("label", {class:"et"}, "Nome"), tit,
+      el("div", {class:"date-2"}, el("div", null, el("label", {class:"et"}, "Dal"), dal), el("div", null, el("label", {class:"et"}, "Al"), al)),
+      el("label", {class:"et"}, "Obiettivi, uno per riga"), testo, idee,
+      el("div", {class:"azioni"},
+        nuovo ? el("button", {class:"btn", onclick:chiudiFoglio}, "Annulla") : el("button", {class:"btn pericolo", onclick:async () => {
+          chiudiFoglio();
+          if (!await conferma("Eliminare " + p.titolo + "?", p.voci.length + " obiettivi spariscono dall'app e dal foglio.", "Elimina", true)) return;
+          obiettivi = obiettivi.filter(x => x.id !== p.id); tombaLista("obiettivi", p.id); salva.obiettivi(); renderTutto();
+          toast("Periodo eliminato", () => {
+            p.ts = Date.now(); if (!obiettivi.some(x => x.id === p.id)) obiettivi.push(p);
+            delete tombe.liste.obiettivi[p.id]; salva.tombe(); salva.obiettivi(); renderTutto();
+          });
+        }}, "Elimina"),
+        el("button", {class:"primario", onclick:() => {
+          let a = dal.value, b = al.value;
+          if (!a || !b){ toast("Scegli le date"); return; }
+          if (b < a){ const t = a; a = b; b = t; }
+          const vecchie = p.voci;
+          p.titolo = tit.value.trim() || ("Dal " + dataBreve(a));
+          p.dal = a; p.al = b; p.ts = Date.now();
+          p.voci = testo.value.split("\n").map(x => x.trim()).filter(Boolean).map(t => {
+            const v = vecchie.find(x => x.t === t);
+            return v ? v : {t:t.slice(0, 120), ok:false, quando:""};
+          });
+          if (nuovo) obiettivi.push(p);
+          salva.obiettivi(); chiudiFoglio(); renderTutto();
+          toast(nuovo ? "Periodo creato" : "Periodo aggiornato");
+        }}, nuovo ? "Crea" : "Salva")));
+  });
+}
+$("#ob-nuovo").addEventListener("click", () => modificaPeriodo(null));
+
+/* ================= GARE ================= */
+function renderGare(){
+  const box = $("#ob-gare"); box.innerHTML = "";
+  const og = oggi(), tutte = gareDi();
+  const future = tutte.filter(x => x.data >= og), passate = tutte.filter(x => x.data < og).slice(-2).reverse();
+  const lista = el("ul", {class:"gare-lista"});
+  future.forEach(x => lista.append(rigaGara(x, false)));
+  passate.forEach(x => lista.append(rigaGara(x, true)));
+  box.append(el("div", {class:"pannello periodo"},
+    el("div", {class:"periodo-testa"}, el("div", {class:"centro"}, el("h3", null, "Gare")),
+      el("button", {class:"btn piccolo solo-scrivo", onclick:() => modificaGara(null)}, icona("i-piu"), "Gara")),
+    tutte.length ? lista : el("p", {class:"nota", style:"margin-top:6px"}, "Nessuna gara")));
+}
+function rigaGara(x, passata){
+  const n = diffGiorni(oggi(), x.data);
+  return el("li", null, el("button", {class:"gara" + (passata ? " passata" : ""), onclick:() => modificaGara(x)},
+    el("span", {class:"gg num"}, passata ? "fatta" : n === 0 ? "oggi" : n, !passata && n > 0 ? el("small", null, n === 1 ? "giorno" : "giorni") : null),
+    el("span", {class:"nome"}, el("b", null, x.nome), el("span", null, [maiusc(dataLunga(x.data)), x.luogo].filter(Boolean).join(", ")))));
+}
+function modificaGara(x){
+  if (soloLettura()) return;
+  const nuova = !x;
+  if (nuova) x = {id:uid(), g:pref.gruppo, nome:"", data:piuGiorni(oggi(), 14), luogo:"", ts:Date.now()};
+  apriFoglio(c => {
+    const nome = el("input", {class:"campo", value:x.nome, placeholder:"Trofeo Esordienti", "data-fuoco":true, autocomplete:"off"});
+    const data = el("input", {class:"campo", type:"date", value:x.data});
+    const luogo = el("input", {class:"campo", value:x.luogo || "", placeholder:"Piscina comunale", autocomplete:"off"});
+    c.append(el("h3", null, nuova ? "Nuova gara" : "Modifica la gara"),
+      el("label", {class:"et"}, "Nome"), nome, el("label", {class:"et"}, "Data"), data, el("label", {class:"et"}, "Luogo"), luogo,
+      el("div", {class:"azioni"},
+        nuova ? el("button", {class:"btn", onclick:chiudiFoglio}, "Annulla") : el("button", {class:"btn pericolo", onclick:async () => {
+          chiudiFoglio();
+          if (!await conferma("Eliminare " + x.nome + "?", "La gara sparisce dall'app e dal foglio.", "Elimina", true)) return;
+          gare = gare.filter(y => y.id !== x.id); tombaLista("gare", x.id); salva.gare(); renderTutto();
+          toast("Gara eliminata", () => {
+            x.ts = Date.now(); if (!gare.some(y => y.id === x.id)) gare.push(x);
+            delete tombe.liste.gare[x.id]; salva.tombe(); salva.gare(); renderTutto();
+          });
+        }}, "Elimina"),
+        el("button", {class:"primario", onclick:() => {
+          if (!nome.value.trim()){ nome.focus(); toast("Scrivi il nome della gara"); return; }
+          if (!data.value){ toast("Scegli la data"); return; }
+          x.nome = nome.value.trim().slice(0, 60); x.data = data.value; x.luogo = luogo.value.trim().slice(0, 60); x.ts = Date.now();
+          if (nuova) gare.push(x);
+          salva.gare(); chiudiFoglio(); renderTutto(); toast(nuova ? "Gara aggiunta" : "Gara aggiornata");
+        }}, nuova ? "Aggiungi" : "Salva")));
+  });
+}
+
+/* ================= ANNO: tutta la stagione, settimana per settimana ================= */
+let annoIni = null, annoSel = null, annoDati = null;
+function intervalloAnno(){
+  const oggiD = new Date(), y = oggiD.getFullYear(), m = oggiD.getMonth();
+  const stag = pref.annoModo !== "solare";
+  if (annoIni === null) annoIni = stag ? (m >= 8 ? y : y - 1) : y;
+  return stag ? {da:annoIni + "-09-01", a:(annoIni + 1) + "-08-31"} : {da:annoIni + "-01-01", a:annoIni + "-12-31"};
+}
+function datiAnno(){
+  const {da, a} = intervalloAnno();
+  const lista = serie.filter(s => s.d >= da && s.d <= a && (pref.annoTutti || s.g === pref.gruppo));
+  const perSett = new Map();
+  lista.forEach(s => { const w = lunediDi(s.d); if (!perSett.has(w)) perSett.set(w, []); perSett.get(w).push(s); });
+  const settimane = [];
+  for (let w = lunediDi(da); w <= lunediDi(a); w = piuGiorni(w, 7)){
+    const l = perSett.get(w) || [];
+    settimane.push({i:w, f:piuGiorni(w, 6), l, tot:totale(l), st:perStile(l), bl:perBlocco(l), tec:metriTecnica(l), gam:metriGambe(l),
+      sedute:new Set(l.map(s => s.g + "|" + s.d)).size});
+  }
+  return {da, a, lista, settimane};
+}
+const gruppiAnno = () => pref.annoTutti ? GRUPPI.map(G => G.id) : [pref.gruppo];
+function passoAsse(max){
+  for (const p of [500, 1000, 2000, 2500, 5000, 10000, 20000, 25000, 50000, 100000]) if (Math.ceil(max / p) <= 4) return p;
+  return 100000;
+}
+const kiloAsse = v => v ? (v / 1000).toLocaleString("it-IT", {maximumFractionDigits:1}) + "k" : "0";
+
+function renderAnno(){
+  const D = annoDati = datiAnno(), sw = D.settimane, N = sw.length, og = oggi();
+  const stag = pref.annoModo !== "solare";
+  $("#an-titolo").textContent = stag ? "Stagione " + annoIni + "/" + String(annoIni + 1).slice(2) : "Anno " + annoIni;
+  $("#an-date").textContent = dataBreve(D.da) + " – " + dataBreve(D.a) + " " + daIso(D.a).getFullYear();
+
+  const scope = $("#an-scope"); scope.innerHTML = "";
+  [[false, nomeGruppo(pref.gruppo)], [true, "Tutti i gruppi"]].forEach(([t, n]) => scope.append(el("button", {"aria-pressed":String(!!pref.annoTutti === t),
+    onclick:() => { pref.annoTutti = t; annoSel = null; salva.pref(); renderAnno(); }}, n)));
+  const modo = $("#an-modo"); modo.innerHTML = "";
+  [["stagione", "Stagione"], ["solare", "Anno solare"]].forEach(([id, n]) => modo.append(el("button", {"aria-pressed":String((pref.annoModo || "stagione") === id),
+    onclick:() => { pref.annoModo = id; annoIni = null; annoSel = null; salva.pref(); renderAnno(); }}, n)));
+
+  /* totali */
+  const tot = totale(D.lista), sessioni = new Set(D.lista.map(s => s.g + "|" + s.d)).size;
+  const giorni = new Set(D.lista.map(s => s.d)).size;
+  const passate = sw.filter(w => w.i <= og), attive = sw.filter(w => w.tot > 0 && w.i <= og);
+  const migliore = sw.reduce((m, w) => w.tot > m.tot ? w : m, {tot:0});
+  contaSu($("#an-tot"), tot);
+  const so = $("#an-sotto"); so.innerHTML = "";
+  so.append(el("span", null, el("b", null, (tot / 1000).toLocaleString("it-IT", {maximumFractionDigits:1}) + " km")),
+    el("span", null, el("b", null, sessioni), sessioni === 1 ? " seduta" : " sedute"),
+    el("span", null, el("b", null, attive.length), " di " + (passate.length || N) + " settimane"));
+
+  /* grafico */
+  const massimo = Math.max(0, ...sw.map(w => w.tot)), passo = passoAsse(massimo || 1000);
+  const cima = Math.max(passo, Math.ceil(massimo / passo) * passo);
+  const graf = $("#an-graf"); graf.innerHTML = "";
+  const asse = el("div", {class:"anno-y"});
+  for (let v = 0; v <= cima; v += passo) asse.append(el("span", {style:"bottom:" + (v / cima * 100) + "%"}, kiloAsse(v)));
+  const plot = el("div", {class:"anno-plot"});
+  const linee = el("div", {class:"anno-linee"});
+  for (let v = passo; v <= cima; v += passo) linee.append(el("i", {style:"bottom:" + (v / cima * 100) + "%"}));
+  const mediaW = attive.length ? attive.reduce((a, w) => a + w.tot, 0) / attive.length : 0;
+  if (mediaW && mediaW <= cima) linee.append(el("i", {class:"media", style:"bottom:" + (mediaW / cima * 100) + "%"}, el("span", null, "media " + fmt(mediaW))));
+  const cols = el("div", {class:"anno-cols", style:"grid-template-columns:repeat(" + N + ",1fr)"});
+  if (!annoSel || !sw.some(w => w.i === annoSel)){
+    const corr = sw.find(w => og >= w.i && og <= w.f);
+    annoSel = corr ? corr.i : (attive.length ? attive[attive.length - 1].i : sw[0].i);
+  }
+  sw.forEach((w, k) => {
+    const futura = w.i > og;
+    const pila = el("span", {class:"pila", style:"height:" + (w.tot ? Math.max(1.5, w.tot / cima * 100) : 0) + "%"});
+    if (w.tot) voci("stile").forEach(s => { if (w.st[s]) pila.append(el("i", {style:"height:" + (w.st[s] / w.tot * 100) + "%;background:" + colore(s)})); });
+    cols.append(el("button", {class:"anno-col" + (!w.tot ? (futura ? " futura" : " vuota") : "") + (og >= w.i && og <= w.f ? " corrente" : ""),
+      "data-k":k, "aria-pressed":String(w.i === annoSel), "aria-label":"Settimana del " + dataBreve(w.i) + ", " + fmt(w.tot) + " metri",
+      onclick:() => selezionaSettimana(w.i)}, pila));
+  });
+  /* trascinando il dito sul grafico si scorrono le settimane */
+  let trascina = false;
+  const su = e => { const r = cols.getBoundingClientRect(); return sw[clamp(Math.floor((e.clientX - r.left) / r.width * N), 0, N - 1)]; };
+  cols.addEventListener("pointerdown", e => { if (e.pointerType === "mouse") return; trascina = true; selezionaSettimana(su(e).i); });
+  cols.addEventListener("pointermove", e => { if (trascina && e.pointerType !== "mouse") selezionaSettimana(su(e).i); });
+  ["pointerup", "pointercancel", "pointerleave"].forEach(ev => cols.addEventListener(ev, () => { trascina = false; }));
+  plot.append(linee, cols);
+  const mesi = el("div", {class:"anno-mesi", style:"grid-template-columns:repeat(" + N + ",1fr)"});
+  let meseP = -1;
+  sw.forEach((w, k) => {
+    const d = daIso(w.f < D.da ? w.f : (w.i < D.da ? D.da : w.i));
+    if (d.getMonth() !== meseP){ meseP = d.getMonth(); if (k <= N - 3) mesi.append(el("span", {style:"grid-column:" + (k + 1) + " / span " + Math.min(4, N - k)}, MESI[meseP])); }
+  });
+  graf.append(asse, plot, el("span"), mesi);
+  $("#an-sett-n").textContent = N + " settimane";
+  const leg = $("#an-leg"); leg.innerHTML = "";
+  voci("stile").forEach(s => leg.append(el("span", null, el("i", {class:"pallino", style:"background:" + colore(s)}), nomeStile(s))));
+
+  dettaglioSettimana();
+
+  /* com'è fatta la stagione */
+  const st = perStile(D.lista), bl = perBlocco(D.lista);
+  const quattro = ["sl", "do", "ra", "fa"], minimo = tot ? quattro.reduce((a, k) => (st[k] || 0) < (st[a] || 0) ? k : a, quattro[0]) : null;
+  const maxS = Math.max(1, ...voci("stile").map(k => st[k] || 0));
+  const bs = $("#an-stili"); bs.innerHTML = "";
+  voci("stile").forEach(k => {
+    if (!st[k] && !quattro.includes(k)) return;
+    bs.append(el("div", {class:"tz"},
+      el("span", {class:"nome"}, el("i", {class:"pallino", style:"background:" + colore(k)}), nomeStile(k), tot && k === minimo ? el("span", {class:"poco"}, "il meno nuotato") : null),
+      el("span", {class:"val"}, el("b", null, fmt(st[k] || 0) + " m"), "  " + pct(st[k] || 0, tot) + "%"),
+      el("span", {class:"bar"}, el("i", {style:"width:" + ((st[k] || 0) / maxS * 100) + "%;background:" + colore(k)}))));
+  });
+  const maxB = Math.max(1, ...Object.values(bl)), bb = $("#an-blocchi"); bb.innerHTML = "";
+  voci("blocco").forEach(k => {
+    if (!bl[k]) return;
+    bb.append(el("div", {class:"tz"},
+      el("span", {class:"nome"}, el("i", {class:"pallino", style:"background:" + coloreBlocco(k)}), nomeBlocco(k, true)),
+      el("span", {class:"val"}, el("b", null, fmt(bl[k]) + " m"), "  " + pct(bl[k], tot) + "%"),
+      el("span", {class:"bar"}, el("i", {style:"width:" + (bl[k] / maxB * 100) + "%;background:" + coloreBlocco(k)}))));
+  });
+  const tec = metriTecnica(D.lista), gam = metriGambe(D.lista);
+  if (tec || gam) bb.append(el("div", {class:"dt-riga", style:"display:flex;gap:4px 14px;font-size:12.5px;color:var(--tenue)"},
+    tec ? el("span", null, "tecnica ", el("b", {style:"color:var(--gesso)"}, pct(tec, tot) + "%")) : null, gam ? el("span", null, "gambe ", el("b", {style:"color:var(--gesso)"}, pct(gam, tot) + "%")) : null));
+  if (!bs.children.length) bs.append(el("p", {class:"nota"}, "Nessuna serie"));
+  if (!bb.children.length) bb.append(el("p", {class:"nota"}, "Nessuna serie"));
+
+  /* gare della stagione */
+  const gs = gare.filter(x => x.data >= D.da && x.data <= D.a && gruppiAnno().includes(x.g)).sort((a, b) => a.data < b.data ? -1 : 1);
+  const ul = $("#an-gare"); ul.innerHTML = "";
+  gs.forEach(x => ul.append(rigaGara(x, x.data < og)));
+  if (!gs.length) ul.append(el("li", {class:"nota"}, "Nessuna gara"));
+
+  /* obiettivi della stagione */
+  const ps = obiettivi.filter(p => p.al >= D.da && p.dal <= D.a && gruppiAnno().includes(p.g)).sort((a, b) => a.dal < b.dal ? -1 : 1);
+  const oa = $("#an-obiettivi"); oa.innerHTML = "";
+  const box = el("div", {class:"ob-anno"});
+  let fatti = 0, tutti = 0;
+  ps.forEach(p => {
+    const f = p.voci.filter(v => v.ok).length; fatti += f; tutti += p.voci.length;
+    box.append(el("div", null, el("div", {class:"oa-t"}, el("span", null, p.titolo, pref.annoTutti ? el("small", null, "  " + nomeGruppo(p.g)) : null), el("span", {class:"num", style:"font-size:15px"}, f + "/" + p.voci.length)),
+      el("div", {class:"avanz"}, el("i", {style:"width:" + pct(f, p.voci.length) + "%"}))));
+  });
+  if (ps.length) oa.append(box); else oa.append(el("p", {class:"nota"}, "Nessun periodo"));
+  $("#an-ob-n").textContent = tutti ? fatti + "/" + tutti : "";
+
+  /* ogni giorno */
+  const perGiorno = {};
+  D.lista.forEach(s => perGiorno[s.d] = (perGiorno[s.d] || 0) + metri(s));
+  const maxG = Math.max(1, ...Object.values(perGiorno));
+  const cal = $("#an-calore"); cal.innerHTML = "";
+  const mesiC = el("div", {class:"calore-mesi", style:"width:" + (N * 12.5) + "px"});
+  const griglia = el("div", {class:"calore", role:"grid", "aria-label":"Metri di ogni giorno"});
+  let meseC = -1;
+  sw.forEach((w, k) => {
+    const mm = daIso(w.i < D.da ? D.da : w.i).getMonth();
+    if (mm !== meseC){ mesiC.append(el("span", {style:"left:" + (k * 12.5) + "px"}, MESI[mm])); meseC = mm; }
+    for (let x = 0; x < 7; x++){
+      const d = piuGiorni(w.i, x), v = perGiorno[d] || 0, fuori = d < D.da || d > D.a;
+      const a = v ? Math.round(25 + v / maxG * 75) : 0;
+      griglia.append(el("button", {class:(d === og ? "oggi " : "") + (fuori ? "fuori" : ""), title:dataLunga(d) + (v ? ": " + fmt(v) + " m" : ""),
+        "aria-label":dataLunga(d) + ", " + fmt(v) + " metri", tabindex:fuori ? "-1" : null,
+        style:fuori ? "" : "background:" + (v ? "color-mix(in srgb, var(--en1) " + a + "%, var(--pozzo))" : d > og ? "transparent;box-shadow:inset 0 0 0 1px var(--linea2)" : "var(--pozzo)"),
+        onclick:() => {
+          if (pref.annoTutti){
+            const per = {}; serie.filter(s => s.d === d).forEach(s => per[s.g] = (per[s.g] || 0) + metri(s));
+            const meglio = Object.keys(per).sort((p, q) => per[q] - per[p])[0];
+            if (meglio && !per[pref.gruppo]){ pref.gruppo = meglio; salva.pref(); }
+          }
+          dataSel = d; vai("v-seduta");
+        }}));
+    }
+  });
+  cal.append(mesiC, griglia);
+  $("#an-giorni-n").textContent = giorni + (giorni === 1 ? " giorno" : " giorni");
+}
+
+function selezionaSettimana(i){
+  if (annoSel === i) return;
+  annoSel = i;
+  $$("#an-graf .anno-col").forEach(b => b.setAttribute("aria-pressed", String(annoDati && annoDati.settimane[+b.dataset.k].i === i)));
+  dettaglioSettimana();
+  vibra(4);
+}
+function dettaglioSettimana(){
+  const D = annoDati, box = $("#an-dett"); box.innerHTML = "";
+  const k = D.settimane.findIndex(w => w.i === annoSel);
+  if (k < 0) return;
+  const w = D.settimane[k];
+  box.className = "pannello anno-dett";
+  const vai_ = d => { annoSel = D.settimane[clamp(k + d, 0, D.settimane.length - 1)].i; renderAnno(); };
+  box.append(el("div", {class:"dt-testa"},
+    el("button", {class:"freccia", "aria-label":"Settimana precedente", disabled:k === 0, onclick:() => vai_(-1)}, icona("i-sx")),
+    el("div", {class:"centro"}, el("h3", null, "Settimana del " + dataBreve(w.i)), el("p", null, dataBreve(w.i) + " – " + dataBreve(w.f) + ", settimana " + (k + 1) + " di " + D.settimane.length)),
+    el("button", {class:"freccia", "aria-label":"Settimana successiva", disabled:k === D.settimane.length - 1, onclick:() => vai_(1)}, icona("i-dx"))));
+  box.append(el("div", {class:"dt-num"}, el("span", {class:"num"}, fmt(w.tot)), el("span", null, "m"),
+    el("span", {style:"margin-left:auto"}, w.sedute ? w.sedute + (w.sedute === 1 ? " seduta" : " sedute") : "")));
+  if (!w.tot){
+    box.append(el("p", {class:"nota", style:"margin-top:8px"}, w.i > oggi() ? "Settimana da venire" : "Nessun allenamento"));
+  } else {
+    const barra = el("div", {class:"barra", style:"margin-top:10px"});
+    voci("stile").forEach(s => { if (w.st[s]) barra.append(el("i", {style:"width:" + (w.st[s] / w.tot * 100) + "%;background:" + colore(s)})); });
+    const leg = el("div", {class:"legenda"});
+    voci("stile").forEach(s => { if (w.st[s]) leg.append(el("span", null, el("i", {class:"pallino", style:"background:" + colore(s)}), nomeStile(s) + " ", el("b", null, fmt(w.st[s])))); });
+    box.append(barra, leg);
+    const blocchi = voci("blocco").filter(b => w.bl[b]).map(b => nomeBlocco(b, true) + " " + fmt(w.bl[b]));
+    box.append(el("div", {class:"dt-riga"}, el("span", null, blocchi.join(", "))));
+    if (w.tec || w.gam) box.append(el("div", {class:"dt-riga"}, w.tec ? el("span", null, "tecnica ", el("b", null, pct(w.tec, w.tot) + "%")) : null, w.gam ? el("span", null, "gambe ", el("b", null, pct(w.gam, w.tot) + "%")) : null));
+  }
+  const gr = gruppiAnno();
+  const gareS = gare.filter(x => x.data >= w.i && x.data <= w.f && gr.includes(x.g));
+  gareS.forEach(x => box.append(el("div", {class:"dt-riga"}, el("span", null, "Gara ", el("b", null, x.nome), ", " + GIORNI[dow(x.data)] + " " + daIso(x.data).getDate()))));
+  const raggiunti = [];
+  obiettivi.filter(p => gr.includes(p.g)).forEach(p => p.voci.forEach(v => { if (v.ok && v.quando >= w.i && v.quando <= w.f) raggiunti.push(v.t); }));
+  if (raggiunti.length) box.append(el("div", {class:"dt-riga"}, el("span", null, "Obiettivi raggiunti: ", el("b", null, raggiunti.join(", ")))));
+  for (let x = 0; x < 7; x++){
+    const d = piuGiorni(w.i, x);
+    gr.forEach(g => { const t = notaDi(d, g); if (t) box.append(el("div", {class:"dt-nota"}, el("small", null, GIORNI[x] + " " + daIso(d).getDate() + (pref.annoTutti ? ", " + nomeGruppo(g) : "")), t)); });
+  }
+  box.append(el("div", {class:"azioni"}, el("button", {class:"btn", style:"flex:1", onclick:() => { dataW = w.i; dataSel = w.i; vai("v-settimana"); }}, "Apri la settimana")));
+}
+["an-prec", "an-succ"].forEach((id, n) => $("#" + id).addEventListener("click", () => { annoIni += n ? 1 : -1; annoSel = null; renderAnno(); }));
+/* ================= MODALITÀ: Scrivo / Guardo ================= */
+function applicaModo(){
+  const ro = soloLettura();
+  document.body.classList.toggle("ro", ro);
+  $("#modo-chip").hidden = !ro;
+  $("#modo-scrivo").setAttribute("aria-pressed", String(!ro));
+  $("#modo-guardo").setAttribute("aria-pressed", String(ro));
+}
+function impostaModo(m){
+  if (pref.modo === m) return;
+  pref.modo = m; salva.pref();
+  if (m === "guardo"){ annullaModifica(true); chiudiFoglio(); }
+  applicaModo(); renderTutto();
+  toast(m === "guardo" ? "Solo lettura: niente si può cambiare" : "Puoi scrivere e modificare");
+  if (m === "scrivo" && foglioPronto()) pianificaInvio(500);
+}
+$("#modo-scrivo").addEventListener("click", () => impostaModo("scrivo"));
+$("#modo-guardo").addEventListener("click", () => impostaModo("guardo"));
+
+/* ================= CARATTERE ================= */
+let anteprimeFont = false;
+function renderFont(){
+  if (!anteprimeFont){ anteprimeFont = true; FONT_PRESET.forEach(caricaFont); }
+  const box = $("#font-sel"); box.innerHTML = "";
+  FONT_PRESET.forEach(p => box.append(el("button", {"aria-pressed":String(p.id === fontAttuale().id), onclick:() => {
+    pref.font = p.id; salva.pref(); applicaFont(); renderFont();
+  }},
+    el("span", {class:"fg-e", style:"font-family:" + p.pilaD}, "1.250", el("small", {style:"font-family:" + p.pila}, "m")),
+    el("span", {class:"fg-n", style:"font-family:" + p.pila}, p.nome))));
+}
+
+/* ================= IMPOSTAZIONI: gruppi e vasca ================= */
+function renderImpostazioni(){
+  renderFont();
+  const box = $("#imp-gruppi");
+  if (!box.contains(document.activeElement)){
+    box.innerHTML = "";
+    GRUPPI.forEach(G => {
+      const inp = el("input", {class:"campo", value:nomeGruppo(G.id), placeholder:G.nome, autocomplete:"off", disabled:soloLettura(), "aria-label":"Nome del gruppo " + G.nome});
+      inp.addEventListener("change", () => {
+        if (soloLettura()) return;
+        const v = inp.value.trim().slice(0, 24);
+        if (!v || v === G.nome) delete pref.nomi[G.id]; else pref.nomi[G.id] = v;
+        inp.value = nomeGruppo(G.id); salva.pref(); renderGruppi();
+        const t = Date.now(); serie.filter(s => s.g === G.id).forEach(s => coda.sedute[s.g + "|" + s.d] = t);
+        salva.coda(); segnaImpostazioni();
+      });
+      box.append(inp);
+    });
+  }
+  const v = $("#imp-vasca"); v.innerHTML = "";
+  [25, 50].forEach(L => v.append(el("button", {"aria-pressed":String((pref.vasca || 25) === L), disabled:soloLettura(), onclick:() => { if (soloLettura()) return; pref.vasca = L; segnaImpostazioni(); renderImpostazioni(); }}, L + " m")));
+}
+
+/* ================= FOGLIO GOOGLE: la memoria condivisa da tutti i dispositivi =================
+   Il foglio è l'originale. Ogni dispositivo tiene una copia per lavorare anche senza rete.
+   - Ogni modifica va in coda e parte dopo 3 secondi.
+   - Ogni 20 secondi (60 se non tocchi lo schermo da un po') l'app chiede al foglio se c'è qualcosa di nuovo,
+     con una richiesta leggerissima; solo se c'è, scarica le novità.
+   - Le modifiche di dispositivi diversi si sommano, serie per serie: non si sovrascrivono. */
+const SCRIPT = /*SCRIPT*/ "// Vasca Esordienti: il foglio è la memoria dell'app e tiene allineati tutti i dispositivi.\n// 1. Cambia la parola d'ordine qui sotto (la stessa che scriverai nell'app).\n// 2. Esegui il deployment come app web: esegui come \"Me\", accesso \"Chiunque\".\nconst PAROLA = 'cambia-questa-parola';\n\nconst SERIE = ['Data', 'Giorno', 'Gruppo', 'Blocco', 'Serie', 'Giri', 'Ripetizioni', 'Distanza', 'Metri', 'Stile', 'Attrezzi', 'Partenza', 'Nota', 'Chiave'];\nconst SEDUTE = ['Data', 'Giorno', 'Gruppo', 'Metri', 'Serie', 'SL', 'DO', 'RA', 'FA', 'MX', 'Tecnica', 'Gambe', 'Note', 'Aggiornata', 'Chiave'];\nconst OBIETTIVI = ['Gruppo', 'Periodo', 'Dal', 'Al', 'Obiettivo', 'Raggiunto', 'Il', 'Id'];\nconst GARE = ['Gruppo', 'Gara', 'Data', 'Luogo', 'Id'];\nconst ARCHIVIO = ['Chiave', 'Tipo', 'Aggiornata', 'Dati', 'Server'];\n\nconst STILI = {sl: 'SL', do: 'DO', ra: 'RA', fa: 'FA', mx: 'MX'};\nconst BLOCCHI = {wu: 'Riscaldamento', tec: 'Tecnica', pre: 'Preparatoria', main: 'Serie centrale', comp: 'Complementare', gioco: 'Gioco', def: 'Defaticamento'};\nconst NOMI = {esa: 'Esordienti A', esb: 'Esordienti B', esc: 'Esordienti C'};\nconst GIORNI_L = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];\nconst GIORNI = ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'];\n\n/* ===== unione delle modifiche di più dispositivi (identica nell'app e nello script del foglio) ===== */\nvar SCADENZA_TOMBE = 180 * 864e5;\nfunction _vince(a, b){\n  var ta = a.ts || 0, tb = b.ts || 0;\n  return tb > ta || (tb === ta && JSON.stringify(b) > JSON.stringify(a));\n}\nfunction unisciTombe(a, b){\n  var out = {}, limite = Date.now() - SCADENZA_TOMBE;\n  [a, b].forEach(function(t){ Object.keys(t || {}).forEach(function(id){\n    var v = t[id] || 0;\n    if (v >= limite && (!(id in out) || v > out[id])) out[id] = v;\n  }); });\n  return out;\n}\nfunction unisciElementi(la, lb, tolte){\n  var mappa = {};\n  [la, lb].forEach(function(l){ (l || []).forEach(function(s){\n    if (!s || !s.id) return;\n    var x = mappa[s.id];\n    if (!x || _vince(x, s)) mappa[s.id] = s;\n  }); });\n  return Object.keys(mappa).sort().map(function(id){ return mappa[id]; })\n    .filter(function(s){ return !(tolte[s.id] >= (s.ts || 0)); });\n}\nfunction unisciSeduta(a, b){\n  a = a || {}; b = b || {};\n  var tolte = unisciTombe(a.tolte, b.tolte);\n  var na = {ts:a.notaTs || 0, t:a.nota || \"\"}, nb = {ts:b.notaTs || 0, t:b.nota || \"\"};\n  var nota = _vince(na, nb) ? nb : na;\n  return {g:b.g || a.g || \"\", d:b.d || a.d || \"\", serie:unisciElementi(a.serie, b.serie, tolte), tolte:tolte, nota:nota.t, notaTs:nota.ts};\n}\nfunction unisciListe(a, b){\n  a = a || {}; b = b || {};\n  var tolte = unisciTombe(a.tolte, b.tolte);\n  return {lista:unisciElementi(a.lista, b.lista, tolte), tolte:tolte};\n}\nfunction firmaSeduta(s){\n  s = s || {};\n  return JSON.stringify([(s.serie || []).map(function(x){ return x.id + \":\" + (x.ts || 0); }).sort(), s.nota || \"\", s.notaTs || 0, Object.keys(s.tolte || {}).sort()]);\n}\nfunction firmaLista(l){\n  l = l || {};\n  return JSON.stringify([(l.lista || []).map(function(x){ return x.id + \":\" + (x.ts || 0); }).sort(), Object.keys(l.tolte || {}).sort()]);\n}\n\n\nfunction doPost(e) {\n  let req = {};\n  try { req = JSON.parse(e.postData.contents); } catch (err) { return risposta({ok: false, errore: 'Richiesta non leggibile'}); }\n  if (req.token !== PAROLA) return risposta({ok: false, errore: \"Parola d'ordine sbagliata\"});\n  presenza(req.dispositivo);\n  // controllo veloce: dice solo se sul foglio c'è qualcosa di nuovo\n  if (req.azione === 'versione') return risposta({ok: true, v: versione(), attivi: attivi()});\n\n  const lock = LockService.getScriptLock();\n  lock.waitLock(25000);\n  try {\n    const ss = SpreadsheetApp.getActiveSpreadsheet();\n    const fa = foglio(ss, 'Archivio', ARCHIVIO, [], true);\n    const archivio = leggiArchivio(fa);\n    const adesso = Math.max(Date.now(), versione() + 1);\n    let cambiato = false, listeCambiate = false;\n    const toccate = [];\n\n    if (req.impostazioni) {\n      const v = archivio.impostazioni;\n      if (!v || (req.impostazioni.ts || 0) > (v.v.ts || 0)) {\n        archivio.impostazioni = {k: 'impostazioni', tipo: 'impostazioni', ts: req.impostazioni.ts || 0, srv: adesso, v: req.impostazioni};\n        cambiato = true; listeCambiate = true;\n      }\n    }\n    Object.keys(req.liste || {}).forEach(function (nome) {\n      const vecchio = archivio[nome];\n      const unito = unisciListe(vecchio ? vecchio.v : null, req.liste[nome]);\n      if (!vecchio || firmaLista(unito) !== firmaLista(vecchio.v)) {\n        archivio[nome] = {k: nome, tipo: 'lista', ts: adesso, srv: adesso, v: unito};\n        cambiato = true; listeCambiate = true;\n      }\n    });\n    (req.sedute || []).forEach(function (s) {\n      const vecchio = archivio[s.chiave];\n      const unito = unisciSeduta(vecchio ? vecchio.v : null, s.archivio);\n      if (!vecchio || firmaSeduta(unito) !== firmaSeduta(vecchio.v)) {\n        archivio[s.chiave] = {k: s.chiave, tipo: 'seduta', ts: adesso, srv: adesso, v: unito};\n        cambiato = true;\n      }\n      toccate.push(s.chiave);\n    });\n\n    const nomi = ((archivio.impostazioni || {v: {}}).v.nomi) || {};\n    const nomeG = function (g) { return nomi[g] || NOMI[g] || g; };\n    if (toccate.length) aggiornaSedute(ss, archivio, toccate, nomeG);\n    if (listeCambiate || req.liste) aggiornaListe(ss, archivio, nomeG);\n    if (cambiato) {\n      scrivi(fa, Object.keys(archivio).map(function (k) {\n        const x = archivio[k];\n        return [x.k, x.tipo, x.ts, JSON.stringify(x.v), x.srv];\n      }), ARCHIVIO.length);\n      impostaVersione(adesso);\n    }\n    const dal = Number(req.dal) || 0;\n    const voci = Object.keys(archivio).map(function (k) { return archivio[k]; })\n      .filter(function (x) { return !dal || x.srv > dal; })\n      .map(function (x) { return {k: x.k, tipo: x.tipo, ts: x.ts, v: x.v}; });\n    return risposta({ok: true, v: versione(), attivi: attivi(), voci: voci});\n  } finally {\n    lock.releaseLock();\n  }\n}\n\nfunction doGet() { return risposta({ok: true, messaggio: 'Vasca Esordienti collegata'}); }\n\n// ---- versione e dispositivi collegati (in memoria veloce, senza toccare il foglio) ----\nfunction versione() {\n  const c = CacheService.getScriptCache();\n  const v = c.get('v');\n  if (v) return Number(v);\n  const p = PropertiesService.getScriptProperties().getProperty('v') || '0';\n  c.put('v', p, 21600);\n  return Number(p);\n}\nfunction impostaVersione(v) {\n  PropertiesService.getScriptProperties().setProperty('v', String(v));\n  CacheService.getScriptCache().put('v', String(v), 21600);\n}\nfunction presenza(id) {\n  if (!id) return;\n  const c = CacheService.getScriptCache();\n  let m = {};\n  try { m = JSON.parse(c.get('d') || '{}'); } catch (err) { m = {}; }\n  const ora = Date.now();\n  m[id] = ora;\n  Object.keys(m).forEach(function (k) { if (ora - m[k] > 120000) delete m[k]; });\n  c.put('d', JSON.stringify(m), 300);\n}\nfunction attivi() {\n  let m = {};\n  try { m = JSON.parse(CacheService.getScriptCache().get('d') || '{}'); } catch (err) { m = {}; }\n  return Object.keys(m).filter(function (k) { return Date.now() - m[k] <= 120000; }).length;\n}\n\n// ---- schede leggibili, ricostruite dai dati uniti ----\nfunction metri(s) { return (s.gi || 1) * (s.r || 1) * (s.m || 0); }\nfunction nomeStile(s) { return STILI[s] || s; }\nfunction descr(s) {\n  const base = s.r > 1 ? s.r + '×' + s.m : String(s.m);\n  return (s.gi > 1 ? s.gi + ' × (' + base + ')' : base) + ' ' + nomeStile(s.s);\n}\nfunction tempo(sec) {\n  if (!(sec > 0)) return '';\n  const m = Math.floor(sec / 60), s = Math.round(sec - m * 60);\n  if (s === 60) return (m + 1) + \"'00\\\"\";\n  return m ? m + \"'\" + (s < 10 ? '0' : '') + s + '\"' : s + '\"';\n}\nfunction conGambe(s) { return (s.a || []).some(function (a) { return ['gambe', 'tavoletta', 'tavola'].indexOf(String(a).toLowerCase()) >= 0; }); }\nfunction conTecnica(s) { return s.b === 'tec' || (s.a || []).some(function (a) { return a === 'drill' || a === 'scull'; }); }\n\nfunction costruisci(chiave, sess, nomeG) {\n  const serie = (sess.serie || []).slice().sort(function (x, y) { return ((x.o || 0) - (y.o || 0)) || ((x.ts || 0) - (y.ts || 0)); });\n  if (!serie.length && !sess.nota) return {serie: [], seduta: null};\n  const giorno = data(sess.d), dow = giorno.getDay(), gn = nomeG(sess.g);\n  const perStile = {sl: 0, do: 0, ra: 0, fa: 0, mx: 0};\n  let tot = 0, tec = 0, gam = 0;\n  const righe = serie.map(function (s) {\n    const m = metri(s);\n    tot += m;\n    if (perStile[s.s] !== undefined) perStile[s.s] += m;\n    if (conTecnica(s)) tec += m;\n    if (conGambe(s)) gam += m;\n    return [giorno, GIORNI[dow], gn, BLOCCHI[s.b] || s.b, descr(s), s.gi || 1, s.r, s.m, m, nomeStile(s.s), (s.a || []).join(', '), tempo(s.p), s.n || '', chiave];\n  });\n  const seduta = [giorno, GIORNI_L[dow], gn, tot, serie.length, perStile.sl, perStile.do, perStile.ra, perStile.fa, perStile.mx, tec, gam, sess.nota || '', new Date(), chiave];\n  return {serie: righe, seduta: seduta};\n}\nfunction aggiornaSedute(ss, archivio, toccate, nomeG) {\n  const set = {};\n  toccate.forEach(function (k) { set[k] = true; });\n  const fs = foglio(ss, 'Serie', SERIE, [1]);\n  const fd = foglio(ss, 'Sedute', SEDUTE, [1]);\n  const serie = leggi(fs).filter(function (r) { return !set[r[SERIE.length - 1]]; });\n  const righe = leggi(fd).filter(function (r) { return !set[r[SEDUTE.length - 1]]; });\n  toccate.forEach(function (k) {\n    const x = archivio[k];\n    if (!x) return;\n    const c = costruisci(k, x.v, nomeG);\n    c.serie.forEach(function (r) { serie.push(r); });\n    if (c.seduta) righe.push(c.seduta);\n  });\n  ordina(serie);\n  ordina(righe);\n  scrivi(fs, serie, SERIE.length);\n  scrivi(fd, righe, SEDUTE.length);\n}\nfunction aggiornaListe(ss, archivio, nomeG) {\n  const righeOb = [];\n  ((archivio.obiettivi || {v: {}}).v.lista || []).slice().sort(function (a, b) {\n    return a.g < b.g ? -1 : a.g > b.g ? 1 : a.dal < b.dal ? -1 : a.dal > b.dal ? 1 : 0;\n  }).forEach(function (p) {\n    const voci = (p.voci && p.voci.length) ? p.voci : [{t: '', ok: false, quando: ''}];\n    voci.forEach(function (v) {\n      righeOb.push([nomeG(p.g), p.titolo, data(p.dal), data(p.al), v.t, v.ok ? 'sì' : 'no', v.quando ? data(v.quando) : '', p.id]);\n    });\n  });\n  scrivi(foglio(ss, 'Obiettivi', OBIETTIVI, [3, 4, 7]), righeOb, OBIETTIVI.length);\n  const righeGa = ((archivio.gare || {v: {}}).v.lista || []).slice().sort(function (a, b) { return a.data < b.data ? -1 : a.data > b.data ? 1 : 0; })\n    .map(function (x) { return [nomeG(x.g), x.nome, data(x.data), x.luogo || '', x.id]; });\n  scrivi(foglio(ss, 'Gare', GARE, [3]), righeGa, GARE.length);\n}\n\nfunction leggiArchivio(fa) {\n  const out = {};\n  leggi(fa).forEach(function (r) {\n    if (!r[0]) return;\n    try { out[String(r[0])] = {k: String(r[0]), tipo: String(r[1]), ts: Number(r[2]) || 0, srv: Number(r[4]) || 0, v: JSON.parse(r[3])}; } catch (err) {}\n  });\n  return out;\n}\nfunction data(v) { return v instanceof Date ? v : new Date(String(v) + 'T12:00:00'); }\nfunction ordina(r) { r.sort(function (a, b) { return data(a[0]).getTime() - data(b[0]).getTime(); }); }\nfunction foglio(ss, nome, intest, colonneData, nascosto) {\n  let f = ss.getSheetByName(nome);\n  if (!f) {\n    f = ss.insertSheet(nome);\n    f.getRange(1, 1, 1, intest.length).setValues([intest]).setFontWeight('bold');\n    f.setFrozenRows(1);\n    if (nascosto) f.hideSheet();\n  }\n  const vecchie = f.getRange(1, 1, 1, intest.length).getValues()[0];\n  if (vecchie.join('|') !== intest.join('|')) {\n    f.getRange(1, 1, 1, Math.max(intest.length, f.getLastColumn())).clearContent();\n    f.getRange(1, 1, 1, intest.length).setValues([intest]).setFontWeight('bold');\n  }\n  colonneData.forEach(function (c) { f.getRange(2, c, Math.max(1, f.getMaxRows() - 1), 1).setNumberFormat('dd/mm/yyyy'); });\n  return f;\n}\nfunction leggi(f) {\n  const n = f.getLastRow() - 1;\n  if (n < 1) return [];\n  return f.getRange(2, 1, n, f.getLastColumn()).getValues();\n}\nfunction scrivi(f, righe, colonne) {\n  const n = f.getLastRow() - 1;\n  if (n > 0) f.getRange(2, 1, n, Math.max(colonne, f.getLastColumn())).clearContent();\n  if (righe.length) f.getRange(2, 1, righe.length, colonne).setValues(righe);\n}\nfunction risposta(o) {\n  return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);\n}\n" /*FINE*/;
+$("#script-codice").textContent = SCRIPT;
+$("#copia-script").addEventListener("click", async () => toast(await copiaTesto(SCRIPT) ? "Script copiato" : "Copia non riuscita: selezionalo a mano"));
+
+let intervalloPoll = 20000, ultimoTocco = Date.now();
+["pointerdown", "keydown"].forEach(ev => window.addEventListener(ev, () => { ultimoTocco = Date.now(); }, {passive:true}));
+
+/* ogni seduta ha un'impronta: quando cambia, la seduta va rimandata al foglio */
+let impronte = {};
+function improntaSedute(){
+  const m = {};
+  serie.forEach(s => { const k = s.g + "|" + s.d; (m[k] = m[k] || []).push([s.id, s.ts, s.o].join("~")); });
+  const out = {};
+  Object.keys(m).forEach(k => out[k] = m[k].sort().join("|"));
+  return out;
+}
+function registraCambi(){
+  const n = improntaSedute();
+  new Set(Object.keys(n).concat(Object.keys(impronte))).forEach(k => { if (n[k] !== impronte[k]) accoda(k, true); });
+  impronte = n;
+  pianificaInvio(); aggiornaStatoFoglio();
+}
+function accoda(k, zitto){
+  coda.sedute[k] = Date.now(); salva.coda();
+  if (!zitto){ pianificaInvio(); aggiornaStatoFoglio(); }
+}
+function segnaAltro(){ coda.altro = Date.now(); salva.coda(); pianificaInvio(); aggiornaStatoFoglio(); }
+function segnaImpostazioni(){ pref.impTs = Date.now(); salva.pref(); segnaAltro(); }
+const foglioPronto = () => !!(foglio.url && foglio.token);
+const legame = () => foglio.url + "|" + foglio.token;
+const inAttesa = () => soloLettura() ? 0 : Object.keys(coda.sedute).length + (coda.altro ? 1 : 0);
+let invioTimer = null, sincInCorso = false;
+function pianificaInvio(ritardo){
+  if (!foglioPronto() || foglio.legato !== legame() || soloLettura()) return;
+  clearTimeout(invioTimer);
+  invioTimer = setTimeout(() => sincronizza({}), ritardo === undefined ? 3000 : ritardo);
+}
+function spiegaErrore(e){
+  if (!e) return "errore sconosciuto";
+  if (e.name === "AbortError") return "il foglio non ha risposto in tempo";
+  if (e.name === "SyntaxError") return "l'indirizzo non è quello dello script (deve finire con /exec)";
+  const m = String(e.message || e);
+  return /Failed to fetch|Load failed|NetworkError/.test(m) ? "niente rete o indirizzo sbagliato" : m;
+}
+async function chiama(corpo, ms){
+  const ctrl = new AbortController(), t = setTimeout(() => ctrl.abort(), ms || 25000);
+  try {
+    const r = await fetch(foglio.url, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(Object.assign({token:foglio.token, dispositivo:pref.dev}, corpo)), signal:ctrl.signal});
+    const j = await r.json();
+    if (!j || !j.ok) throw new Error(j && j.errore ? j.errore : "risposta inattesa dallo script");
+    return j;
+  } finally { clearTimeout(t); }
+}
+function sedutaPerFoglio(k){
+  const x = k.indexOf("|"), g = k.slice(0, x), d = k.slice(x + 1), n = note[k] || {t:"", ts:0};
+  return {chiave:k, archivio:{g, d, serie:serie.filter(s => s.g === g && s.d === d), tolte:tombe.sedute[k] || {}, nota:n.t || "", notaTs:n.ts || 0}};
+}
+const impostazioniPerFoglio = () => ({nomi:pref.nomi, vasca:pref.vasca, voci:pref.voci, ts:pref.impTs || 0});
+const listePerFoglio = () => ({
+  obiettivi:{lista:obiettivi, tolte:tombe.liste.obiettivi}, gare:{lista:gare, tolte:tombe.liste.gare}, modelli:{lista:modelli, tolte:tombe.liste.modelli}});
+
+/* porta sul telefono quello che arriva dal foglio, sommandolo a quello che c'è già */
+function normalizzaSerie(s){
+  return {id:s.id || uid(), g:s.g, d:s.d, gi:+s.gi || 1, r:+s.r || 1, m:+s.m || 0, s:s.s || "sl", z:"", b:s.b || "main",
+    a:Array.isArray(s.a) ? s.a : [], p:+s.p || 0, n:s.n || "", f:1, o:+s.o || 0, ts:+s.ts || 0};
+}
+function applicaVoci(voci){
+  const cambiate = new Set();
+  const locali = new Map();
+  serie.forEach(s => { const k = s.g + "|" + s.d; if (!locali.has(k)) locali.set(k, []); locali.get(k).push(s); });
+  const remote = new Map(), altro = {};
+  voci.forEach(x => { if (!x || !x.k) return; if (x.tipo === "seduta" && x.v) remote.set(x.k, x.v); else altro[x.k] = x; });
+  const risultato = [];
+  new Set([...locali.keys(), ...remote.keys()]).forEach(k => {
+    const mie = locali.get(k) || [], r = remote.get(k);
+    if (!r){ risultato.push(...mie); return; }
+    const n = note[k] || {t:"", ts:0};
+    const prima = {serie:mie, tolte:tombe.sedute[k] || {}, nota:n.t, notaTs:n.ts};
+    const u = unisciSeduta(prima, r);
+    risultato.push(...u.serie.map(normalizzaSerie));
+    if (u.notaTs || u.nota) note[k] = {t:u.nota, ts:u.notaTs};
+    if (Object.keys(u.tolte).length) tombe.sedute[k] = u.tolte; else delete tombe.sedute[k];
+    if (firmaSeduta(prima) !== firmaSeduta(u)) cambiate.add(k);
+    if (firmaSeduta(u) !== firmaSeduta(r)) accoda(k, true);
+  });
+  serie = risultato;
+  const lista = (nome, mie, poi) => {
+    const x = altro[nome]; if (!x) return mie;
+    const u = unisciListe({lista:mie, tolte:tombe.liste[nome]}, x.v);
+    tombe.liste[nome] = u.tolte;
+    if (firmaLista({lista:mie, tolte:tombe.liste[nome]}) !== firmaLista(u)) cambiate.add(nome);
+    if (firmaLista(u) !== firmaLista(x.v)) coda.altro = coda.altro || Date.now();
+    return u.lista;
+  };
+  obiettivi = lista("obiettivi", obiettivi); gare = lista("gare", gare); modelli = lista("modelli", modelli);
+  const imp = altro.impostazioni && altro.impostazioni.v;
+  if (imp && (imp.ts || 0) > (pref.impTs || 0)){
+    pref.nomi = imp.nomi || {}; pref.vasca = imp.vasca || 25; pref.voci = imp.voci || {}; pref.impTs = imp.ts; cambiate.add("impostazioni");
+  }
+  Mem.scrivi(K.serie, serie); Mem.scrivi(K.note, note); Mem.scrivi(K.obiettivi, obiettivi); Mem.scrivi(K.gare, gare);
+  Mem.scrivi(K.modelli, modelli); salva.tombe(); salva.pref(); salva.coda();
+  impronte = improntaSedute();
+  return cambiate;
+}
+
+let caricamentoTimer = null;
+function mostraCaricamento(testo){
+  $("#car-testo").textContent = testo;
+  clearTimeout(caricamentoTimer);
+  caricamentoTimer = setTimeout(() => { $("#caricamento").hidden = false; }, 250);
+}
+function nascondiCaricamento(){ clearTimeout(caricamentoTimer); $("#caricamento").hidden = true; }
+const occupato = () => !$("#foglio").hidden || !$("#lavagna").hidden || !!inModifica;
+
+/* una sola operazione: manda le modifiche in coda e riceve le novità */
+async function sincronizza(o){
+  o = o || {};
+  if (!foglioPronto()) return false;
+  if (sincInCorso){ if (o.schermata) toast("Sto già aggiornando"); return false; }
+  const primaVolta = foglio.legato !== legame() || o.completo;
+  sincInCorso = true; aggiornaStatoFoglio();
+  if (o.schermata) mostraCaricamento(primaVolta ? "Collego il foglio" : "Aggiorno dal foglio");
+  let ok = false, cambiate = new Set();
+  try {
+    if (primaVolta && !soloLettura()){
+      const t = Date.now();
+      new Set(serie.map(s => s.g + "|" + s.d).concat(Object.keys(note))).forEach(k => { if (!coda.sedute[k]) coda.sedute[k] = t; });
+      coda.altro = coda.altro || t; salva.coda();
+    }
+    let dal = primaVolta ? 0 : (foglio.cursore || 0);
+    for (let giro = 0; giro < 30; giro++){
+      const chiavi = soloLettura() ? [] : Object.keys(coda.sedute).slice(0, 40), conAltro = !soloLettura() && !!coda.altro;
+      const istante = Date.now();
+      const corpo = {azione:"sync", dal, sedute:chiavi.map(sedutaPerFoglio)};
+      if (conAltro){ corpo.liste = listePerFoglio(); corpo.impostazioni = impostazioniPerFoglio(); }
+      const j = await chiama(corpo, 30000);
+      chiavi.forEach(k => { if ((coda.sedute[k] || 0) <= istante) delete coda.sedute[k]; });
+      if (conAltro && coda.altro <= istante) coda.altro = 0;
+      salva.coda();
+      applicaVoci(j.voci || []).forEach(x => cambiate.add(x));
+      dal = j.v; foglio.cursore = j.v; foglio.attivi = j.attivi || 1;
+      foglio.legato = legame(); foglio.ultimo = new Date().toISOString(); foglio.esito = "ok"; foglio.errore = ""; salva.foglio();
+      if (!inAttesa()) break;
+      if (o.schermata) mostraCaricamento("Salvo sul foglio le sedute del telefono");
+    }
+    ok = true;
+    renderTutto();
+    if (o.messaggio) toast(primaVolta ? "Foglio collegato" : "Aggiornato dal foglio");
+    else if (cambiate.has(chiaveG(dataSel))) toast("Seduta aggiornata da un altro dispositivo");
+  } catch (e){
+    foglio.esito = "err"; foglio.errore = spiegaErrore(e); salva.foglio();
+    if (o.schermata || o.messaggio) toast("Foglio non raggiungibile: " + foglio.errore + ". Lavori sulla copia del telefono.");
+  } finally {
+    sincInCorso = false; nascondiCaricamento(); aggiornaStatoFoglio();
+  }
+  return ok;
+}
+async function svuotaCoda(){ return await sincronizza({}) && !inAttesa(); }
+
+/* controllo leggero: chiede solo "c'è qualcosa di nuovo?" */
+async function controllaNovita(){
+  if (document.hidden || !foglioPronto() || navigator.onLine === false || sincInCorso || foglio.legato !== legame()) return;
+  if (inAttesa()){ await sincronizza({}); return; }
+  if (occupato()) return;
+  try {
+    const j = await chiama({azione:"versione"}, 10000);
+    foglio.attivi = j.attivi || 1;
+    if (j.v > (foglio.cursore || 0)) { await sincronizza({}); return; }
+    foglio.ultimo = new Date().toISOString(); foglio.esito = "ok"; foglio.errore = ""; salva.foglio(); aggiornaStatoFoglio();
+  } catch (e){
+    foglio.esito = "err"; foglio.errore = spiegaErrore(e); salva.foglio(); aggiornaStatoFoglio();
+  }
+}
+let pollTimer = null;
+const ritmo = () => Date.now() - ultimoTocco > 300000 ? Math.max(intervalloPoll * 3, 60000) : intervalloPoll;
+function programmaPoll(){
+  clearTimeout(pollTimer);
+  pollTimer = setTimeout(async () => { try { await controllaNovita(); } finally { programmaPoll(); } }, ritmo());
+}
+
+function ora(iso){ const d = new Date(iso); return (isoDi(d) === oggi() ? "" : dataBreve(isoDi(d)) + " ") + d.toLocaleTimeString("it-IT", {hour:"2-digit", minute:"2-digit"}); }
+function aggiornaStatoFoglio(){
+  const chip = $("#foglio-chip"), n = inAttesa();
+  chip.hidden = !foglioPronto();
+  if (!chip.hidden){
+    chip.className = "gara-chip " + (sincInCorso || n ? "att" : foglio.esito === "err" ? "err" : "ok");
+    chip.innerHTML = "";
+    chip.append(el("i"), el("span", null, "Foglio"), el("b", null, sincInCorso ? "aggiorno" : n ? n + " da inviare" : foglio.esito === "err" ? "non raggiunto" : foglio.ultimo ? ora(foglio.ultimo) : "pronto"));
+    chip.setAttribute("aria-label", "Stato del foglio Google: " + chip.textContent);
+    chip.onclick = () => vai("v-foglio");
+  }
+  const st = $("#fg-stato"), t = st.querySelector("span");
+  const altri = (foglio.attivi || 0) - 1;
+  st.className = "stato-sync " + (!foglioPronto() ? "" : sincInCorso ? "lav" : foglio.esito === "err" ? "err" : "ok");
+  t.textContent = !foglioPronto() ? "Non collegato: le sedute restano solo su questo telefono"
+    : sincInCorso ? "Aggiorno" : foglio.esito === "err" ? "Non raggiunto: " + foglio.errore
+    : foglio.legato !== legame() ? "Da collegare: tocca Collega"
+    : (n ? n + " da inviare. " : "") + "Allineato alle " + (foglio.ultimo ? ora(foglio.ultimo) : "—")
+      + (altri > 0 ? ", " + (altri === 1 ? "un altro dispositivo collegato" : altri + " altri dispositivi collegati") : "");
+  statoInvioSeduta();
+}
+function statoInvioSeduta(){
+  const s = $("#stato-invio"); if (!s) return;
+  const k = chiaveG(dataSel), c = !!coda.sedute[k];
+  s.className = "stato-invio";
+  if (!foglioPronto() || (!serieGiorno(dataSel).length && !notaDi(dataSel) && !c)){ s.textContent = ""; return; }
+  if (c){ s.textContent = sincInCorso ? "invio al foglio" : "da inviare"; return; }
+  s.textContent = "sul foglio"; s.classList.add("ok");
+}
+function leggiCampiFoglio(){
+  foglio.url = $("#fg-url").value.trim(); foglio.token = $("#fg-token").value.trim(); salva.foglio();
+  if (!foglioPronto()){ toast("Scrivi indirizzo e parola d'ordine"); return false; }
+  if (!/^https:\/\/script\.google(usercontent)?\.com\/.+\/exec(\?.*)?$/.test(foglio.url)){ toast("L'indirizzo deve essere quello dell'app web e finire con /exec"); return false; }
+  return true;
+}
+$("#fg-url").addEventListener("change", e => { foglio.url = e.target.value.trim(); foglio.esito = ""; salva.foglio(); aggiornaStatoFoglio(); });
+$("#fg-token").addEventListener("change", e => { foglio.token = e.target.value.trim(); foglio.esito = ""; salva.foglio(); aggiornaStatoFoglio(); });
+$("#fg-prova").addEventListener("click", async () => { if (leggiCampiFoglio() && await sincronizza({schermata:true, messaggio:true})) programmaPoll(); });
+$("#fg-ricarica").addEventListener("click", () => { if (leggiCampiFoglio()) sincronizza({schermata:true, messaggio:true, completo:true}); });
+$("#fg-tutto").addEventListener("click", async () => {
+  if (soloLettura() || !leggiCampiFoglio()) return;
+  const t = Date.now();
+  new Set(serie.map(s => s.g + "|" + s.d).concat(Object.keys(note))).forEach(k => coda.sedute[k] = t);
+  coda.altro = t; salva.coda();
+  const ok = await sincronizza({schermata:true});
+  toast(ok ? "Tutto rimandato al foglio" : "Invio non riuscito: " + foglio.errore);
+});
+window.addEventListener("online", () => pianificaInvio(500));
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden || !foglioPronto()) return;
+  ultimoTocco = Date.now();
+  if (foglio.legato === legame()) controllaNovita(); else if (inAttesa()) pianificaInvio(500);
+  programmaPoll();
+});
+
+/* ================= SALVATAGGIO ================= */
+function scarica(nome, contenuto, tipo){
+  const blob = new Blob([contenuto], {type:tipo});
+  const a = el("a", {href:URL.createObjectURL(blob), download:nome});
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+$("#exp-json").addEventListener("click", () => {
+  scarica("esordienti-backup-" + oggi() + ".json", JSON.stringify({app:"vasca-esordienti", versione:1, esportato:new Date().toISOString(),
+    serie, modelli, note, obiettivi, gare, pref:{voci:pref.voci, cfg:pref.cfg, nomi:pref.nomi, vasca:pref.vasca}}, null, 1), "application/json");
+  toast("Backup esportato");
+});
+$("#exp-csv").addEventListener("click", () => {
+  const q = v => { v = String(v === undefined || v === null ? "" : v); return /[;"\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  const righe = [["Data","Giorno","Gruppo","Blocco","Serie","Giri","Ripetizioni","Distanza","Metri","Stile","Attrezzi","Partenza","Nota"].join(";")];
+  serie.slice().sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : a.g < b.g ? -1 : a.g > b.g ? 1 : (a.o || 0) - (b.o || 0)).forEach(s => {
+    righe.push([s.d.split("-").reverse().join("/"), GIORNI[dow(s.d)], nomeGruppo(s.g), nomeBlocco(s.b, true), descr(s), s.gi || 1, s.r, s.m, metri(s), nomeStile(s.s),
+      (s.a || []).join(", "), s.p ? fmtTempo(s.p) : "", s.n].map(q).join(";"));
+  });
+  scarica("esordienti-serie-" + oggi() + ".csv", "\ufeff" + righe.join("\n"), "text/csv;charset=utf-8");
+  toast("File per Excel esportato");
+});
+$("#imp-json").addEventListener("click", () => $("#file-json").click());
+$("#file-json").addEventListener("change", e => {
+  const f = e.target.files[0]; if (!f || soloLettura()) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const j = JSON.parse(r.result);
+      if (!Array.isArray(j.serie)) throw new Error();
+      const mappa = new Map(serie.map(s => [s.id, s]));
+      let nuove = 0;
+      j.serie.forEach(s => { if (!s || !s.id) return; const l = mappa.get(s.id); if (!l) nuove++; if (!l || (s.ts || 0) > (l.ts || 0)) mappa.set(s.id, s); });
+      serie = Array.from(mappa.values());
+      Object.keys(j.note || {}).forEach(k => { const a = j.note[k], b = note[k]; if (a && (!b || (a.ts || 0) > (b.ts || 0))) note[k] = a; });
+      (j.obiettivi || []).forEach(p => { const i = obiettivi.findIndex(x => x.id === p.id); if (i < 0) obiettivi.push(p); else if ((p.ts || 0) > (obiettivi[i].ts || 0)) obiettivi[i] = p; });
+      (j.gare || []).forEach(x => { const i = gare.findIndex(y => y.id === x.id); if (i < 0) gare.push(x); else if ((x.ts || 0) > (gare[i].ts || 0)) gare[i] = x; });
+      Mem.scrivi(K.gare, gare);
+      (j.modelli || []).forEach(m => { if (!modelli.some(x => x.id === m.id)) modelli.push(m); });
+      if (j.pref){
+        Object.keys(j.pref.voci || {}).forEach(k => (j.pref.voci[k] || []).forEach(v => ricorda(k, v)));
+        Object.keys(j.pref.nomi || {}).forEach(g => { if (!pref.nomi[g]) pref.nomi[g] = j.pref.nomi[g]; });
+        if (j.pref.vasca) pref.vasca = j.pref.vasca;
+      }
+      salva.note(); Object.keys(j.note || {}).forEach(k => accoda(k, true));
+      salva.modelli(); salva.pref(); salva.obiettivi(); salva.serie(); renderTutto();
+      toast("Backup importato: " + nuove + " serie nuove");
+    } catch (err){ toast("Questo file non è un backup di Vasca Esordienti"); }
+    e.target.value = "";
+  };
+  r.readAsText(f);
+});
+
+function renderFoglio(){
+  renderImpostazioni();
+  if (document.activeElement !== $("#fg-url")) $("#fg-url").value = foglio.url;
+  if (document.activeElement !== $("#fg-token")) $("#fg-token").value = foglio.token;
+  aggiornaStatoFoglio();
+  const delGruppo = serie.filter(s => s.g === pref.gruppo).length;
+  $("#d-stato").textContent = (Mem.ok ? "" : "Il browser non sta salvando: esporta un backup prima di chiudere. ") +
+    fmt(serie.length) + " serie su questo dispositivo, " + fmt(delGruppo) + " di " + nomeGruppo(pref.gruppo) + ".";
+  const dv = $("#d-voci"); dv.innerHTML = "";
+  const nomiCat = {rip:"Ripetizioni", dist:"Distanze", giri:"Giri", stile:"Stili", blocco:"Blocchi", attr:"Attrezzi"};
+  let almeno = false;
+  Object.keys(nomiCat).forEach(k => {
+    const l = pref.voci[k] || []; if (!l.length) return; almeno = true;
+    dv.append(el("label", {class:"et"}, nomiCat[k]), el("div", {class:"voci-mie"}, l.map(v => el("button", {"aria-label":"Togli " + v, disabled:soloLettura(), onclick:() => {
+      if (soloLettura()) return;
+      pref.voci[k] = pref.voci[k].filter(x => x !== v); segnaImpostazioni(); renderFoglio(); costruisciRotaie();
+    }}, String(v)))));
+  });
+  if (!almeno) dv.append(el("p", {class:"nota"}, "Nessuna"));
+}
+$("#canc-gruppo").addEventListener("click", async () => {
+  if (soloLettura()) return;
+  const ids = serie.filter(s => s.g === pref.gruppo).map(s => s.id);
+  if (!ids.length){ toast("Nessuna serie da cancellare"); return; }
+  if (await conferma("Cancellare le serie di " + nomeGruppo(pref.gruppo) + "?", fmt(ids.length) + " serie spariscono da qui e dal foglio.", "Cancella", true)) elimina(ids);
+});
+$("#canc-tutto").addEventListener("click", async () => {
+  if (soloLettura()) return;
+  if (!serie.length){ toast("Nessuna serie da cancellare"); return; }
+  if (await conferma("Cancellare tutte le serie?", "Tutti i gruppi, " + fmt(serie.length) + " serie, anche dal foglio. Obiettivi e modelli restano.", "Cancella tutto", true)) elimina(serie.map(s => s.id));
+});
+
+/* ================= avvio ================= */
+function renderVista(){
+  if (vista === "v-seduta") renderSeduta();
+  else if (vista === "v-settimana") renderSettimana();
+  else if (vista === "v-obiettivi") renderObiettivi();
+  else if (vista === "v-anno") renderAnno();
+  else if (vista === "v-foglio") renderFoglio();
+}
+function renderTutto(){ applicaModo(); renderGruppi(); aggiornaStatoFoglio(); costruisciRotaie(); renderVista(); }
+
+GRUPPI.forEach(G => cfg(G.id));
+salva.pref();
+impronte = improntaSedute();
+applicaTema();
+if (window.matchMedia) matchMedia("(prefers-color-scheme: light)").addEventListener("change", () => { if (!pref.tema){ applicaTema(); renderTutto(); } });
+let ridim = null;
+window.addEventListener("resize", () => { clearTimeout(ridim); ridim = setTimeout(renderVista, 160); });
+renderTutto();
+dopoTocco();
+if (foglioPronto() && foglio.legato === legame()) sincronizza({schermata:true});
+programmaPoll();
+
+</script>
+</body>
+</html>
