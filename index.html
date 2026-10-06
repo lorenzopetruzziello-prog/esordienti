@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vasca Esordienti</title>
-<meta name="theme-color" content="#06222B">
+<meta name="theme-color" content="#0D5A72">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -202,7 +202,7 @@ label.et{display:block; font-size:11px; color:var(--tenue); margin:10px 0 5px 0}
 .voce.prog .mt{color:var(--tenue)}
 .voce.nuova{animation:lampo 1s ease-out}
 @keyframes lampo{from{background:color-mix(in srgb, var(--en1) 22%, transparent)} to{background:transparent}}
-.vuoto-seduta{padding:18px 3px; color:var(--tenue); font-size:12px; line-height:1.5}
+.vuoto-seduta{padding:22px 3px 18px; color:var(--tenue); font-size:14px; line-height:1.5; text-align:center}
 .totale{display:flex; justify-content:space-between; align-items:baseline; padding:11px 2px 0; border-top:2px solid var(--linea); margin-top:3px}
 .totale .num{font-size:27.5px}
 .barra{height:8px; border-radius:4px; overflow:hidden; display:flex; background:var(--pozzo); margin-top:8px}
@@ -327,7 +327,7 @@ textarea.campo.diario{min-height:0; font-size:12px}
 
 @media (min-width:960px){
   .griglia-seduta{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:22.5px; align-items:start}
-  .griglia-seduta .colonna-dx{position:sticky; top:121.5px}
+  .griglia-seduta .colonna-sess{position:sticky; top:121.5px; max-height:calc(100vh - 150px); overflow-y:auto; padding-right:2px}
   .griglia-sett{display:grid; grid-template-columns:1fr 1fr; gap:22.5px; align-items:start}
   .griglia-sett .sez:first-child{margin-top:21px}
 }
@@ -422,11 +422,37 @@ body.ro input:disabled, body.ro textarea:disabled{opacity:.6}
 .voci-mie .voce-tolta{opacity:.75; text-decoration:line-through; text-decoration-color:var(--tenue2)}
 .voci-mie .voce-tolta::after{content:"  ↺"; text-decoration:none; display:inline-block; color:var(--ok)}
 
-.avviso-foglio{display:flex; align-items:center; gap:10px; margin-top:12px; padding:10px 12px; border-radius:14px;
-  border:1.5px solid var(--gap); background:color-mix(in srgb, var(--gap) 12%, var(--vasca))}
+.avviso-foglio{display:flex; align-items:center; gap:10px; margin-top:10px; padding:7px 8px 7px 11px; border-radius:12px;
+  border:1px solid var(--gap); background:color-mix(in srgb, var(--gap) 10%, var(--vasca))}
 .avviso-foglio .af-testo{flex:1; min-width:0}
-.avviso-foglio b{display:block; font-size:14px; color:var(--gesso)}
-.avviso-foglio small{display:block; font-size:12px; color:var(--tenue); margin-top:1px}
+.avviso-foglio b{display:block; font-size:13px; color:var(--gesso)}
+.avviso-foglio small{display:block; font-size:11.5px; color:var(--tenue); margin-top:0; line-height:1.3}
+
+.inserisci-qui{display:flex; align-items:center; gap:8px; margin:5px 0; padding:6px 6px 6px 11px; border:1.5px dashed var(--en1); border-radius:10px;
+  color:var(--en1); font-size:12px; font-weight:650; background:color-mix(in srgb, var(--en1) 9%, transparent); list-style:none}
+.inserisci-qui span{flex:1}
+.modifica-barra.inserisci{background:color-mix(in srgb, var(--en1) 16%, transparent)}
+
+/* ---------- la seduta del giorno: la prima cosa che si vede ---------- */
+.sez-sessione{margin-top:14px}
+.sessione{padding:13px 14px 12px; border-color:var(--linea)}
+.sess-testa{display:flex; align-items:flex-end; justify-content:space-between; gap:10px; padding-bottom:10px; margin-bottom:4px; border-bottom:1px solid var(--linea2)}
+.sess-info{min-width:0; display:flex; flex-direction:column; gap:2px}
+.sess-et{font-size:11.5px; font-weight:650; color:var(--tenue); letter-spacing:.02em}
+.sess-sub{font-size:14px; font-weight:700; color:var(--gesso)}
+.sess-tot{display:flex; align-items:baseline; gap:4px; flex:none}
+.sess-tot .num{font-size:40px; line-height:.9; letter-spacing:-.02em}
+.sess-tot .u{font-family:var(--fd); font-stretch:var(--stretto); font-weight:700; font-size:17px; color:var(--tenue)}
+.sessione .blocco-testa:first-child{padding-top:6px}
+#sed-sintesi:not(:empty){margin-top:10px; padding-top:10px; border-top:1px solid var(--linea2)}
+#sed-sintesi .barra{margin-top:0}
+.comp-testa{display:flex; align-items:center; justify-content:space-between; gap:8px; margin:-2px 0 10px}
+.comp-testa b{font-family:var(--fd); font-stretch:82%; font-weight:800; font-size:16px}
+.colonna-comp{margin-top:0}
+body.ro .sessione .voce .desc b{font-size:19px}
+body.ro .sessione .voce .mt{font-size:17px}
+body.ro .sessione .voce .desc small{font-size:12.5px}
+body.ro .sess-tot .num{font-size:44px}
 
 /* ---------- esordienti ---------- */
 .caricamento{position:fixed; inset:0; z-index:120; background:color-mix(in srgb, var(--acqua) 94%, transparent);
@@ -518,6 +544,168 @@ input[type="date"].campo::-webkit-calendar-picker-indicator{opacity:.6}
 .colonne.storia{height:120px; grid-template-columns:repeat(8,1fr); gap:5px}
 .eroe .sotto{justify-content:flex-start; gap:4px 16px}
 .colonna.corrente small{color:var(--gesso)}
+
+/* =====================================================================
+   DESIGN "LUCE SOTT'ACQUA"
+   Un solo elemento forte: la luce che si muove sul fondo della piscina,
+   in alto, dietro gruppi, giorni e data. Tutto il resto è vetro scuro e
+   ordinato; i colori degli stili sono quelli dei galleggianti.
+   ===================================================================== */
+:root{
+  --acqua:#031820; --vasca:#0A2A35; --vasca2:#0E3542; --pozzo:#05202A; --linea:#1E5A6D; --linea2:#123F4D;
+  --gesso:#F1FBFC; --tenue:#8EBAC5; --tenue2:#5C8794;
+  --sl:#4DB6F2; --en1:#4DB6F2; --do:#5FD8A6; --ra:#FFC94A; --fa:#C990F5; --mx:#A6BCC7; --tec:#A6BCC7;
+  --cloro:#3FE0EE; --cloro2:#1BA4DE; --testo-cloro:#03202A;
+  --vetro:linear-gradient(180deg, rgba(20,72,90,.58), rgba(6,32,42,.62));
+  --vetro-bordo:rgba(140,226,240,.14);
+  --bagliore:0 10px 26px -10px rgba(63,224,238,.55);
+  --ombra:0 22px 44px -26px rgba(0,0,0,.85);
+  --caustica-1:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MjAiIGhlaWdodD0iNTIwIiB2aWV3Qm94PSIwIDAgNTIwIDUyMCI+PGZpbHRlciBpZD0iZiIgeD0iMCIgeT0iMCIgd2lkdGg9IjUyMCIgaGVpZ2h0PSI1MjAiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC4wMTEgMC4wMTUiIG51bU9jdGF2ZXM9IjIiIHNlZWQ9IjciIHN0aXRjaFRpbGVzPSJzdGl0Y2giIHJlc3VsdD0ibiIvPjxmZUNvbG9yTWF0cml4IGluPSJuIiB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMCAwIDAgMCAxICAwIDAgMCAwIDEgIDAgMCAwIDAgMSAgMSAwIDAgMCAwIiByZXN1bHQ9ImEiLz48ZmVDb21wb25lbnRUcmFuc2ZlciBpbj0iYSI+PGZlRnVuY0EgdHlwZT0idGFibGUiIHRhYmxlVmFsdWVzPSIwIDAgMC4xMiAxIDAuMTIgMCAwIi8+PC9mZUNvbXBvbmVudFRyYW5zZmVyPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjAuNyIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSI1MjAiIGhlaWdodD0iNTIwIiBmaWxsPSIjZmZmIiBmaWx0ZXI9InVybCgjZikiLz48L3N2Zz4=");
+  --caustica-2:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MjAiIGhlaWdodD0iNTIwIiB2aWV3Qm94PSIwIDAgNTIwIDUyMCI+PGZpbHRlciBpZD0iZiIgeD0iMCIgeT0iMCIgd2lkdGg9IjUyMCIgaGVpZ2h0PSI1MjAiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC4wMDggMC4wMTEiIG51bU9jdGF2ZXM9IjIiIHNlZWQ9IjIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiByZXN1bHQ9Im4iLz48ZmVDb2xvck1hdHJpeCBpbj0ibiIgdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMSAgMCAwIDAgMCAxICAwIDAgMCAwIDEgIDEgMCAwIDAgMCIgcmVzdWx0PSJhIi8+PGZlQ29tcG9uZW50VHJhbnNmZXIgaW49ImEiPjxmZUZ1bmNBIHR5cGU9InRhYmxlIiB0YWJsZVZhbHVlcz0iMCAwIDAgMC44IDAgMCAwIi8+PC9mZUNvbXBvbmVudFRyYW5zZmVyPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuMSIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSI1MjAiIGhlaWdodD0iNTIwIiBmaWxsPSIjZmZmIiBmaWx0ZXI9InVybCgjZikiLz48L3N2Zz4=");
+  --fondo-alto:#0D5A72; --fondo-medio:#08394A; --fondo-basso:#031820; --base-vetro:#062834;
+}
+:root[data-theme="sole"], :root[data-theme="light"]{
+  --acqua:#E3F4F6; --vasca:#FFFFFF; --vasca2:#F2FAFB; --pozzo:#E4F1F3; --linea:#B4D5DB; --linea2:#D3E7EA;
+  --gesso:#062530; --tenue:#3D6371; --tenue2:#6E8F99;
+  --sl:#1A8FD1; --en1:#1A8FD1; --do:#16A374; --ra:#D99A06; --fa:#9A52CF; --mx:#5D7F8C; --tec:#5D7F8C;
+  --cloro:#12BBD3; --cloro2:#0A82B8; --testo-cloro:#FFFFFF;
+  --vetro:linear-gradient(180deg, rgba(255,255,255,.92), rgba(247,252,253,.86));
+  --vetro-bordo:rgba(10,90,110,.12);
+  --bagliore:0 10px 24px -12px rgba(10,130,184,.55);
+  --ombra:0 20px 40px -28px rgba(6,60,80,.45);
+  --fondo-alto:#7FD8E8; --fondo-medio:#BDEBF2; --fondo-basso:#E3F4F6; --base-vetro:#FFFFFF;
+}
+
+/* ---- l'acqua: fondo, luce che si muove, ombra verso il profondo ---- */
+html{background:var(--fondo-basso)}
+body{background:transparent; padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+body::before, body::after{content:""; position:fixed; left:-25%; right:-25%; top:-15vh; height:80vh; z-index:-1; pointer-events:none}
+body::before{
+  background:var(--caustica-1) 0 0 / 470px, linear-gradient(180deg, var(--fondo-alto) 0%, var(--fondo-medio) 42%, var(--fondo-basso) 100%);
+  background-blend-mode:soft-light, normal;
+  -webkit-mask-image:linear-gradient(180deg, #000 55%, transparent 100%); mask-image:linear-gradient(180deg, #000 55%, transparent 100%);
+  animation:luce-1 38s linear infinite alternate}
+body::after{
+  background:var(--caustica-2) 0 0 / 640px; opacity:.16; mix-blend-mode:screen;
+  -webkit-mask-image:linear-gradient(180deg, #000 30%, transparent 85%); mask-image:linear-gradient(180deg, #000 30%, transparent 85%);
+  animation:luce-2 46s linear infinite alternate}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) body::after{opacity:.55; mix-blend-mode:soft-light}
+@keyframes luce-1{from{transform:translate3d(0,0,0)} to{transform:translate3d(-90px,40px,0)}}
+@keyframes luce-2{from{transform:translate3d(0,0,0)} to{transform:translate3d(110px,-30px,0)}}
+
+/* ---- intestazione di vetro: la luce si vede attraverso ---- */
+.testa{background:linear-gradient(180deg, rgba(3,24,32,.55), rgba(3,24,32,.28)); -webkit-backdrop-filter:blur(16px) saturate(150%); backdrop-filter:blur(16px) saturate(150%);
+  border-bottom:1px solid rgba(140,226,240,.10)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .testa{background:linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.38)); border-bottom-color:rgba(10,90,110,.10)}
+.marchio{text-shadow:0 1px 12px rgba(0,0,0,.25)}
+.tondo, .gara-chip{background:rgba(255,255,255,.06); border-color:var(--vetro-bordo)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .tondo, :where(:root[data-theme="sole"],:root[data-theme="light"]) .gara-chip{background:rgba(255,255,255,.7)}
+.gruppi{background:rgba(2,20,27,.45); border:1px solid var(--vetro-bordo); box-shadow:inset 0 1px 3px rgba(0,0,0,.25)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .gruppi{background:rgba(255,255,255,.55); box-shadow:none}
+.gruppi button{transition:background .25s, color .25s, box-shadow .25s}
+.gruppi button[aria-pressed="true"]{background:linear-gradient(135deg, var(--cloro), var(--cloro2)); color:var(--testo-cloro); box-shadow:var(--bagliore)}
+
+/* ---- i giorni: bolle; il giorno scelto si accende ---- */
+.giorno-btn{background:rgba(255,255,255,.04); border:1px solid transparent; transition:background .2s, transform .15s}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .giorno-btn{background:rgba(255,255,255,.45)}
+.giorno-btn .gd{text-shadow:0 1px 10px rgba(0,0,0,.25)}
+.giorno-btn.oggi{border-color:rgba(63,224,238,.45)}
+.giorno-btn[aria-pressed="true"]{background:linear-gradient(160deg, var(--cloro), var(--cloro2)); border-color:transparent; box-shadow:var(--bagliore); transform:translateY(-1px)}
+.giorno-btn[aria-pressed="true"] .gd, .giorno-btn[aria-pressed="true"] .gn{color:var(--testo-cloro); text-shadow:none}
+.giorno-btn .gm{background:rgba(0,0,0,.22); height:3.5px}
+.giorno-btn[aria-pressed="true"] .gm{background:rgba(3,32,42,.25)}
+.freccia{background:rgba(255,255,255,.05); border-color:var(--vetro-bordo)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .freccia{background:rgba(255,255,255,.6)}
+.titolo-giorno h1{font-size:29px; letter-spacing:-.02em; text-shadow:0 2px 18px rgba(0,0,0,.28)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .titolo-giorno h1{text-shadow:0 1px 0 rgba(255,255,255,.6)}
+.titolo-giorno p{color:var(--tenue)}
+
+/* ---- vetro per i pannelli ---- */
+.pannello{background:var(--vetro); border:1px solid var(--vetro-bordo); box-shadow:inset 0 1px 0 rgba(255,255,255,.06), var(--ombra); border-radius:18px}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .pannello{box-shadow:inset 0 1px 0 #fff, var(--ombra)}
+.sez-testa h2, h2.titoletto{color:var(--tenue); font-weight:700; letter-spacing:.005em}
+
+/* ---- la seduta: il pezzo più importante della pagina ---- */
+.sessione{border-radius:22px; padding:15px 15px 13px;
+  background:var(--vetro) padding-box, linear-gradient(var(--base-vetro), var(--base-vetro)) padding-box, linear-gradient(150deg, rgba(63,224,238,.7), rgba(77,182,242,.18) 35%, rgba(201,144,245,.25) 70%, rgba(255,201,74,.45)) border-box;
+  border:1.5px solid transparent}
+.sess-testa{border-bottom-color:var(--vetro-bordo); padding-bottom:12px}
+.sess-et{color:var(--cloro); font-weight:700}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .sess-et{color:var(--cloro2)}
+.sess-tot .num{font-size:46px; text-shadow:0 0 22px rgba(63,224,238,.28)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .sess-tot .num{text-shadow:none}
+.blocco-testa{color:var(--tenue); padding-top:12px}
+.blocco-testa > span:first-child{display:inline-flex; align-items:center; gap:7px}
+.blocco-testa > span:first-child::before{content:""; width:14px; height:5px; border-radius:3px; background:linear-gradient(90deg, var(--cloro), var(--cloro2)); opacity:.8}
+.voce{border-top-color:var(--vetro-bordo); transition:background .15s}
+.voce:active{background:rgba(63,224,238,.07)}
+.voce .zbar{width:6px; border-radius:4px; box-shadow:0 0 12px -1px var(--c)}
+.voce .desc b{letter-spacing:-.01em}
+.voce .mt{color:var(--gesso)}
+
+/* ---- pulsanti ---- */
+.btn{background:rgba(255,255,255,.045); border-color:var(--vetro-bordo); transition:transform .12s, background .2s, box-shadow .2s}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .btn{background:rgba(255,255,255,.75)}
+.btn.pieno, .primario{background:linear-gradient(135deg, var(--cloro), var(--cloro2)); color:var(--testo-cloro); border-color:transparent; box-shadow:var(--bagliore)}
+.primario[disabled], .btn.pieno[disabled]{box-shadow:none; filter:saturate(.4)}
+.lavagna-btn{background:linear-gradient(135deg, rgba(255,201,74,.18), rgba(201,144,245,.14)); border-color:rgba(255,201,74,.32)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .lavagna-btn{background:linear-gradient(135deg, #FFF4D6, #F5E8FF); border-color:rgba(217,154,6,.35)}
+.btn.pericolo{background:rgba(240,102,106,.06)}
+
+/* ---- compositore ---- */
+.compositore{border-radius:22px}
+.cmd{background:rgba(1,16,22,.55); border-color:var(--vetro-bordo); box-shadow:inset 0 1px 3px rgba(0,0,0,.35)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .cmd{background:#fff; box-shadow:inset 0 1px 2px rgba(6,60,80,.08)}
+.cmd:focus{border-color:var(--cloro); box-shadow:0 0 0 3px rgba(63,224,238,.18)}
+.chip{background:rgba(255,255,255,.045); border-color:var(--vetro-bordo); transition:background .18s, color .18s, box-shadow .2s, transform .1s}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .chip{background:#fff}
+.chip[aria-pressed="true"]{background:linear-gradient(135deg, var(--cloro), var(--cloro2)); color:var(--testo-cloro); border-color:transparent; box-shadow:var(--bagliore)}
+.chip.col{box-shadow:inset 3px 0 0 var(--c)}
+.chip.col[aria-pressed="true"]{background:var(--c); color:#03202A; box-shadow:0 8px 20px -10px var(--c)}
+.chip.piu{background:transparent}
+.anteprima .desc{text-shadow:0 0 18px rgba(63,224,238,.15)}
+
+/* ---- barra di navigazione: una capsula che galleggia ---- */
+.navbar{left:10px; right:10px; bottom:calc(8px + env(safe-area-inset-bottom,0px)); padding-bottom:0; border-radius:22px;
+  background:rgba(3,22,29,.72); border:1px solid var(--vetro-bordo); -webkit-backdrop-filter:blur(18px) saturate(160%); backdrop-filter:blur(18px) saturate(160%);
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.85)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .navbar{background:rgba(255,255,255,.78); box-shadow:0 16px 34px -20px rgba(6,60,80,.45)}
+.navbar button{padding:8px 2px 7px}
+.navbar button svg{position:relative; z-index:1; transition:transform .2s}
+.navbar button[aria-pressed="true"]{color:var(--gesso)}
+.navbar button[aria-pressed="true"]::before{top:4px; left:50%; right:auto; width:48px; height:30px; margin-left:-24px; border-radius:15px;
+  background:linear-gradient(135deg, rgba(63,224,238,.30), rgba(27,164,222,.20)); box-shadow:inset 0 0 0 1px rgba(63,224,238,.35), 0 6px 16px -8px rgba(63,224,238,.6)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .navbar button[aria-pressed="true"]::before{background:linear-gradient(135deg, rgba(18,187,211,.22), rgba(10,130,184,.16))}
+.navbar button[aria-pressed="true"] svg{transform:translateY(-1px)}
+.toast{bottom:calc(92px + env(safe-area-inset-bottom,0px)); border-radius:16px; box-shadow:0 16px 36px -14px rgba(0,0,0,.6)}
+
+/* ---- finestre, segmenti, scelte ---- */
+.foglio-corpo{background:linear-gradient(180deg, #0D3442, #082731); border-color:var(--vetro-bordo)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .foglio-corpo{background:#fff}
+.foglio-fondo{background:rgba(1,12,16,.55); -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px)}
+.menu button{background:rgba(255,255,255,.045)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .menu button{background:var(--pozzo)}
+.seg{background:rgba(1,16,22,.45); border:1px solid var(--vetro-bordo)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .seg{background:var(--pozzo)}
+.seg button[aria-pressed="true"]{background:linear-gradient(135deg, var(--cloro), var(--cloro2)); color:var(--testo-cloro); box-shadow:var(--bagliore)}
+.campo{background:rgba(1,16,22,.5); border-color:var(--vetro-bordo)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .campo{background:#fff}
+
+/* ---- settimana e anno ---- */
+.eroe{border-radius:22px; background:var(--vetro) padding-box, linear-gradient(var(--base-vetro), var(--base-vetro)) padding-box, linear-gradient(150deg, rgba(63,224,238,.6), rgba(77,182,242,.15) 40%, rgba(255,201,74,.35)) border-box; border:1.5px solid transparent}
+.eroe .grande .num{text-shadow:0 0 26px rgba(63,224,238,.25)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .eroe .grande .num{text-shadow:none}
+.colonna .pila{border-radius:7px 7px 3px 3px}
+.anno-col .pila{border-radius:3px 3px 1px 1px}
+.anno-col[aria-pressed="true"]{box-shadow:0 0 0 1.5px var(--cloro), 0 0 14px -2px rgba(63,224,238,.6); background:rgba(63,224,238,.10)}
+.barra, .tz .bar{background:rgba(0,0,0,.22)}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .barra, :where(:root[data-theme="sole"],:root[data-theme="light"]) .tz .bar{background:var(--pozzo)}
+
+/* ---- lavagna: anche lei sott'acqua ---- */
+.lavagna{background:linear-gradient(180deg, rgba(2,20,27,.30), rgba(2,14,19,.72)), var(--caustica-1) 0 0 / 520px, linear-gradient(180deg, #0A4A5E 0%, #052B37 45%, #021118 100%); background-blend-mode:normal, soft-light, normal}
+:where(:root[data-theme="sole"],:root[data-theme="light"]) .lavagna{background:var(--caustica-1) 0 0 / 520px, linear-gradient(180deg, #9BE2EE, #E3F4F6 55%); background-blend-mode:soft-light, normal}
+
+@media (prefers-reduced-motion:reduce){ body::before, body::after{animation:none} }
 </style>
 </head>
 <body>
@@ -582,7 +770,31 @@ input[type="date"].campo::-webkit-calendar-picker-indicator{opacity:.6}
 
   <div id="avviso-foglio"></div>
   <div class="griglia-seduta">
-    <div class="colonna-sx">
+    <div class="colonna-sess">
+      <div class="sez sez-sessione" id="sez-sessione">
+        <div class="pannello sessione">
+          <div class="sess-testa">
+            <div class="sess-info"><span class="sess-et" id="sed-titolo">Seduta</span><b class="sess-sub" id="sed-sub"></b></div>
+            <div class="sess-tot"><span class="num" id="sed-tot">0</span><span class="u">m</span></div>
+          </div>
+          <ul class="elenco" id="elenco"></ul>
+          <div id="sed-sintesi"></div>
+        </div>
+        <div class="azioni-seduta">
+          <button class="btn largo pieno solo-scrivo" id="vai-compositore"><svg><use href="#i-piu"/></svg>Aggiungi una serie</button>
+          <button class="btn largo lavagna-btn" id="apri-lavagna"><svg><use href="#i-lavagna"/></svg>Mostra ai bambini</button>
+          <button class="btn" id="condividi"><svg><use href="#i-cond"/></svg>Condividi</button>
+          <button class="btn solo-scrivo" id="apri-modelli"><svg><use href="#i-modelli"/></svg>Modelli</button>
+          <button class="btn largo solo-scrivo" id="duplica-giorno"><svg><use href="#i-duplica"/></svg>Copia su un altro giorno o gruppo</button>
+        </div>
+      </div>
+      <div class="sez" id="sez-diario">
+        <div class="sez-testa"><h2>Note</h2><span class="stato-invio" id="stato-invio"></span></div>
+        <textarea class="campo diario" id="diario" rows="2" aria-label="Note della giornata"></textarea>
+      </div>
+    </div>
+
+    <div class="colonna-comp">
       <div class="sez" id="sez-obiettivi-giorno" hidden>
         <div class="pannello ob-periodo">
           <div class="sez-testa" style="margin-bottom:6px"><h2 id="obg-titolo">Obiettivi del periodo</h2><span class="num" id="obg-conta"></span></div>
@@ -594,6 +806,7 @@ input[type="date"].campo::-webkit-calendar-picker-indicator{opacity:.6}
       </div>
       <div class="sez solo-scrivo" id="sez-compositore">
         <div class="pannello compositore" id="compositore">
+          <div class="comp-testa"><b>Scrivi una serie</b><button class="btn piccolo" id="vai-sessione"><svg><use href="#i-su"/></svg>Seduta</button></div>
           <div id="modifica-barra"></div>
           <div class="cmd-riga">
             <input class="cmd" id="cmd" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
@@ -613,7 +826,7 @@ input[type="date"].campo::-webkit-calendar-picker-indicator{opacity:.6}
 
           <div id="altro">
             <div class="fila"><div class="fila-et">Giri</div><div class="rotaia" id="r-giri"></div></div>
-            <div class="fila"><div class="fila-et">Attrezzi</div><div class="rotaia testo" id="r-attr"></div></div>
+            <div class="fila"><div class="fila-et">Modalità</div><div class="rotaia testo" id="r-attr"></div></div>
             <label class="et" for="nota">Nota</label>
             <input class="campo" id="nota" type="text" placeholder="" autocomplete="off">
           </div>
@@ -622,24 +835,6 @@ input[type="date"].campo::-webkit-calendar-picker-indicator{opacity:.6}
             <button class="primario" id="aggiungi" disabled>Aggiungi</button>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="colonna-dx">
-      <div class="sez">
-        <div class="sez-testa"><h2 id="sed-titolo">Seduta</h2><span class="num" id="sed-tot">0 m</span></div>
-        <ul class="elenco" id="elenco"></ul>
-        <div id="sed-sintesi"></div>
-        <div class="azioni-seduta">
-          <button class="btn largo lavagna-btn" id="apri-lavagna"><svg><use href="#i-lavagna"/></svg>Mostra ai bambini</button>
-          <button class="btn" id="condividi"><svg><use href="#i-cond"/></svg>Condividi</button>
-          <button class="btn solo-scrivo" id="apri-modelli"><svg><use href="#i-modelli"/></svg>Modelli</button>
-          <button class="btn largo solo-scrivo" id="duplica-giorno"><svg><use href="#i-duplica"/></svg>Copia su un altro giorno o gruppo</button>
-        </div>
-      </div>
-      <div class="sez" id="sez-diario">
-        <div class="sez-testa"><h2>Note</h2><span class="stato-invio" id="stato-invio"></span></div>
-        <textarea class="campo diario" id="diario" rows="2" aria-label="Note della giornata"></textarea>
       </div>
     </div>
   </div>
@@ -745,9 +940,9 @@ input[type="date"].campo::-webkit-calendar-picker-indicator{opacity:.6}
 <!-- =================== FOGLIO =================== -->
 <section class="vista" id="v-foglio" aria-label="Impostazioni">
   <div class="sez">
-    <div class="sez-testa"><h2>Modalità</h2></div>
+    <div class="sez-testa"><h2>Scrivo o guardo</h2></div>
     <div class="pannello">
-      <div class="modo" role="group" aria-label="Modalità di questo dispositivo">
+      <div class="modo" role="group" aria-label="Scrivo o guardo su questo dispositivo">
         <button id="modo-scrivo" aria-pressed="true"><svg><use href="#i-matita"/></svg><b>Scrivo</b><small>Aggiungo e modifico</small></button>
         <button id="modo-guardo" aria-pressed="false"><svg><use href="#i-lucchetto"/></svg><b>Guardo</b><small>Solo consultazione</small></button>
       </div>
@@ -1264,6 +1459,7 @@ let bozza = JSON.parse(JSON.stringify(BOZZA0));
 let bozzaBase = JSON.parse(JSON.stringify(BOZZA0));
 let statoF = 1;
 let inModifica = null;
+let inserimento = null;   // {id, dopo}: dove va la prossima serie; vuoto = in fondo
 let ultimaAggiunta = null;
 const vibra = ms => { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e){} };
 
@@ -1417,7 +1613,7 @@ const ROTAIE = {
   stile:{id:"r-stile", et:nomeStile, col:true, on:v => bozza.s === v, tap:v => { bozza.s = v; }, piu:["Nuovo stile", "SL/DO", false]},
   blocco:{id:"r-blocco", et:v => nomeBlocco(v), t:true, on:v => bozza.b === v, tap:v => { bozza.b = v; }, piu:["Nuovo blocco", "Subacquee", false]},
   giri:{id:"r-giri", et:v => "×" + v, on:v => bozza.gi === v, tap:v => { bozza.gi = v; }, piu:["Giri", "5", true]},
-  attr:{id:"r-attr", et:v => v, t:true, on:v => bozza.a.includes(v), tap:v => { const i = bozza.a.indexOf(v); if (i < 0) bozza.a.push(v); else bozza.a.splice(i, 1); }, piu:["Nuovo attrezzo", "drag socks", false]}
+  attr:{id:"r-attr", et:v => v, t:true, on:v => bozza.a.includes(v), tap:v => { const i = bozza.a.indexOf(v); if (i < 0) bozza.a.push(v); else bozza.a.splice(i, 1); }, piu:["Nuova modalità", "palette lunghe", false]}
 };
 /* ---------- pressione lunga: togliere una voce dai pulsanti ---------- */
 const MINIMO_VOCI = {stile:1, blocco:1, rip:1, dist:1, giri:1};
@@ -1521,6 +1717,11 @@ function renderAnteprima(){
   $$("#stato-seg button").forEach(x => x.setAttribute("aria-pressed", String(+x.dataset.f === statoF)));
   const mb = $("#modifica-barra"); mb.innerHTML = "";
   if (inModifica) mb.append(el("div", {class:"modifica-barra"}, el("span", null, "Stai modificando una serie"), el("button", {class:"btn piccolo", onclick:() => annullaModifica()}, "Annulla")));
+  else if (inserimento){
+    const a = serie.find(x => x.id === inserimento.id);
+    if (a) mb.append(el("div", {class:"modifica-barra inserisci"}, el("span", null, (inserimento.dopo === false ? "Aggiungo prima di " : "Aggiungo dopo ") + "«" + descr(a) + "»"),
+      el("button", {class:"btn piccolo", onclick:() => fineInserimento()}, "Fine")));
+  }
 }
 $("#cmd").addEventListener("input", () => {
   const v = $("#cmd").value;
@@ -1538,7 +1739,39 @@ $("#aggiungi").addEventListener("click", () => aggiungi());
 
 function copiaSerie(b){ return {gi:b.gi || 1, r:b.r, m:b.m, s:b.s, z:"", b:b.b, a:(b.a || []).slice(), p:b.p || 0, n:b.n || ""}; }
 function nuovaSerie(b, d, g, f, o){ return Object.assign({id:uid(), g, d, f, o, ts:Date.now()}, copiaSerie(b)); }
+/* le serie restano nell'ordine in cui le scrivi; un blocco si ripete quando riparte */
+function gruppiBlocchi(lista){
+  const out = [];
+  lista.forEach(s => { const u = out[out.length - 1]; if (u && u.b === s.b) u.l.push(s); else out.push({b:s.b, l:[s]}); });
+  return out;
+}
+/* posizione delle nuove serie: in fondo, oppure nel punto scelto (sopra o sotto una serie) */
+function ordiniNuovi(n){
+  const lista = serieGiorno(dataSel);
+  const i = inserimento ? lista.findIndex(x => x.id === inserimento.id) : -1;
+  if (i >= 0){
+    const a = lista[i], dopo = inserimento.dopo !== false;
+    let da, fino;
+    if (dopo){ da = a.o || 0; fino = i + 1 < lista.length ? (lista[i + 1].o || 0) : da + 10 * (n + 1); }
+    else { fino = a.o || 0; da = i > 0 ? (lista[i - 1].o || 0) : fino - 10 * (n + 1); }
+    const passo = (fino - da) / (n + 1);
+    if (passo > 0.001) return Array.from({length:n}, (_, k) => da + passo * (k + 1));
+    rinumera(dataSel, pref.gruppo);                 // niente spazio tra le due serie: le rinumero e riprovo
+    return ordiniNuovi(n);
+  }
+  const base = prossimoOrdine(dataSel);
+  return Array.from({length:n}, (_, k) => base + 10 * k);
+}
+/* dopo aver aggiunto, il punto di inserimento scende sull'ultima serie nuova: le prossime vanno di seguito */
+const proseguiInserimento = ultima => { if (inserimento) inserimento = {id:ultima.id, dopo:true}; };
 function prossimoOrdine(d, g){ const l = serieGiorno(d, g); return l.length ? Math.max(...l.map(s => s.o || 0)) + 10 : 10; }
+function fineInserimento(){ inserimento = null; renderAnteprima(); renderElenco(); }
+function iniziaInserimento(a, dopo){
+  inserimento = {id:a.id, dopo};
+  if (!inModifica) bozza.b = a.b;                     // di solito si continua nello stesso blocco: si cambia con un tocco
+  dopoTocco(); renderElenco();
+  $("#compositore").scrollIntoView({behavior:"smooth", block:"start"});
+}
 function aggiungi(){
   if (!bozza.m || soloLettura()) return;
   if (inModifica){
@@ -1547,8 +1780,8 @@ function aggiungi(){
     inModifica = null;
     toast("Modifica salvata");
   } else {
-    const s = nuovaSerie(bozza, dataSel, pref.gruppo, statoF, prossimoOrdine(dataSel));
-    serie.push(s); ultimaAggiunta = s.id;
+    const s = nuovaSerie(bozza, dataSel, pref.gruppo, statoF, ordiniNuovi(1)[0]);
+    serie.push(s); ultimaAggiunta = s.id; proseguiInserimento(s);
     toast("Aggiunta " + descr(s), () => elimina([s.id], true));
   }
   salva.serie(); vibra(14);
@@ -1582,22 +1815,27 @@ function elimina(ids, silenzio){
 function renderElenco(anima){
   const lista = serieGiorno(dataSel);
   const ul = $("#elenco"); ul.innerHTML = "";
-  $("#sed-titolo").textContent = "Seduta " + nomeGruppo(pref.gruppo) + ", " + dataBreve(dataSel);
-  $("#sed-tot").textContent = fmt(totale(lista)) + " m";
+  const og = oggi();
+  $("#sed-titolo").textContent = dataSel === og ? "Seduta di oggi" : dataSel === piuGiorni(og, 1) ? "Seduta di domani" : dataSel === piuGiorni(og, -1) ? "Seduta di ieri"
+    : "Seduta di " + GIORNI_L[dow(dataSel)] + " " + daIso(dataSel).getDate();
+  const totSed = totale(lista), vsSed = vasche(totSed);
+  $("#sed-sub").textContent = lista.length ? lista.length + (lista.length === 1 ? " serie" : " serie") + (vsSed ? " · " + vsSed : "") : "Nessuna serie";
+  $("#sed-tot").textContent = fmt(totSed);
   if (!lista.length){
-    ul.append(el("li", {class:"vuoto-seduta"}, "Nessuna serie"));
+    ul.append(el("li", {class:"vuoto-seduta"}, "Nessuna seduta in questo giorno"));
   }
-  voci("blocco").forEach(b => {
-    const g = lista.filter(s => s.b === b);
-    if (!g.length) return;
-    ul.append(el("li", {class:"blocco-testa"}, el("span", null, nomeBlocco(b, true)), el("span", {class:"num"}, fmt(totale(g)) + " m")));
-    g.forEach(s => {
+  const marcatore = () => el("li", {class:"inserisci-qui"}, el("span", null, "Qui la prossima serie"), el("button", {class:"btn piccolo", onclick:() => fineInserimento()}, "Fine"));
+  gruppiBlocchi(lista).forEach(gr => {
+    ul.append(el("li", {class:"blocco-testa"}, el("span", null, nomeBlocco(gr.b, true)), el("span", {class:"num"}, fmt(totale(gr.l)) + " m")));
+    gr.l.forEach(s => {
       const det = dettaglio(s);
+      if (inserimento && inserimento.id === s.id && inserimento.dopo === false) ul.append(marcatore());
       ul.append(el("li", null, el("button", {class:"voce" + (anima && s.id === ultimaAggiunta ? " nuova" : ""), style:"--c:" + colore(s.s),
         onclick:() => azioniSerie(s)},
         el("span", {class:"zbar", style:"background:" + colore(s.s)}),
         el("span", {class:"desc"}, el("b", null, descr(s)), det ? el("small", null, det) : null),
         el("span", {class:"mt num"}, fmt(metri(s))))));
+      if (inserimento && inserimento.id === s.id && inserimento.dopo !== false) ul.append(marcatore());
     });
   });
   const sint = $("#sed-sintesi"); sint.innerHTML = "";
@@ -1607,8 +1845,7 @@ function renderElenco(anima){
     voci("stile").forEach(k => { if (st[k]) barra.append(el("i", {style:"width:" + (st[k] / tot * 100) + "%;background:" + colore(k)})); });
     const leg = el("div", {class:"legenda"});
     voci("stile").forEach(k => { if (st[k]) leg.append(el("span", null, el("i", {class:"pallino", style:"background:" + colore(k)}), nomeStile(k) + " ", el("b", null, pct(st[k], tot) + "%"))); });
-    sint.append(el("div", {class:"totale"}, el("span", {class:"muto"}, lista.length + " serie"), el("span", {class:"num"}, fmt(tot) + " m")),
-      barra, leg, (tec || gb) ? el("p", {class:"nota", style:"margin-top:6px"}, [tec ? "Tecnica " + pct(tec, tot) + "%" : "", gb ? "gambe " + pct(gb, tot) + "%" : ""].filter(Boolean).join(", ")) : null);
+    sint.append(barra, leg, (tec || gb) ? el("p", {class:"nota", style:"margin-top:6px"}, [tec ? "Tecnica " + pct(tec, tot) + "%" : "", gb ? "gambe " + pct(gb, tot) + "%" : ""].filter(Boolean).join(", ")) : null);
   }
   $("#condividi").disabled = !lista.length;
   $("#apri-lavagna").disabled = !lista.length;
@@ -1631,6 +1868,8 @@ function azioniSerie(s){
         $("#cmd").value = aTesto(bozza); $("#nota").value = bozza.n || ""; segnaRotaie(true); renderAnteprima();
         $("#compositore").scrollIntoView({behavior:"smooth", block:"start"});
       }),
+      voce("i-piu", "Aggiungi sotto", () => iniziaInserimento(s, true)),
+      voce("i-piu", "Aggiungi sopra", () => iniziaInserimento(s, false)),
       voce("i-storico", "Storico di questa serie", () => storicoSerie(s)),
       voce("i-copia", "Duplica sotto", () => {
         const n = nuovaSerie(s, s.d, s.g, 1, (s.o || 0) + 5); serie.push(n); rinumera(s.d, s.g); ultimaAggiunta = n.id; salva.serie(); renderSeduta(true);
@@ -1666,11 +1905,11 @@ function storicoSerie(s){
 function rinumera(d, g){ serieGiorno(d, g).forEach((s, k) => { const o = (k + 1) * 10; if (s.o !== o){ s.o = o; s.ts = Date.now(); } }); }
 function sposta(s, verso){
   rinumera(s.d, s.g);
-  const stessi = serieGiorno(s.d, s.g).filter(x => x.b === s.b);
-  const i = stessi.indexOf(s), j = i + verso;
-  if (j < 0 || j >= stessi.length){ toast(verso < 0 ? "È già la prima del blocco" : "È già l'ultima del blocco"); return; }
-  const t = stessi[j].o; stessi[j].o = s.o; s.o = t;
-  s.ts = Date.now(); stessi[j].ts = Date.now();
+  const tutte = serieGiorno(s.d, s.g);
+  const i = tutte.indexOf(s), j = i + verso;
+  if (j < 0 || j >= tutte.length){ toast(verso < 0 ? "È già la prima della seduta" : "È già l'ultima della seduta"); return; }
+  const t = tutte[j].o; tutte[j].o = s.o; s.o = t;
+  s.ts = Date.now(); tutte[j].ts = Date.now();
   salva.serie(); renderSeduta();
 }
 
@@ -1688,9 +1927,9 @@ $("#apri-incolla").addEventListener("click", () => {
     ta.addEventListener("input", agg);
     btn.addEventListener("click", () => {
       const r = leggiTesto(ta.value); if (!r.length) return;
-      let o = prossimoOrdine(dataSel);
-      const nuove = r.map(x => { const s = nuovaSerie(x, dataSel, pref.gruppo, statoF, o); o += 10; return s; });
-      serie.push(...nuove); salva.serie(); chiudiFoglio(); renderSeduta();
+      const ord = ordiniNuovi(r.length);
+      const nuove = r.map((x, k) => nuovaSerie(x, dataSel, pref.gruppo, statoF, ord[k]));
+      serie.push(...nuove); proseguiInserimento(nuove[nuove.length - 1]); salva.serie(); chiudiFoglio(); renderSeduta();
       toast("Aggiunte " + nuove.length + " serie", () => elimina(nuove.map(s => s.id), true));
     });
     c.append(el("h3", null, "Incolla una seduta"), ta, el("div", {class:"azioni"}, btn));
@@ -1700,11 +1939,9 @@ $("#apri-incolla").addEventListener("click", () => {
 function sedutaTesto(d, g){
   const lista = serieGiorno(d, g);
   const righe = [nomeGruppo(g || pref.gruppo) + ", " + dataLunga(d) + ": " + fmt(totale(lista)) + " m"];
-  voci("blocco").forEach(b => {
-    const x = lista.filter(s => s.b === b);
-    if (!x.length) return;
-    righe.push("", nomeBlocco(b, true) + ", " + fmt(totale(x)) + " m");
-    x.forEach(s => { const det = dettaglio(s); righe.push(descr(s) + (det ? " (" + det + ")" : "")); });
+  gruppiBlocchi(lista).forEach(gr => {
+    righe.push("", nomeBlocco(gr.b, true) + ", " + fmt(totale(gr.l)) + " m");
+    gr.l.forEach(s => { const det = dettaglio(s); righe.push(descr(s) + (det ? " (" + det + ")" : "")); });
   });
   return righe.join("\n");
 }
@@ -1726,8 +1963,9 @@ $("#apri-modelli").addEventListener("click", () => {
     miei.forEach(m => {
       menu.append(el("div", {class:"riga"},
         el("button", {style:"flex:1", onclick:() => {
-          let o = prossimoOrdine(dataSel);
-          const nuove = m.serie.map(x => { const s = nuovaSerie(x, dataSel, pref.gruppo, statoF, o); o += 10; return s; });
+          const ord = ordiniNuovi(m.serie.length);
+          const nuove = m.serie.map((x, k) => nuovaSerie(x, dataSel, pref.gruppo, statoF, ord[k]));
+          if (nuove.length) proseguiInserimento(nuove[nuove.length - 1]);
           serie.push(...nuove); salva.serie(); chiudiFoglio(); renderSeduta();
           toast("Caricato " + m.nome, () => elimina(nuove.map(s => s.id), true));
         }}, icona("i-modelli"), el("span", {style:"flex:1"}, m.nome, el("small", {class:"muto", style:"display:block;font-weight:500;font-size:13px"},
@@ -1816,11 +2054,9 @@ function renderLavagna(){
   box.innerHTML = "";
   $("#lv-titolo").textContent = maiusc(dataLunga(dataSel));
   $("#lv-metri").textContent = lavagnaMetri ? "In vasche" : "In metri";
-  voci("blocco").forEach(b => {
-    const g = lista.filter(s => s.b === b);
-    if (!g.length) return;
-    box.append(el("h3", {class:"lv-blocco", style:"--c:" + coloreBlocco(b)}, nomeBlocco(b, true)));
-    g.forEach(s => {
+  gruppiBlocchi(lista).forEach(gr => {
+    box.append(el("h3", {class:"lv-blocco", style:"--c:" + coloreBlocco(gr.b)}, nomeBlocco(gr.b, true)));
+    gr.l.forEach(s => {
       const l = lineaLavagna(s);
       box.append(el("div", {class:"lv-serie", style:"--c:" + colore(s.s)},
         el("div", {class:"lv-riga"}, el("b", null, l.testo), el("span", null, l.stile)), l.extra ? el("small", null, l.extra) : null));
@@ -1847,6 +2083,8 @@ $("#lv-metri").addEventListener("click", () => { lavagnaMetri = !lavagnaMetri; r
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#lavagna").hidden) chiudiLavagna(); });
 
 $("#passa-scrivo").addEventListener("click", () => impostaModo("scrivo"));
+$("#vai-compositore").addEventListener("click", () => { if (!soloLettura()) $("#sez-compositore").scrollIntoView({behavior:"smooth", block:"start"}); });
+$("#vai-sessione").addEventListener("click", () => $("#sez-sessione").scrollIntoView({behavior:"smooth", block:"start"}));
 $("#modo-chip").addEventListener("click", () => vai("v-foglio"));
 
 /* avviso ben visibile: se questo dispositivo non è collegato, le sedute non vanno sul foglio */
@@ -1855,12 +2093,14 @@ function renderAvvisoFoglio(){
   const collegato = foglioPronto() && foglio.legato === legame();
   if (collegato) return;
   box.append(el("div", {class:"avviso-foglio"},
-    el("span", {class:"af-testo"}, el("b", null, "Non collegato al foglio"), el("small", null, "Queste sedute restano solo su questo " + (standalone() ? "collegamento della Home" : "browser"))),
+    el("span", {class:"af-testo"}, el("b", null, "Non collegato al foglio"),
+      el("small", null, soloLettura() ? "Collega per vedere le sedute degli altri" : "Le sedute restano solo su questo " + (standalone() ? "collegamento" : "browser"))),
     el("button", {class:"btn piccolo", onclick:() => vai("v-foglio")}, "Collega")));
 }
 const standalone = () => (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
 
 function renderSeduta(anima){
+  if (inserimento && !serie.some(x => x.id === inserimento.id && x.d === dataSel && x.g === pref.gruppo)) inserimento = null;
   renderAvvisoFoglio();
   renderStriscia();
   renderObiettiviGiorno();
@@ -2332,7 +2572,7 @@ function applicaModo(){
 function impostaModo(m){
   if (pref.modo === m) return;
   pref.modo = m; salva.pref();
-  if (m === "guardo"){ annullaModifica(true); chiudiFoglio(); }
+  if (m === "guardo"){ annullaModifica(true); inserimento = null; chiudiFoglio(); }
   applicaModo(); renderTutto();
   toast(m === "guardo" ? "Solo lettura: niente si può cambiare" : "Puoi scrivere e modificare");
   if (m === "scrivo" && foglioPronto()) pianificaInvio(500);
@@ -2647,7 +2887,7 @@ $("#exp-json").addEventListener("click", () => {
 });
 $("#exp-csv").addEventListener("click", () => {
   const q = v => { v = String(v === undefined || v === null ? "" : v); return /[;"\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
-  const righe = [["Data","Giorno","Gruppo","Blocco","Serie","Giri","Ripetizioni","Distanza","Metri","Stile","Attrezzi","Partenza","Nota"].join(";")];
+  const righe = [["Data","Giorno","Gruppo","Blocco","Serie","Giri","Ripetizioni","Distanza","Metri","Stile","Modalità","Partenza","Nota"].join(";")];
   serie.slice().sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : a.g < b.g ? -1 : a.g > b.g ? 1 : (a.o || 0) - (b.o || 0)).forEach(s => {
     righe.push([s.d.split("-").reverse().join("/"), GIORNI[dow(s.d)], nomeGruppo(s.g), nomeBlocco(s.b, true), descr(s), s.gi || 1, s.r, s.m, metri(s), nomeStile(s.s),
       (s.a || []).join(", "), s.p ? fmtTempo(s.p) : "", s.n].map(q).join(";"));
@@ -2695,7 +2935,7 @@ function renderFoglio(){
   $("#d-stato").textContent = (Mem.ok ? "" : "Il browser non sta salvando: esporta un backup prima di chiudere. ") +
     fmt(serie.length) + " serie su questo dispositivo, " + fmt(delGruppo) + " di " + nomeGruppo(pref.gruppo) + ".";
   const dv = $("#d-voci"); dv.innerHTML = "";
-  const nomiCat = {rip:"Ripetizioni", dist:"Distanze", giri:"Giri", stile:"Stili", blocco:"Blocchi", attr:"Attrezzi"};
+  const nomiCat = {rip:"Ripetizioni", dist:"Distanze", giri:"Giri", stile:"Stili", blocco:"Blocchi", attr:"Modalità"};
   let almeno = false;
   Object.keys(nomiCat).forEach(k => {
     const mie = (pref.voci[k] || []).filter(v => !(pref.nascoste[k] || []).includes(v)), tolte = pref.nascoste[k] || [];
